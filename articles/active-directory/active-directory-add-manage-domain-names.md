@@ -1,0 +1,80 @@
+---
+title: aaaManaging i nomi di dominio personalizzati in Azure Active Directory | Documenti Microsoft
+description: Concetti relativi alla gestione e procedure dettagliate per gestire un dominio personalizzato in Azure Active Directory
+services: active-directory
+documentationcenter: 
+author: curtand
+manager: femila
+editor: 
+ms.assetid: cf3523bd-9ee0-439e-963d-ccea038867b9
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/26/2017
+ms.author: curtand
+ms.custom: oldportal;it-pro;
+robots: NOINDEX
+ms.openlocfilehash: 4b6d06fecf3be0621be51c38a1330eafdc1b4d35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="managing-custom-domain-names-in-your-azure-active-directory"></a><span data-ttu-id="7dfc4-103">Gestione dei nomi di dominio personalizzati in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="7dfc4-103">Managing custom domain names in your Azure Active Directory</span></span>
+<span data-ttu-id="7dfc4-104">Un nome di dominio può essere un identificatore importante per molte risorse della directory, come parte di:</span><span class="sxs-lookup"><span data-stu-id="7dfc4-104">A domain name can be an important identifier for many directory resources, as part of:</span></span>
+
+* <span data-ttu-id="7dfc4-105">Un nome utente o un indirizzo di posta elettronica di un utente</span><span class="sxs-lookup"><span data-stu-id="7dfc4-105">A user name or email address for a user</span></span>
+* <span data-ttu-id="7dfc4-106">indirizzo Hello per un gruppo</span><span class="sxs-lookup"><span data-stu-id="7dfc4-106">hello address for a group</span></span>
+* <span data-ttu-id="7dfc4-107">URI ID app Hello per un'applicazione</span><span class="sxs-lookup"><span data-stu-id="7dfc4-107">hello app ID URI for an application</span></span>
+
+<span data-ttu-id="7dfc4-108">Una risorsa in Azure Active Directory (Azure AD) può includere un nome di dominio che è già verificato toobe proprietà directory hello che contiene risorse hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-108">A resource in Azure Active Directory (Azure AD) can include a domain name that is already verified toobe owned by hello directory that contains hello resource.</span></span> <span data-ttu-id="7dfc4-109">Solo un amministratore globale può eseguire attività di gestione del dominio in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-109">Only a global administrator can perform domain management tasks in Azure AD.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="7dfc4-110">Si consiglia di gestire Azure AD usando la hello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) in hello portale di Azure anziché hello portale di Azure classico a cui fa riferimento in questo articolo.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-110">Microsoft recommends that you manage Azure AD using hello [Azure AD admin center](https://aad.portal.azure.com) in hello Azure portal instead of using hello Azure classic portal referenced in this article.</span></span> <span data-ttu-id="7dfc4-111">Per modalità toomanage i nomi di dominio nel centro di amministrazione di hello Azure AD, vedere [gestione dei nomi di dominio personalizzati in Azure Active Directory](active-directory-domains-manage-azure-portal.md).</span><span class="sxs-lookup"><span data-stu-id="7dfc4-111">For how toomanage your domain names in hello Azure AD admin center, see [Managing custom domain names in your Azure Active Directory](active-directory-domains-manage-azure-portal.md).</span></span>
+
+## <a name="set-hello-primary-domain-name-for-your-azure-ad-directory"></a><span data-ttu-id="7dfc4-112">Imposta il nome di dominio primario di hello per le directory di Azure AD</span><span class="sxs-lookup"><span data-stu-id="7dfc4-112">Set hello primary domain name for your Azure AD directory</span></span>
+<span data-ttu-id="7dfc4-113">Quando viene creata la directory, nome di dominio iniziale hello, ad esempio "contoso.onmicrosoft.com", è anche il nome di dominio primario hello per le directory.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-113">When your directory is created, hello initial domain name, such as ‘contoso.onmicrosoft.com,’ is also hello primary domain name for your directory.</span></span> <span data-ttu-id="7dfc4-114">dominio primario Hello è nome di dominio hello predefinito per un nuovo utente quando si crea un nuovo utente in hello [portale di Azure classico](https://manage.windowsazure.com/), o altri portali, ad esempio il portale di amministrazione di Office 365 hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-114">hello primary domain is hello default domain name for a new user when you create a new user in hello [Azure classic portal](https://manage.windowsazure.com/), or other portals such as hello Office 365 admin portal.</span></span> <span data-ttu-id="7dfc4-115">Questo semplifica il processo di hello per un amministratore toocreate nuovi utenti portale hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-115">This streamlines hello process for an administrator toocreate new users in hello portal.</span></span>
+
+<span data-ttu-id="7dfc4-116">nome di dominio primario toochange hello per la directory:</span><span class="sxs-lookup"><span data-stu-id="7dfc4-116">toochange hello primary domain name for your directory:</span></span>
+
+1. <span data-ttu-id="7dfc4-117">Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) con un account utente che è un amministratore globale della directory di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-117">Sign in toohello [Azure classic portal](https://manage.windowsazure.com/) with a user account that is a global administrator of your Azure AD directory.</span></span>
+2. <span data-ttu-id="7dfc4-118">Selezionare **Active Directory** nella barra di spostamento a sinistra di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-118">Select **Active Directory** on hello left navigation bar.</span></span>
+3. <span data-ttu-id="7dfc4-119">Aprire la directory.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-119">Open your directory.</span></span>
+4. <span data-ttu-id="7dfc4-120">Seleziona hello **domini** scheda.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-120">Select hello **Domains** tab.</span></span>
+5. <span data-ttu-id="7dfc4-121">Seleziona hello **modifica primario** pulsante sulla barra dei comandi di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-121">Select hello **Change primary** button on hello command bar.</span></span>
+6. <span data-ttu-id="7dfc4-122">Selezionare il dominio hello che si desidera toobe hello nuovo primario dominio per la directory.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-122">Select hello domain that you want toobe hello new primary domain for your directory.</span></span>
+
+<span data-ttu-id="7dfc4-123">È possibile modificare il nome di dominio primario hello per le directory di toobe qualsiasi dominio personalizzato verificato che non sia federato.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-123">You can change hello primary domain name for your directory toobe any verified custom domain that is not federated.</span></span> <span data-ttu-id="7dfc4-124">Modifica hello primario di dominio per la directory non modificherà i nomi utente hello per tutti gli utenti esistenti.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-124">Changing hello primary domain for your directory will not change hello user names for any existing users.</span></span>
+
+## <a name="add-custom-domain-names-tooyour-azure-ad"></a><span data-ttu-id="7dfc4-125">Aggiungere tooyour di nomi di dominio personalizzato AD Azure</span><span class="sxs-lookup"><span data-stu-id="7dfc4-125">Add custom domain names tooyour Azure AD</span></span>
+<span data-ttu-id="7dfc4-126">È possibile aggiungere le directory di Azure AD tooeach nomi too900 dominio personalizzato.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-126">You can add up too900 custom domain names tooeach Azure AD directory.</span></span> <span data-ttu-id="7dfc4-127">Hello processo troppo[aggiungere un nome di dominio personalizzati aggiuntivi](active-directory-add-domain.md) hello uguali per nome di dominio personalizzato prima di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-127">hello process too[add an additional custom domain name](active-directory-add-domain.md) is hello same for hello first custom domain name.</span></span>
+
+## <a name="add-subdomains-of-a-custom-domain"></a><span data-ttu-id="7dfc4-128">Aggiungere sottodomini di un dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="7dfc4-128">Add subdomains of a custom domain</span></span>
+<span data-ttu-id="7dfc4-129">Se si desidera tooadd un nome di dominio di terzo livello, ad esempio 'europe.contoso.com' tooyour directory, è necessario aggiungere e verificare il dominio di secondo livello hello, ad esempio contoso.com. sottodominio Hello verrà verificato automaticamente da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-129">If you want tooadd a third-level domain name such as ‘europe.contoso.com’ tooyour directory, you should first add and verify hello second-level domain, such as contoso.com. hello subdomain will be automatically verified by Azure AD.</span></span> <span data-ttu-id="7dfc4-130">è stato verificato toosee che hello sottodominio appena aggiunta, aggiornamento hello pagina nel browser hello che elenca i domini hello nella directory.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-130">toosee that hello subdomain that you just added has been verified, refresh hello page in hello browser that lists hello domains in your directory.</span></span>
+
+## <a name="what-toodo-if-you-change-hello-dns-registrar-for-your-custom-domain-name"></a><span data-ttu-id="7dfc4-131">Quali toodo se si modifica registrazione DNS hello per nome di dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="7dfc4-131">What toodo if you change hello DNS registrar for your custom domain name</span></span>
+<span data-ttu-id="7dfc4-132">Se si modifica una registrazione DNS hello per nome di dominio personalizzato, è possibile continuare a toouse il nome di dominio personalizzato con Azure Active Directory stessa senza interruzioni e senza ulteriori operazioni di configurazione.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-132">If you change hello DNS registrar for your custom domain name, you can continue toouse your custom domain name with Azure AD itself without interruption and without additional configuration tasks.</span></span> <span data-ttu-id="7dfc4-133">Se si utilizza il nome di dominio personalizzato con Office 365, Intune o altri servizi che si basano sui nomi di dominio personalizzato in Azure Active Directory, consultare la documentazione di toohello per tali servizi.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-133">If you use your custom domain name with Office 365, Intune, or other services that rely on custom domain names in Azure AD, refer toohello documentation for those services.</span></span>
+
+## <a name="delete-a-custom-domain-name"></a><span data-ttu-id="7dfc4-134">Eliminare un nome di dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="7dfc4-134">Delete a custom domain name</span></span>
+<span data-ttu-id="7dfc4-135">Se l'organizzazione non usa tale nome di dominio o se è necessario toouse nome di dominio con Azure AD un altro, è possibile eliminare un nome di dominio personalizzato da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-135">You can delete a custom domain name from your Azure AD if your organization no longer uses that domain name, or if you need toouse that domain name with another Azure AD.</span></span>
+
+<span data-ttu-id="7dfc4-136">toodelete un nome di dominio personalizzato, è innanzitutto necessario assicurarsi che nessuna risorsa nel servizio directory si basa sul nome di dominio hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-136">toodelete a custom domain name, you must first ensure that no resources in your directory rely on hello domain name.</span></span> <span data-ttu-id="7dfc4-137">Non è possibile eliminare un nome di dominio dalla directory nei casi seguenti:</span><span class="sxs-lookup"><span data-stu-id="7dfc4-137">You can't delete a domain name from your directory if:</span></span>
+
+* <span data-ttu-id="7dfc4-138">Qualsiasi utente che ha un nome utente, un indirizzo di posta elettronica o un indirizzo proxy che includono il nome di dominio di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-138">Any user has a user name, email address, or proxy address that include hello domain name.</span></span>
+* <span data-ttu-id="7dfc4-139">Qualsiasi gruppo ha un indirizzo di posta elettronica o l'indirizzo proxy che include il nome di dominio di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-139">Any group has an email address or proxy address that includes hello domain name.</span></span>
+* <span data-ttu-id="7dfc4-140">Qualsiasi applicazione in Azure AD dispone una URI ID app che include il nome di dominio di hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-140">Any application in your Azure AD has an app ID URI that includes hello domain name.</span></span>
+
+<span data-ttu-id="7dfc4-141">È necessario modificare o eliminare qualsiasi esempio di risorsa nella directory di Azure AD prima di poter eliminare il nome di dominio personalizzato hello.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-141">You must change or delete any such resource in your Azure AD directory before you can delete hello custom domain name.</span></span>
+
+## <a name="use-powershell-or-graph-api-toomanage-domain-names"></a><span data-ttu-id="7dfc4-142">Utilizzare nomi di dominio toomanage PowerShell o l'API Graph</span><span class="sxs-lookup"><span data-stu-id="7dfc4-142">Use PowerShell or Graph API toomanage domain names</span></span>
+<span data-ttu-id="7dfc4-143">La maggior parte delle attività di gestione per i nomi di dominio in Azure Active Directory può anche essere completata usando Microsoft PowerShell oppure a livello di codice usando l'API Graph di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="7dfc4-143">Most management tasks for domain names in Azure Active Directory can also be completed using Microsoft PowerShell, or programmatically using Azure AD Graph API.</span></span>
+
+* [<span data-ttu-id="7dfc4-144">Utilizzo di PowerShell toomanage i nomi di dominio in Azure AD</span><span class="sxs-lookup"><span data-stu-id="7dfc4-144">Using PowerShell toomanage domain names in Azure AD</span></span>](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
+* [<span data-ttu-id="7dfc4-145">Utilizzo di nomi di dominio toomanage API Graph di Azure AD</span><span class="sxs-lookup"><span data-stu-id="7dfc4-145">Using Graph API toomanage domain names in Azure AD</span></span>](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
+
+## <a name="next-steps"></a><span data-ttu-id="7dfc4-146">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="7dfc4-146">Next steps</span></span>
+* [<span data-ttu-id="7dfc4-147">Informazioni sui nomi di dominio in Azure AD</span><span class="sxs-lookup"><span data-stu-id="7dfc4-147">Learn about domain names in Azure AD</span></span>](active-directory-add-domain-concepts.md)
+* [<span data-ttu-id="7dfc4-148">Gestire i nomi di dominio personalizzati</span><span class="sxs-lookup"><span data-stu-id="7dfc4-148">Manage custom domain names</span></span>](active-directory-add-manage-domain-names.md)
+

@@ -1,0 +1,4 @@
+| <span data-ttu-id="ea205-101">Risorsa</span><span class="sxs-lookup"><span data-stu-id="ea205-101">Resource</span></span> | <span data-ttu-id="ea205-102">Limite</span><span class="sxs-lookup"><span data-stu-id="ea205-102">Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="ea205-103">Sottoscrizioni di eventi per area</span><span class="sxs-lookup"><span data-stu-id="ea205-103">Event Subscriptions per region</span></span> |<span data-ttu-id="ea205-104">1000</span><span class="sxs-lookup"><span data-stu-id="ea205-104">1000</span></span> |
+| <span data-ttu-id="ea205-105">Argomenti personalizzati per area</span><span class="sxs-lookup"><span data-stu-id="ea205-105">Custom Topics per region</span></span> |<span data-ttu-id="ea205-106">20</span><span class="sxs-lookup"><span data-stu-id="ea205-106">20</span></span> |

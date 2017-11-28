@@ -1,0 +1,17 @@
+<!--author=SharS last changed: 9/17/15-->
+
+#### <a name="to-install-maintenance-mode-hotfixes-via-windows-powershell-for-storsimple"></a><span data-ttu-id="adc72-101">Per installare gli aggiornamenti rapidi in modalità di manutenzione tramite Windows PowerShell per StorSimple</span><span class="sxs-lookup"><span data-stu-id="adc72-101">To install Maintenance mode hotfixes via Windows PowerShell for StorSimple</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="adc72-102">In modalità di manutenzione, è necessario applicare l’aggiornamento rapido prima in un controller e quindi nell’altro controller.</span><span class="sxs-lookup"><span data-stu-id="adc72-102">In Maintenance mode, you need to apply the hotfix first on one controller and then on the other controller.</span></span>
+> 
+> 
+
+1. <span data-ttu-id="adc72-103">Attivare la modalità di manutenzione per il dispositivo.</span><span class="sxs-lookup"><span data-stu-id="adc72-103">Place the device into Maintenance mode.</span></span> <span data-ttu-id="adc72-104">Per istruzioni su come attivare la modalità di manutenzione, vedere [Passaggio 2: Attivare la modalità di manutenzione](../articles/storsimple/storsimple-update-device.md#step2).</span><span class="sxs-lookup"><span data-stu-id="adc72-104">See [Step 2: Enter Maintenance mode](../articles/storsimple/storsimple-update-device.md#step2) for instructions on how to enter Maintenance mode.</span></span>
+2. <span data-ttu-id="adc72-105">Per applicare l’aggiornamento rapido, digitare:</span><span class="sxs-lookup"><span data-stu-id="adc72-105">To apply the hotfix, type:</span></span>
+   
+     `Start-HcsHotfix` 
+3. <span data-ttu-id="adc72-106">Quando richiesto, specificare il percorso della cartella condivisa di rete che contiene i file dell'aggiornamento rapido.</span><span class="sxs-lookup"><span data-stu-id="adc72-106">When prompted, supply the path to the network shared folder that contains the hotfix files.</span></span>
+4. <span data-ttu-id="adc72-107">Verrà richiesto di confermare.</span><span class="sxs-lookup"><span data-stu-id="adc72-107">You will be prompted for confirmation.</span></span> <span data-ttu-id="adc72-108">Digitare **Y** per procedere con l'installazione dell'aggiornamento rapido.</span><span class="sxs-lookup"><span data-stu-id="adc72-108">Type **Y** to proceed with the hotfix installation.</span></span>
+5. <span data-ttu-id="adc72-109">Dopo aver applicato l'aggiornamento rapido in un controller, accedere all’altro controller.</span><span class="sxs-lookup"><span data-stu-id="adc72-109">After you have applied the hotfix on one controller, log on to the other controller.</span></span> <span data-ttu-id="adc72-110">Applicare l'aggiornamento rapido come è stato fatto per il precedente controller.</span><span class="sxs-lookup"><span data-stu-id="adc72-110">Apply the hotfix as you did for the previous controller.</span></span>
+6. <span data-ttu-id="adc72-111">Dopo aver applicato gli aggiornamenti rapidi, uscire dalla modalità di manutenzione.</span><span class="sxs-lookup"><span data-stu-id="adc72-111">After the hotfixes are applied, exit Maintenance mode.</span></span> <span data-ttu-id="adc72-112">Per istruzioni, vedere [Passaggio 4: Uscire dalla modalità di manutenzione](../articles/storsimple/storsimple-update-device.md#step4).</span><span class="sxs-lookup"><span data-stu-id="adc72-112">See [Step 4: Exit Maintenance mode](../articles/storsimple/storsimple-update-device.md#step4) for instructions.</span></span>
+

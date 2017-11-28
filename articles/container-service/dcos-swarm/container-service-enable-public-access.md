@@ -1,0 +1,90 @@
+---
+title: aaaEnable accesso tooAzure controller di dominio o del sistema operativo contenitore app | Documenti Microsoft
+description: Come pubblico tooenable accedere ai contenitori di tooDC/OS contenitore nel servizio di Azure.
+services: container-service
+documentationcenter: 
+author: sauryadas
+manager: madhana
+editor: 
+tags: acs, azure-container-service
+keywords: Docker, Contenitori, Micro-servizi, Mesos, Azure
+ms.service: container-service
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/26/2016
+ms.author: saudas
+ms.custom: mvc
+ms.openlocfilehash: 1ba251ba5a176a6a5e1c7831655164e380a62b27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="enable-public-access-tooan-azure-container-service-application"></a><span data-ttu-id="a9341-104">Abilitare l'applicazione del servizio di contenitore di Azure tooan accesso pubblico</span><span class="sxs-lookup"><span data-stu-id="a9341-104">Enable public access tooan Azure Container Service application</span></span>
+<span data-ttu-id="a9341-105">Qualsiasi contenitore di controller di dominio/OS hello ACS [pool di agenti pubblica](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) viene automaticamente esposta toohello internet.</span><span class="sxs-lookup"><span data-stu-id="a9341-105">Any DC/OS container in hello ACS [public agent pool](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) is automatically exposed toohello internet.</span></span> <span data-ttu-id="a9341-106">Per impostazione predefinita, le porte **80**, **443**, **8080** sono aperte e qualsiasi contenitore (pubblico) in ascolto su queste porte è accessibile.</span><span class="sxs-lookup"><span data-stu-id="a9341-106">By default, ports **80**, **443**, **8080** are opened, and any (public) container listening on those ports are accessible.</span></span> <span data-ttu-id="a9341-107">Questo articolo illustra come tooopen più porte per le applicazioni nel servizio contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="a9341-107">This article shows you how tooopen more ports for your applications in Azure Container Service.</span></span>
+
+## <a name="open-a-port-portal"></a><span data-ttu-id="a9341-108">Aprire una porta (portale)</span><span class="sxs-lookup"><span data-stu-id="a9341-108">Open a port (portal)</span></span>
+<span data-ttu-id="a9341-109">Innanzitutto, è necessario porta hello tooopen desiderato.</span><span class="sxs-lookup"><span data-stu-id="a9341-109">First, we need tooopen hello port we want.</span></span>
+
+1. <span data-ttu-id="a9341-110">Accedi a portale toohello.</span><span class="sxs-lookup"><span data-stu-id="a9341-110">Log in toohello portal.</span></span>
+2. <span data-ttu-id="a9341-111">Trovare il gruppo di risorse hello distribuito hello servizio contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="a9341-111">Find hello resource group that you deployed hello Azure Container Service to.</span></span>
+3. <span data-ttu-id="a9341-112">Selezionare servizio di bilanciamento del carico agente hello (denominato simile troppo**lb-XXXX-XXXX-agente**).</span><span class="sxs-lookup"><span data-stu-id="a9341-112">Select hello agent load balancer (which is named similar too**XXXX-agent-lb-XXXX**).</span></span>
+   
+    ![Servizio di bilanciamento del carico del servizio contenitore di Azure](./media/container-service-enable-public-access/agent-load-balancer.png)
+4. <span data-ttu-id="a9341-114">Fare clic su **Probe** e quindi su **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="a9341-114">Click **Probes** and then **Add**.</span></span>
+   
+    ![Probe del servizio di bilanciamento del carico del servizio contenitore di Azure](./media/container-service-enable-public-access/add-probe.png)
+5. <span data-ttu-id="a9341-116">Compilazione del modulo probe hello e fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="a9341-116">Fill out hello probe form and click **OK**.</span></span>
+   
+   | <span data-ttu-id="a9341-117">Campo</span><span class="sxs-lookup"><span data-stu-id="a9341-117">Field</span></span> | <span data-ttu-id="a9341-118">Descrizione</span><span class="sxs-lookup"><span data-stu-id="a9341-118">Description</span></span> |
+   | --- | --- |
+   | <span data-ttu-id="a9341-119">Nome</span><span class="sxs-lookup"><span data-stu-id="a9341-119">Name</span></span> |<span data-ttu-id="a9341-120">Un nome descrittivo del probe hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-120">A descriptive name of hello probe.</span></span> |
+   | <span data-ttu-id="a9341-121">Porta</span><span class="sxs-lookup"><span data-stu-id="a9341-121">Port</span></span> |<span data-ttu-id="a9341-122">porta Hello hello contenitore tootest.</span><span class="sxs-lookup"><span data-stu-id="a9341-122">hello port of hello container tootest.</span></span> |
+   | <span data-ttu-id="a9341-123">Path</span><span class="sxs-lookup"><span data-stu-id="a9341-123">Path</span></span> |<span data-ttu-id="a9341-124">(In modalità HTTP) hello tooprobe percorso relativo del sito Web.</span><span class="sxs-lookup"><span data-stu-id="a9341-124">(When in HTTP mode) hello relative website path tooprobe.</span></span> <span data-ttu-id="a9341-125">HTTPS non è supportato.</span><span class="sxs-lookup"><span data-stu-id="a9341-125">HTTPS not supported.</span></span> |
+   | <span data-ttu-id="a9341-126">Interval</span><span class="sxs-lookup"><span data-stu-id="a9341-126">Interval</span></span> |<span data-ttu-id="a9341-127">Hello tempo tra probe tentativi, in secondi.</span><span class="sxs-lookup"><span data-stu-id="a9341-127">hello amount of time between probe attempts, in seconds.</span></span> |
+   | <span data-ttu-id="a9341-128">Soglia non integra</span><span class="sxs-lookup"><span data-stu-id="a9341-128">Unhealthy threshold</span></span> |<span data-ttu-id="a9341-129">Numero di probe consecutivi tentativi prima che venga considerato non integro contenitore hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-129">Number of consecutive probe attempts before considering hello container unhealthy.</span></span> |
+6. <span data-ttu-id="a9341-130">Nella proprietà hello di bilanciamento del carico di hello agente, fare clic su **regole di bilanciamento del carico** e quindi **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="a9341-130">Back at hello properties of hello agent load balancer, click **Load balancing rules** and then **Add**.</span></span>
+   
+    ![Regole del servizio di bilanciamento del carico del servizio contenitore di Azure](./media/container-service-enable-public-access/add-balancer-rule.png)
+7. <span data-ttu-id="a9341-132">Compilazione del modulo del servizio di bilanciamento carico di hello e fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="a9341-132">Fill out hello load balancer form and click **OK**.</span></span>
+   
+   | <span data-ttu-id="a9341-133">Campo</span><span class="sxs-lookup"><span data-stu-id="a9341-133">Field</span></span> | <span data-ttu-id="a9341-134">Descrizione</span><span class="sxs-lookup"><span data-stu-id="a9341-134">Description</span></span> |
+   | --- | --- |
+   | <span data-ttu-id="a9341-135">Nome</span><span class="sxs-lookup"><span data-stu-id="a9341-135">Name</span></span> |<span data-ttu-id="a9341-136">Nome descrittivo del servizio di bilanciamento del carico hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-136">A descriptive name of hello load balancer.</span></span> |
+   | <span data-ttu-id="a9341-137">Porta</span><span class="sxs-lookup"><span data-stu-id="a9341-137">Port</span></span> |<span data-ttu-id="a9341-138">porta in ingresso Hello pubblica.</span><span class="sxs-lookup"><span data-stu-id="a9341-138">hello public incoming port.</span></span> |
+   | <span data-ttu-id="a9341-139">Porta back-end</span><span class="sxs-lookup"><span data-stu-id="a9341-139">Backend port</span></span> |<span data-ttu-id="a9341-140">porta interna pubblico di Hello del hello contenitore tooroute del traffico.</span><span class="sxs-lookup"><span data-stu-id="a9341-140">hello internal-public port of hello container tooroute traffic to.</span></span> |
+   | <span data-ttu-id="a9341-141">Pool back-end</span><span class="sxs-lookup"><span data-stu-id="a9341-141">Backend pool</span></span> |<span data-ttu-id="a9341-142">contenitori di Hello in questo pool sarà destinazione hello per il bilanciamento del carico.</span><span class="sxs-lookup"><span data-stu-id="a9341-142">hello containers in this pool will be hello target for this load balancer.</span></span> |
+   | <span data-ttu-id="a9341-143">Probe</span><span class="sxs-lookup"><span data-stu-id="a9341-143">Probe</span></span> |<span data-ttu-id="a9341-144">Hello toodetermine probe utilizzata se una destinazione in hello **pool back-end** è integro.</span><span class="sxs-lookup"><span data-stu-id="a9341-144">hello probe used toodetermine if a target in hello **Backend pool** is healthy.</span></span> |
+   | <span data-ttu-id="a9341-145">Persistenza della sessione</span><span class="sxs-lookup"><span data-stu-id="a9341-145">Session persistence</span></span> |<span data-ttu-id="a9341-146">Determina la modalità di gestione traffico da un client per la durata di hello della sessione hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-146">Determines how traffic from a client should be handled for hello duration of hello session.</span></span><br><br><span data-ttu-id="a9341-147">**Nessuna**: richieste Successive provenienti dallo stesso client può essere gestita da qualsiasi contenitore hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-147">**None**: Successive requests from hello same client can be handled by any container.</span></span><br><span data-ttu-id="a9341-148">**Client IP**: richieste Successive provenienti dallo stesso indirizzo IP del client vengono gestiti da hello hello stesso contenitore.</span><span class="sxs-lookup"><span data-stu-id="a9341-148">**Client IP**: Successive requests from hello same client IP are handled by hello same container.</span></span><br><span data-ttu-id="a9341-149">**Client IP e protocollo**: le richieste Successive dalla stessa combinazione di indirizzo IP e protocollo client vengono gestiti da hello hello stesso contenitore.</span><span class="sxs-lookup"><span data-stu-id="a9341-149">**Client IP and protocol**: Successive requests from hello same client IP and protocol combination are handled by hello same container.</span></span> |
+   | <span data-ttu-id="a9341-150">Timeout di inattività</span><span class="sxs-lookup"><span data-stu-id="a9341-150">Idle timeout</span></span> |<span data-ttu-id="a9341-151">(Solo TCP) In minuti, hello tookeep ora aprire un client TCP o HTTP senza basarsi su *keep-alive* messaggi.</span><span class="sxs-lookup"><span data-stu-id="a9341-151">(TCP only) In minutes, hello time tookeep a TCP/HTTP client open without relying on *keep-alive* messages.</span></span> |
+
+## <a name="add-a-security-rule-portal"></a><span data-ttu-id="a9341-152">Aggiungere una regola di sicurezza (portale)</span><span class="sxs-lookup"><span data-stu-id="a9341-152">Add a security rule (portal)</span></span>
+<span data-ttu-id="a9341-153">È quindi necessario tooadd una regola di sicurezza che instrada il traffico dal nostro porta aperta attraverso il firewall hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-153">Next, we need tooadd a security rule that routes traffic from our opened port through hello firewall.</span></span>
+
+1. <span data-ttu-id="a9341-154">Accedi a portale toohello.</span><span class="sxs-lookup"><span data-stu-id="a9341-154">Log in toohello portal.</span></span>
+2. <span data-ttu-id="a9341-155">Trovare il gruppo di risorse hello distribuito hello servizio contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="a9341-155">Find hello resource group that you deployed hello Azure Container Service to.</span></span>
+3. <span data-ttu-id="a9341-156">Seleziona hello **pubblica** gruppo di sicurezza di rete dell'agente (denominato simile troppo**XXXX-agent-public-gruppo-XXXX**).</span><span class="sxs-lookup"><span data-stu-id="a9341-156">Select hello **public** agent network security group (which is named similar too**XXXX-agent-public-nsg-XXXX**).</span></span>
+   
+    ![Gruppo di sicurezza di rete del servizio contenitore di Azure](./media/container-service-enable-public-access/agent-nsg.png)
+4. <span data-ttu-id="a9341-158">Selezionare **Regole di sicurezza in ingresso** e quindi fare clic su **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="a9341-158">Select **Inbound security rules** and then **Add**.</span></span>
+   
+    ![Regole del gruppo di sicurezza di rete del servizio contenitore di Azure](./media/container-service-enable-public-access/add-firewall-rule.png)
+5. <span data-ttu-id="a9341-160">Compilare tooallow regola firewall di hello la porta pubblica e fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="a9341-160">Fill out hello firewall rule tooallow your public port and click **OK**.</span></span>
+   
+   | <span data-ttu-id="a9341-161">Campo</span><span class="sxs-lookup"><span data-stu-id="a9341-161">Field</span></span> | <span data-ttu-id="a9341-162">Descrizione</span><span class="sxs-lookup"><span data-stu-id="a9341-162">Description</span></span> |
+   | --- | --- |
+   | <span data-ttu-id="a9341-163">Nome</span><span class="sxs-lookup"><span data-stu-id="a9341-163">Name</span></span> |<span data-ttu-id="a9341-164">Un nome descrittivo della regola firewall hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-164">A descriptive name of hello firewall rule.</span></span> |
+   | <span data-ttu-id="a9341-165">Priorità</span><span class="sxs-lookup"><span data-stu-id="a9341-165">Priority</span></span> |<span data-ttu-id="a9341-166">Priorità per la regola hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-166">Priority rank for hello rule.</span></span> <span data-ttu-id="a9341-167">Hello hello numero hello superiore hello priorità inferiore.</span><span class="sxs-lookup"><span data-stu-id="a9341-167">hello lower hello number hello higher hello priority.</span></span> |
+   | <span data-ttu-id="a9341-168">Sorgente</span><span class="sxs-lookup"><span data-stu-id="a9341-168">Source</span></span> |<span data-ttu-id="a9341-169">Limitare hello in arrivo IP indirizzo intervallo toobe consentito o negato da questa regola.</span><span class="sxs-lookup"><span data-stu-id="a9341-169">Restrict hello incoming IP address range toobe allowed or denied by this rule.</span></span> <span data-ttu-id="a9341-170">Utilizzare **qualsiasi** toonot specificare una restrizione.</span><span class="sxs-lookup"><span data-stu-id="a9341-170">Use **Any** toonot specify a restriction.</span></span> |
+   | <span data-ttu-id="a9341-171">Service</span><span class="sxs-lookup"><span data-stu-id="a9341-171">Service</span></span> |<span data-ttu-id="a9341-172">Selezionare un set di servizi predefiniti a cui è destinata questa regola di sicurezza.</span><span class="sxs-lookup"><span data-stu-id="a9341-172">Select a set of predefined services this security rule is for.</span></span> <span data-ttu-id="a9341-173">In caso contrario utilizzare **personalizzato** toocreate personalizzati.</span><span class="sxs-lookup"><span data-stu-id="a9341-173">Otherwise use **Custom** toocreate your own.</span></span> |
+   | <span data-ttu-id="a9341-174">Protocol</span><span class="sxs-lookup"><span data-stu-id="a9341-174">Protocol</span></span> |<span data-ttu-id="a9341-175">Consente di limitare il traffico in base a **TCP** o **UDP**.</span><span class="sxs-lookup"><span data-stu-id="a9341-175">Restrict traffic based on **TCP** or **UDP**.</span></span> <span data-ttu-id="a9341-176">Utilizzare **qualsiasi** toonot specificare una restrizione.</span><span class="sxs-lookup"><span data-stu-id="a9341-176">Use **Any** toonot specify a restriction.</span></span> |
+   | <span data-ttu-id="a9341-177">Intervallo di porte</span><span class="sxs-lookup"><span data-stu-id="a9341-177">Port range</span></span> |<span data-ttu-id="a9341-178">Quando **servizio** è **personalizzata**, specifica l'intervallo di hello di porte che influisce su questa regola.</span><span class="sxs-lookup"><span data-stu-id="a9341-178">When **Service** is **Custom**, specifies hello range of ports that this rule affects.</span></span> <span data-ttu-id="a9341-179">È possibile usare una singola porta, ad esempio **80**, o un intervallo come **1024-1500**.</span><span class="sxs-lookup"><span data-stu-id="a9341-179">You can use a single port, such as **80**, or a range like **1024-1500**.</span></span> |
+   | <span data-ttu-id="a9341-180">Azione</span><span class="sxs-lookup"><span data-stu-id="a9341-180">Action</span></span> |<span data-ttu-id="a9341-181">Consentire o negare il traffico che soddisfa i criteri di hello.</span><span class="sxs-lookup"><span data-stu-id="a9341-181">Allow or deny traffic that meets hello criteria.</span></span> |
+
+## <a name="next-steps"></a><span data-ttu-id="a9341-182">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a9341-182">Next steps</span></span>
+<span data-ttu-id="a9341-183">Informazioni sulle differenze hello [gli agenti di controller di dominio/OS pubblici e privati](container-service-dcos-agents.md).</span><span class="sxs-lookup"><span data-stu-id="a9341-183">Learn about hello difference between [public and private DC/OS agents](container-service-dcos-agents.md).</span></span>
+
+<span data-ttu-id="a9341-184">Sono disponibili altre informazioni sulla [gestione dei contenitori DC/OS](container-service-mesos-marathon-ui.md).</span><span class="sxs-lookup"><span data-stu-id="a9341-184">Read more information about [managing your DC/OS containers](container-service-mesos-marathon-ui.md).</span></span>
+

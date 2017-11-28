@@ -1,0 +1,21 @@
+<span data-ttu-id="f01c6-101">Quando si aggiungono dischi dati a una VM Linux, potrebbero verificarsi errori in caso di disco inesistente nel LUN 0.</span><span class="sxs-lookup"><span data-stu-id="f01c6-101">When adding data disks to a Linux VM, you may encounter errors if a disk does not exist at LUN 0.</span></span> <span data-ttu-id="f01c6-102">Se si aggiunge un disco manualmente usando il comando `azure vm disk attach-new` e si specifica un LUN (`--lun`) anziché consentire alla piattaforma Azure di determinare il LUN appropriato, fare attenzione che nel LUN 0 sia/sarà già presente un disco.</span><span class="sxs-lookup"><span data-stu-id="f01c6-102">If you are adding a disk manually using the `azure vm disk attach-new` command and you specify a LUN (`--lun`) rather than allowing the Azure platform to determine the appropriate LUN, take care that a disk already exists / will exist at LUN 0.</span></span> 
+
+<span data-ttu-id="f01c6-103">L'esempio seguente mostra un frammento di codice dell'output di `lsscsi`:</span><span class="sxs-lookup"><span data-stu-id="f01c6-103">Consider the following example showing a snippet of the output from `lsscsi`:</span></span>
+
+```bash
+[5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc 
+[5:0:0:1]    disk    Msft     Virtual Disk     1.0   /dev/sdd 
+```
+
+<span data-ttu-id="f01c6-104">I due dischi dati sono disponibili nel LUN 0 e nel LUN 1 (la prima colonna dell'output `lsscsi` indica `[host:channel:target:lun]`).</span><span class="sxs-lookup"><span data-stu-id="f01c6-104">The two data disks exist at LUN 0 and LUN 1 (the first column in the `lsscsi` output details `[host:channel:target:lun]`).</span></span> <span data-ttu-id="f01c6-105">Entrambi i dischi devono essere accessibili dalla VM.</span><span class="sxs-lookup"><span data-stu-id="f01c6-105">Both disks should be accessbile from within the VM.</span></span> <span data-ttu-id="f01c6-106">Se è stata specificata manualmente l'aggiunta del primo e del secondo disco al LUN 1 e al LUN 2 rispettivamente, è possibile che i dischi non siano visualizzati correttamente all'interno della VM.</span><span class="sxs-lookup"><span data-stu-id="f01c6-106">If you had manually specified the first disk to be added at LUN 1 and the second disk at LUN 2, you may not see the disks correctly from within your VM.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f01c6-107">In questi esempi il valore `host` di Azure è 5, ma può variare a seconda del tipo di archiviazione selezionato.</span><span class="sxs-lookup"><span data-stu-id="f01c6-107">The Azure `host` value is 5 in these examples, but this may vary depending on the type of storage you select.</span></span>
+> 
+> 
+
+<span data-ttu-id="f01c6-108">Questo comportamento del disco non è un problema di Azure, ma dipende dal modo in cui il kernel Linux segue le specifiche SCSI.</span><span class="sxs-lookup"><span data-stu-id="f01c6-108">This disk behavior is not an Azure problem, but the way in which the Linux kernel follows the SCSI specifications.</span></span> <span data-ttu-id="f01c6-109">Quando il kernel Linux analizza il bus SCSI per individuare i dispositivi collegati, affinché il sistema continui ad analizzare la presenza di altri dispositivi è necessario che ne rilevi uno nel LUN 0.</span><span class="sxs-lookup"><span data-stu-id="f01c6-109">When the Linux kernel scans the SCSI bus for attached devices, a device must be found at LUN 0 in order for the system to continue scanning for additional devices.</span></span> <span data-ttu-id="f01c6-110">Di conseguenza:</span><span class="sxs-lookup"><span data-stu-id="f01c6-110">As such:</span></span>
+
+* <span data-ttu-id="f01c6-111">Dopo aver aggiunto un disco dati, esaminare l'output di `lsscsi` per verificare la presenza di un disco nel LUN 0.</span><span class="sxs-lookup"><span data-stu-id="f01c6-111">Review the output of `lsscsi` after adding a data disk to verify that you have a disk at LUN 0.</span></span>
+* <span data-ttu-id="f01c6-112">Se il disco non viene visualizzato correttamente nella VM, verificare che sia presente un disco nel LUN 0.</span><span class="sxs-lookup"><span data-stu-id="f01c6-112">If your disk does not show up correctly within your VM, verify a disk exists at LUN 0.</span></span>
+

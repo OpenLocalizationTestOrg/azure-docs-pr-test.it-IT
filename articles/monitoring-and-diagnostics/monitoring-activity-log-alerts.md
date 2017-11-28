@@ -1,0 +1,131 @@
+---
+title: "gli avvisi del registro attività aaaCreate | Documenti Microsoft"
+description: "Ricevere una notifica tramite posta elettronica, SMS e webhook quando si verificano determinati eventi nel registro attività hello."
+author: johnkemnetz
+manager: orenr
+editor: 
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
+ms.assetid: 
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/03/2017
+ms.author: johnkem
+ms.openlocfilehash: ba0716cc12a0b3a0024ee5562a025f3f153f8982
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="create-activity-log-alerts"></a><span data-ttu-id="2199c-103">Creare avvisi del log attività</span><span class="sxs-lookup"><span data-stu-id="2199c-103">Create activity log alerts</span></span>
+
+## <a name="overview"></a><span data-ttu-id="2199c-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="2199c-104">Overview</span></span>
+<span data-ttu-id="2199c-105">Gli avvisi del registro attività sono avvisi che attiverà quando viene generato un nuovo evento del log di attività che corrisponde alle condizioni di hello specificate nell'avviso di hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-105">Activity log alerts are alerts that activate when a new activity log event occurs that matches hello conditions specified in hello alert.</span></span> <span data-ttu-id="2199c-106">Si tratta di risorse di Azure e possono essere create usando un modello di Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="2199c-106">They are Azure resources, so they can be created by using an Azure Resource Manager template.</span></span> <span data-ttu-id="2199c-107">Sono inoltre può essere creati, aggiornati o eliminati nel portale di Azure hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-107">They also can be created, updated, or deleted in hello Azure portal.</span></span> <span data-ttu-id="2199c-108">In questo articolo vengono presentati i concetti di base hello gli avvisi del registro attività.</span><span class="sxs-lookup"><span data-stu-id="2199c-108">This article introduces hello concepts behind activity log alerts.</span></span> <span data-ttu-id="2199c-109">Viene quindi visualizzato come toouse hello tooset portale Azure backup di un avviso per eventi del registro attività.</span><span class="sxs-lookup"><span data-stu-id="2199c-109">It then shows you how toouse hello Azure portal tooset up an alert on activity log events.</span></span>
+
+<span data-ttu-id="2199c-110">In genere, si creano gli avvisi del registro attività tooreceive notifiche quando:</span><span class="sxs-lookup"><span data-stu-id="2199c-110">Typically, you create activity log alerts tooreceive notifications when:</span></span>
+
+* <span data-ttu-id="2199c-111">Modifiche specifiche sulle risorse di sottoscrizione di Azure, risorse o gruppi di risorse tooparticular spesso con ambito.</span><span class="sxs-lookup"><span data-stu-id="2199c-111">Specific changes occur on resources in your Azure subscription, often scoped tooparticular resource groups or resources.</span></span> <span data-ttu-id="2199c-112">Ad esempio, è consigliabile una notifica quando viene eliminata una macchina virtuale in myProductionResourceGroup toobe.</span><span class="sxs-lookup"><span data-stu-id="2199c-112">For example, you might want toobe notified when any virtual machine in myProductionResourceGroup is deleted.</span></span> <span data-ttu-id="2199c-113">In alternativa, è possibile toobe riceve una notifica se eventuali nuovi ruoli assegnati tooa utente nella sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="2199c-113">Or, you might want toobe notified if any new roles are assigned tooa user in your subscription.</span></span>
+* <span data-ttu-id="2199c-114">Si verifica un evento di integrità del servizio.</span><span class="sxs-lookup"><span data-stu-id="2199c-114">A service health event occurs.</span></span> <span data-ttu-id="2199c-115">Gli eventi di integrità servizio includono la notifica di eventi imprevisti e gli eventi di manutenzione che si applicano tooresources nella sottoscrizione.</span><span class="sxs-lookup"><span data-stu-id="2199c-115">Service health events include notification of incidents and maintenance events that apply tooresources in your subscription.</span></span>
+
+<span data-ttu-id="2199c-116">In entrambi i casi, un avviso di log attività consente di monitorare solo per gli eventi nella sottoscrizione hello in cui hello viene creato l'avviso.</span><span class="sxs-lookup"><span data-stu-id="2199c-116">In either case, an activity log alert monitors only for events in hello subscription in which hello alert is created.</span></span>
+
+<span data-ttu-id="2199c-117">È possibile configurare un avviso di log attività in base a qualsiasi proprietà di primo livello nell'oggetto JSON hello per un evento di registro attività.</span><span class="sxs-lookup"><span data-stu-id="2199c-117">You can configure an activity log alert based on any top-level property in hello JSON object for an activity log event.</span></span> <span data-ttu-id="2199c-118">Tuttavia, portale hello Mostra opzioni più comuni di hello:</span><span class="sxs-lookup"><span data-stu-id="2199c-118">However, hello portal shows hello most common options:</span></span>
+
+- <span data-ttu-id="2199c-119">**Categoria**: amministrazione, integrità del servizio, scalabilità automatica e indicazione.</span><span class="sxs-lookup"><span data-stu-id="2199c-119">**Category**: Administrative, Service Health, Autoscale, and Recommendation.</span></span> <span data-ttu-id="2199c-120">Per ulteriori informazioni, vedere [Panoramica del log attività Azure hello](./monitoring-overview-activity-logs.md#categories-in-the-activity-log).</span><span class="sxs-lookup"><span data-stu-id="2199c-120">For more information, see [Overview of hello Azure activity log](./monitoring-overview-activity-logs.md#categories-in-the-activity-log).</span></span> <span data-ttu-id="2199c-121">toolearn informazioni su eventi di integrità del servizio, vedere [ricevere gli avvisi del registro attività sulle notifiche di servizio](./monitoring-activity-log-alerts-on-service-notifications.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-121">toolearn more about service health events, see [Receive activity log alerts on service notifications](./monitoring-activity-log-alerts-on-service-notifications.md).</span></span>
+- <span data-ttu-id="2199c-122">**Gruppo di risorse**</span><span class="sxs-lookup"><span data-stu-id="2199c-122">**Resource group**</span></span>
+- <span data-ttu-id="2199c-123">**Risorsa**</span><span class="sxs-lookup"><span data-stu-id="2199c-123">**Resource**</span></span>
+- <span data-ttu-id="2199c-124">**Tipo di risorsa**</span><span class="sxs-lookup"><span data-stu-id="2199c-124">**Resource type**</span></span>
+- <span data-ttu-id="2199c-125">**Nome dell'operazione**: nome dell'operazione di controllo di accesso basato sui ruoli Gestione risorse hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-125">**Operation name**: hello Resource Manager Role-Based Access Control operation name.</span></span>
+- <span data-ttu-id="2199c-126">**Livello**: hello a livello di gravità dell'evento hello (dettagliato, informativo, avviso, errore o critico).</span><span class="sxs-lookup"><span data-stu-id="2199c-126">**Level**: hello severity level of hello event (Verbose, Informational, Warning, Error, or Critical).</span></span>
+- <span data-ttu-id="2199c-127">**Stato**: stato di hello dell'evento di hello, in genere avviato, non è riuscito o ha avuto esito positivo.</span><span class="sxs-lookup"><span data-stu-id="2199c-127">**Status**: hello status of hello event, typically Started, Failed, or Succeeded.</span></span>
+- <span data-ttu-id="2199c-128">**Evento avviato da**: anche noto come hello "chiamante".</span><span class="sxs-lookup"><span data-stu-id="2199c-128">**Event initiated by**: Also known as hello "caller."</span></span> <span data-ttu-id="2199c-129">indirizzo di posta elettronica Hello o un identificatore di Azure Active Directory dell'utente hello che ha eseguito l'operazione di hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-129">hello email address or Azure Active Directory identifier of hello user who performed hello operation.</span></span>
+
+>[!NOTE]
+><span data-ttu-id="2199c-130">È necessario specificare almeno due delle hello criteri che precede l'avviso, con una categoria di hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-130">You must specify at least two of hello preceding criteria in your alert, with one being hello category.</span></span> <span data-ttu-id="2199c-131">Non è possibile creare un avviso che viene attivato ogni volta che viene creato un evento nel log attività hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-131">You may not create an alert that activates every time an event is created in hello activity logs.</span></span>
+>
+>
+
+<span data-ttu-id="2199c-132">Quando si attiva un avviso di log di attività, utilizza un'azione gruppo toogenerate azioni o le notifiche.</span><span class="sxs-lookup"><span data-stu-id="2199c-132">When an activity log alert is activated, it uses an action group toogenerate actions or notifications.</span></span> <span data-ttu-id="2199c-133">Un gruppo di azione è un set riutilizzabile di ricevitori di notifica, ad esempio gli indirizzi di posta elettronica, gli URL webhook o i numeri di telefono di SMS.</span><span class="sxs-lookup"><span data-stu-id="2199c-133">An action group is a reusable set of notification receivers, such as email addresses, webhook URLs, or SMS phone numbers.</span></span> <span data-ttu-id="2199c-134">ricevitori di Hello possono fare riferimento da più toocentralize gli avvisi e raggruppare i canali di notifica.</span><span class="sxs-lookup"><span data-stu-id="2199c-134">hello receivers can be referenced from multiple alerts toocentralize and group your notification channels.</span></span> <span data-ttu-id="2199c-135">Quando si definisce l'avviso del log di attività, sono disponibili due opzioni.</span><span class="sxs-lookup"><span data-stu-id="2199c-135">When you define your activity log alert, you have two options.</span></span> <span data-ttu-id="2199c-136">È possibile:</span><span class="sxs-lookup"><span data-stu-id="2199c-136">You can:</span></span>
+
+* <span data-ttu-id="2199c-137">Usare un gruppo di azione esistente nell'avviso del log attività.</span><span class="sxs-lookup"><span data-stu-id="2199c-137">Use an existing action group in your activity log alert.</span></span> 
+* <span data-ttu-id="2199c-138">Creare un nuovo gruppo di azione.</span><span class="sxs-lookup"><span data-stu-id="2199c-138">Create a new action group.</span></span> 
+
+<span data-ttu-id="2199c-139">toolearn ulteriori informazioni sui gruppi di azioni, vedere [creare e gestire gruppi di azioni nel portale di Azure hello](monitoring-action-groups.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-139">toolearn more about action groups, see [Create and manage action groups in hello Azure portal](monitoring-action-groups.md).</span></span>
+
+<span data-ttu-id="2199c-140">toolearn sulle notifiche di integrità del servizio, vedere [ricevere gli avvisi del registro attività sulle notifiche di integrità servizio](monitoring-activity-log-alerts-on-service-notifications.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-140">toolearn more about service health notifications, see [Receive activity log alerts on service health notifications](monitoring-activity-log-alerts-on-service-notifications.md).</span></span>
+
+## <a name="create-an-alert-on-an-activity-log-event-with-a-new-action-group-by-using-hello-azure-portal"></a><span data-ttu-id="2199c-141">Creare un avviso per un evento di registro attività con un nuovo gruppo di azione utilizzando hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="2199c-141">Create an alert on an activity log event with a new action group by using hello Azure portal</span></span>
+1. <span data-ttu-id="2199c-142">In hello [portale](https://portal.azure.com)selezionare **monitoraggio**.</span><span class="sxs-lookup"><span data-stu-id="2199c-142">In hello [portal](https://portal.azure.com), select **Monitor**.</span></span>
+
+    ![Hello "Monitoraggio" del servizio](./media/monitoring-activity-log-alerts/home-monitor.png)
+2. <span data-ttu-id="2199c-144">In hello **log attività** selezionare **avvisi**.</span><span class="sxs-lookup"><span data-stu-id="2199c-144">In hello **Activity log** section, select **Alerts**.</span></span>
+
+    ![Nella scheda "Avvisi" Hello](./media/monitoring-activity-log-alerts/alerts-blades.png)
+3. <span data-ttu-id="2199c-146">Selezionare **Aggiungi avviso di log attività**e compilare i campi di hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-146">Select **Add activity log alert**, and fill in hello fields.</span></span>
+
+4. <span data-ttu-id="2199c-147">Immettere un nome in hello **nome dell'avviso log attività** e selezionare un **descrizione**.</span><span class="sxs-lookup"><span data-stu-id="2199c-147">Enter a name in hello **Activity log alert name** box, and select a **Description**.</span></span>
+
+    ![comando "Aggiungi avviso registro attività" Hello](./media/monitoring-activity-log-alerts/add-activity-log-alert.png)
+
+5. <span data-ttu-id="2199c-149">Hello **sottoscrizione** casella autofills con la sottoscrizione corrente.</span><span class="sxs-lookup"><span data-stu-id="2199c-149">hello **Subscription** box autofills with your current subscription.</span></span> <span data-ttu-id="2199c-150">Questa sottoscrizione è hello uno nel gruppo di azioni quali hello viene salvato.</span><span class="sxs-lookup"><span data-stu-id="2199c-150">This subscription is hello one in which hello action group is saved.</span></span> <span data-ttu-id="2199c-151">risorsa avviso Hello è distribuito toothis sottoscrizione e i monitoraggi log eventi dell'attività da essa.</span><span class="sxs-lookup"><span data-stu-id="2199c-151">hello alert resource is deployed toothis subscription and monitors activity log events from it.</span></span>
+
+    ![finestra di dialogo "Aggiungi avviso registro attività" Hello](./media/monitoring-activity-log-alerts/activity-log-alert-new-action-group.png)
+
+6. <span data-ttu-id="2199c-153">Seleziona hello **gruppo di risorse** in cui hello avviso risorsa sono stati creati.</span><span class="sxs-lookup"><span data-stu-id="2199c-153">Select hello **Resource group** in which hello alert resource is created.</span></span> <span data-ttu-id="2199c-154">Non si tratta di gruppo di risorse hello monitorato dall'avviso hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-154">This is not hello resource group that's monitored by hello alert.</span></span> <span data-ttu-id="2199c-155">In alternativa, è il gruppo di risorse hello risorse avviso hello in cui si trova.</span><span class="sxs-lookup"><span data-stu-id="2199c-155">Instead, it's hello resource group where hello alert resource is located.</span></span>
+
+7. <span data-ttu-id="2199c-156">Facoltativamente, selezionare un **categoria di eventi** toomodify hello filtri aggiuntivi che vengono visualizzati.</span><span class="sxs-lookup"><span data-stu-id="2199c-156">Optionally, select an **Event category** toomodify hello additional filters that are shown.</span></span> <span data-ttu-id="2199c-157">Per gli eventi amministrativi, i filtri di hello includono **gruppo di risorse**, **risorse**, **tipo di risorsa**, **nome operazione**, **Livello**, **stato**, e **evento avviato da**.</span><span class="sxs-lookup"><span data-stu-id="2199c-157">For Administrative events, hello filters include **Resource group**, **Resource**, **Resource type**, **Operation name**, **Level**, **Status**, and **Event initiated by**.</span></span> <span data-ttu-id="2199c-158">Questi valori identificano gli eventi che devono essere monitorati da questo avviso.</span><span class="sxs-lookup"><span data-stu-id="2199c-158">These values identify which events this alert should monitor.</span></span>
+
+    >[!NOTE]
+    ><span data-ttu-id="2199c-159">È necessario specificare almeno uno dei criteri che precede l'avviso hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-159">You must specify at least one of hello preceding criteria in your alert.</span></span> <span data-ttu-id="2199c-160">Non è possibile creare un avviso che viene attivato ogni volta che viene creato un evento nel log attività hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-160">You may not create an alert that activates every time an event is created in hello activity logs.</span></span>
+    >
+    >
+
+8. <span data-ttu-id="2199c-161">Immettere un nome in hello **nome del gruppo di azione** e immettere un nome in hello **nome breve** casella.</span><span class="sxs-lookup"><span data-stu-id="2199c-161">Enter a name in hello **Action group name** box, and enter a name in hello **Short name** box.</span></span> <span data-ttu-id="2199c-162">nome breve Hello viene utilizzato al posto di un nome di un gruppo completo azione quando le notifiche vengono inviate utilizzando questo gruppo.</span><span class="sxs-lookup"><span data-stu-id="2199c-162">hello short name is used in place of a full action group name when notifications are sent using this group.</span></span>
+
+9.  <span data-ttu-id="2199c-163">Definire un elenco di azioni fornendo dell'azione hello:</span><span class="sxs-lookup"><span data-stu-id="2199c-163">Define a list of actions by providing hello action’s:</span></span>
+
+    <span data-ttu-id="2199c-164">a.</span><span class="sxs-lookup"><span data-stu-id="2199c-164">a.</span></span> <span data-ttu-id="2199c-165">**Nome**: immettere il nome dell'azione di hello, alias o identificatore.</span><span class="sxs-lookup"><span data-stu-id="2199c-165">**Name**: Enter hello action’s name, alias, or identifier.</span></span>
+
+    <span data-ttu-id="2199c-166">b.</span><span class="sxs-lookup"><span data-stu-id="2199c-166">b.</span></span> <span data-ttu-id="2199c-167">**Tipo di azione**: selezionare webhook, posta elettronica o SMS.</span><span class="sxs-lookup"><span data-stu-id="2199c-167">**Action Type**: Select SMS, email, or webhook.</span></span>
+
+    <span data-ttu-id="2199c-168">c.</span><span class="sxs-lookup"><span data-stu-id="2199c-168">c.</span></span> <span data-ttu-id="2199c-169">**Dettagli**: basato sul tipo di azione hello, immettere un numero di telefono, indirizzo di posta elettronica o webhook URI.</span><span class="sxs-lookup"><span data-stu-id="2199c-169">**Details**: Based on hello action type, enter a phone number, email address, or webhook URI.</span></span>
+
+10. <span data-ttu-id="2199c-170">Selezionare **OK** avviso hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="2199c-170">Select **OK** toocreate hello alert.</span></span>
+
+<span data-ttu-id="2199c-171">avviso di Hello richiede alcuni minuti toofully propagare e quindi diventare attivo.</span><span class="sxs-lookup"><span data-stu-id="2199c-171">hello alert takes a few minutes toofully propagate and then become active.</span></span> <span data-ttu-id="2199c-172">Viene attivato quando i criteri dell'avviso hello corrispondono a nuovi eventi.</span><span class="sxs-lookup"><span data-stu-id="2199c-172">It triggers when new events match hello alert's criteria.</span></span>
+
+<span data-ttu-id="2199c-173">Per ulteriori informazioni, vedere [informazioni schema di webhook hello utilizzato con gli avvisi del registro attività](monitoring-activity-log-alerts-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-173">For more information, see [Understand hello webhook schema used in activity log alerts](monitoring-activity-log-alerts-webhook.md).</span></span>
+
+>[!NOTE]
+><span data-ttu-id="2199c-174">gruppo di azioni Hello definito in questa procedura è riutilizzabile come un gruppo di azioni esistenti per tutte le definizioni di avviso futuri.</span><span class="sxs-lookup"><span data-stu-id="2199c-174">hello action group defined in these steps is reusable as an existing action group for all future alert definitions.</span></span>
+>
+>
+
+## <a name="create-an-alert-on-an-activity-log-event-for-an-existing-action-group-by-using-hello-azure-portal"></a><span data-ttu-id="2199c-175">Creare un avviso per un evento di registro attività per un gruppo di azioni esistenti utilizzando hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="2199c-175">Create an alert on an activity log event for an existing action group by using hello Azure portal</span></span>
+1. <span data-ttu-id="2199c-176">Seguire i passaggi da 1 a 7 hello precedente sezione toocreate l'avviso di log di attività.</span><span class="sxs-lookup"><span data-stu-id="2199c-176">Follow steps 1 through 7 in hello previous section toocreate your activity log alert.</span></span>
+
+2. <span data-ttu-id="2199c-177">In **notificare tramite**selezionare hello **esistente** pulsante di azione di gruppo.</span><span class="sxs-lookup"><span data-stu-id="2199c-177">Under **Notify via**, select hello **Existing** action group button.</span></span> <span data-ttu-id="2199c-178">Selezionare un gruppo di azioni esistenti dall'elenco di hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-178">Select an existing action group from hello list.</span></span>
+
+3. <span data-ttu-id="2199c-179">Selezionare **OK** avviso hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="2199c-179">Select **OK** toocreate hello alert.</span></span>
+
+<span data-ttu-id="2199c-180">avviso di Hello richiede alcuni minuti toofully propagare e quindi diventare attivo.</span><span class="sxs-lookup"><span data-stu-id="2199c-180">hello alert takes a few minutes toofully propagate and then become active.</span></span> <span data-ttu-id="2199c-181">Viene attivato quando i criteri dell'avviso hello corrispondono a nuovi eventi.</span><span class="sxs-lookup"><span data-stu-id="2199c-181">It triggers when new events match hello alert's criteria.</span></span>
+
+## <a name="manage-your-alerts"></a><span data-ttu-id="2199c-182">Gestire gli avvisi</span><span class="sxs-lookup"><span data-stu-id="2199c-182">Manage your alerts</span></span>
+
+<span data-ttu-id="2199c-183">Dopo aver creato un avviso, è visibile nella sezione avvisi hello del pannello monitoraggio hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-183">After you create an alert, it's visible in hello Alerts section of hello Monitor blade.</span></span> <span data-ttu-id="2199c-184">Selezionare l'avviso di hello da toomanage per:</span><span class="sxs-lookup"><span data-stu-id="2199c-184">Select hello alert you want toomanage to:</span></span>
+
+* <span data-ttu-id="2199c-185">Modificarlo.</span><span class="sxs-lookup"><span data-stu-id="2199c-185">Edit it.</span></span>
+* <span data-ttu-id="2199c-186">Eliminarlo.</span><span class="sxs-lookup"><span data-stu-id="2199c-186">Delete it.</span></span>
+* <span data-ttu-id="2199c-187">Disabilitare o abilitare, se si desidera tootemporarily arrestare o riprendere la ricezione di notifiche di avviso hello.</span><span class="sxs-lookup"><span data-stu-id="2199c-187">Disable or enable it, if you want tootemporarily stop or resume receiving notifications for hello alert.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="2199c-188">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="2199c-188">Next steps</span></span>
+- <span data-ttu-id="2199c-189">Ottenere una [panoramica degli avvisi](monitoring-overview-alerts.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-189">Get an [overview of alerts](monitoring-overview-alerts.md).</span></span>
+- <span data-ttu-id="2199c-190">Informazioni sulla [limitazione della frequenza delle notifiche](monitoring-alerts-rate-limiting.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-190">Learn about [notification rate limiting](monitoring-alerts-rate-limiting.md).</span></span>
+- <span data-ttu-id="2199c-191">Hello revisione [schema webhook avvisi del registro attività](monitoring-activity-log-alerts-webhook.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-191">Review hello [activity log alert webhook schema](monitoring-activity-log-alerts-webhook.md).</span></span>
+- <span data-ttu-id="2199c-192">Altre informazioni sui [gruppi di azione](monitoring-action-groups.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-192">Learn more about [action groups](monitoring-action-groups.md).</span></span>  
+- <span data-ttu-id="2199c-193">Informazioni sulle [notifiche per l'integrità del servizio](monitoring-service-notifications.md).</span><span class="sxs-lookup"><span data-stu-id="2199c-193">Learn about [service health notifications](monitoring-service-notifications.md).</span></span>
+- <span data-ttu-id="2199c-194">Creare un [attività tutte le operazioni del motore di scalabilità automatica per la sottoscrizione di avvisi toomonitor log](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert).</span><span class="sxs-lookup"><span data-stu-id="2199c-194">Create an [activity log alert toomonitor all autoscale engine operations on your subscription](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert).</span></span>
+- <span data-ttu-id="2199c-195">Creare un [attività tutte le operazioni di scala/scalabilità di scalabilità automatica non riuscita per la sottoscrizione di avvisi toomonitor log](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).</span><span class="sxs-lookup"><span data-stu-id="2199c-195">Create an [activity log alert toomonitor all failed autoscale scale-in/scale-out operations on your subscription](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).</span></span>

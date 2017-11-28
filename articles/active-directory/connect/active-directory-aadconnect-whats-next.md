@@ -1,0 +1,74 @@
+---
+title: 'Azure AD Connect: Passaggi successivi e in che modo Azure AD Connect toomanage | Documenti Microsoft'
+description: "Informazioni su come tooextend hello configurazione predefinita e le attività operative per Azure AD Connect."
+services: active-directory
+documentationcenter: 
+author: billmath
+manager: femila
+editor: curtand
+ms.assetid: c18bee36-aebf-4281-b8fc-3fe14116f1a5
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/12/2017
+ms.author: billmath
+ms.openlocfilehash: 4404aaff24d54d76b83baca3b331a6a250ba4c03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="next-steps-and-how-toomanage-azure-ad-connect"></a><span data-ttu-id="caa20-103">Passaggi successivi e come toomanage Azure AD Connect</span><span class="sxs-lookup"><span data-stu-id="caa20-103">Next steps and how toomanage Azure AD Connect</span></span>
+<span data-ttu-id="caa20-104">Utilizzare le procedure operative hello in toomeet di Connect di Azure Active Directory (Azure AD) toocustomize questo articolo esigenze dell'organizzazione e ai requisiti.</span><span class="sxs-lookup"><span data-stu-id="caa20-104">Use hello operational procedures in this article toocustomize Azure Active Directory (Azure AD) Connect toomeet your organization's needs and requirements.</span></span>  
+
+## <a name="add-additional-sync-admins"></a><span data-ttu-id="caa20-105">Aggiungere altri amministratori di sincronizzazione</span><span class="sxs-lookup"><span data-stu-id="caa20-105">Add additional sync admins</span></span>
+<span data-ttu-id="caa20-106">Per impostazione predefinita, solo gli utenti hello hello amministratori locali e installazione sono in grado di toomanage motore di sincronizzazione hello installato.</span><span class="sxs-lookup"><span data-stu-id="caa20-106">By default, only hello user who did hello installation and local admins are able toomanage hello installed sync engine.</span></span> <span data-ttu-id="caa20-107">Per altre persone toobe in grado di tooaccess e gestire il motore di sincronizzazione di hello, individuare il gruppo di hello denominato ADSyncAdmins nel server locale hello e aggiungerli toothis gruppo.</span><span class="sxs-lookup"><span data-stu-id="caa20-107">For additional people toobe able tooaccess and manage hello sync engine, locate hello group named ADSyncAdmins on hello local server and add them toothis group.</span></span>
+
+## <a name="assign-licenses-tooazure-ad-premium-and-enterprise-mobility-suite-users"></a><span data-ttu-id="caa20-108">Assegnare licenze tooAzure agli utenti di Active Directory Premium ed Enterprise Mobility Suite</span><span class="sxs-lookup"><span data-stu-id="caa20-108">Assign licenses tooAzure AD Premium and Enterprise Mobility Suite users</span></span>
+<span data-ttu-id="caa20-109">Ora che gli utenti sono stati sincronizzati toohello cloud, è necessario tooassign loro una licenza, pertanto è possibile procedere con le app cloud, ad esempio Office 365.</span><span class="sxs-lookup"><span data-stu-id="caa20-109">Now that your users have been synchronized toohello cloud, you need tooassign them a license so they can get going with cloud apps such as Office 365.</span></span>
+
+### <a name="tooassign-an-azure-ad-premium-or-enterprise-mobility-suite-license"></a><span data-ttu-id="caa20-110">tooassign una Azure AD Premium o Enterprise Mobility Suite di licenza</span><span class="sxs-lookup"><span data-stu-id="caa20-110">tooassign an Azure AD Premium or Enterprise Mobility Suite License</span></span>
+
+1. <span data-ttu-id="caa20-111">Accedi toohello portale di Azure come amministratore.</span><span class="sxs-lookup"><span data-stu-id="caa20-111">Sign in toohello Azure portal as an admin.</span></span>
+2. <span data-ttu-id="caa20-112">A sinistra di hello, selezionare **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="caa20-112">On hello left, select **Active Directory**.</span></span>
+3. <span data-ttu-id="caa20-113">In hello **Active Directory** pagina, fare doppio clic sulla directory hello con gli utenti di hello si desidera ripristinare tooset.</span><span class="sxs-lookup"><span data-stu-id="caa20-113">On hello **Active Directory** page, double-click hello directory that has hello users you want tooset up.</span></span>
+4. <span data-ttu-id="caa20-114">Nella parte superiore di hello della pagina directory hello, selezionare **licenze**.</span><span class="sxs-lookup"><span data-stu-id="caa20-114">At hello top of hello directory page, select **Licenses**.</span></span>
+5. <span data-ttu-id="caa20-115">In hello **licenze** selezionare **Active Directory Premium** o **Enterprise Mobility Suite**, quindi fare clic su **assegnare**.</span><span class="sxs-lookup"><span data-stu-id="caa20-115">On hello **Licenses** page, select **Active Directory Premium** or **Enterprise Mobility Suite**, and then click **Assign**.</span></span>
+6. <span data-ttu-id="caa20-116">Nella finestra di dialogo hello selezionare utenti di hello desiderati tooassign licenze per e quindi fare clic su hello segno di spunta icona toosave hello verrà modificata.</span><span class="sxs-lookup"><span data-stu-id="caa20-116">In hello dialog box, select hello users you want tooassign licenses to, and then click hello check mark icon toosave hello changes.</span></span>
+
+## <a name="verify-hello-scheduled-synchronization-task"></a><span data-ttu-id="caa20-117">Verificare l'attività di sincronizzazione pianificato hello</span><span class="sxs-lookup"><span data-stu-id="caa20-117">Verify hello scheduled synchronization task</span></span>
+<span data-ttu-id="caa20-118">Utilizzare hello toocheck portale Azure hello stato di una sincronizzazione.</span><span class="sxs-lookup"><span data-stu-id="caa20-118">Use hello Azure portal toocheck hello status of a synchronization.</span></span>
+
+### <a name="tooverify-hello-scheduled-synchronization-task"></a><span data-ttu-id="caa20-119">attività di sincronizzazione pianificata hello tooverify</span><span class="sxs-lookup"><span data-stu-id="caa20-119">tooverify hello scheduled synchronization task</span></span>
+1. <span data-ttu-id="caa20-120">Accedi toohello portale di Azure come amministratore.</span><span class="sxs-lookup"><span data-stu-id="caa20-120">Sign in toohello Azure portal as an admin.</span></span>
+2. <span data-ttu-id="caa20-121">A sinistra di hello, selezionare **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="caa20-121">On hello left, select **Active Directory**.</span></span>
+3. <span data-ttu-id="caa20-122">In hello **Active Directory** pagina, fare doppio clic sulla directory hello con gli utenti di hello si desidera ripristinare tooset.</span><span class="sxs-lookup"><span data-stu-id="caa20-122">On hello **Active Directory** page, double-click hello directory that has hello users you want tooset up.</span></span>
+4. <span data-ttu-id="caa20-123">Nella parte superiore di hello della pagina directory hello, selezionare **integrazione Directory**.</span><span class="sxs-lookup"><span data-stu-id="caa20-123">At hello top of hello directory page, select **Directory Integration**.</span></span>
+5. <span data-ttu-id="caa20-124">In **integrazione con active directory locale**, hello nota ora dell'ultima sincronizzazione.</span><span class="sxs-lookup"><span data-stu-id="caa20-124">Under **integration with local active directory**, note hello last sync time.</span></span>
+
+<span data-ttu-id="caa20-125"><center>![Ora sincronizzazione directory](./media/active-directory-aadconnect-whats-next/verify.png)</center></span><span class="sxs-lookup"><span data-stu-id="caa20-125"><center>![Directory sync time](./media/active-directory-aadconnect-whats-next/verify.png)</center></span></span>
+
+## <a name="start-a-scheduled-synchronization-task"></a><span data-ttu-id="caa20-126">Avviare un'attività di sincronizzazione pianificata</span><span class="sxs-lookup"><span data-stu-id="caa20-126">Start a scheduled synchronization task</span></span>
+<span data-ttu-id="caa20-127">Se è necessario toorun un'attività di sincronizzazione, è possibile farlo eseguendo nuovamente tramite procedura guidata di Azure AD Connect hello.</span><span class="sxs-lookup"><span data-stu-id="caa20-127">If you need toorun a synchronization task, you can do this by running through hello Azure AD Connect wizard again.</span></span>  <span data-ttu-id="caa20-128">È necessario tooprovide le credenziali di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="caa20-128">You need tooprovide your Azure AD credentials.</span></span>  <span data-ttu-id="caa20-129">Nella procedura guidata hello, selezionare hello **personalizzare le opzioni di sincronizzazione** attività e fare clic su **Avanti** toomove guidata hello.</span><span class="sxs-lookup"><span data-stu-id="caa20-129">In hello wizard, select hello **Customize synchronization options** task, and click **Next** toomove through hello wizard.</span></span> <span data-ttu-id="caa20-130">Al fine di hello, verificare che hello **avviare il processo di sincronizzazione di hello appena viene completata la configurazione iniziale di hello** casella è selezionata.</span><span class="sxs-lookup"><span data-stu-id="caa20-130">At hello end, ensure that hello **Start hello synchronization process as soon as hello initial configuration completes** box is selected.</span></span>
+
+<span data-ttu-id="caa20-131"><center>![Avviare la sincronizzazione](./media/active-directory-aadconnect-whats-next/startsynch.png)</center></span><span class="sxs-lookup"><span data-stu-id="caa20-131"><center>![Start synchronization](./media/active-directory-aadconnect-whats-next/startsynch.png)</center></span></span>
+
+<span data-ttu-id="caa20-132">Per ulteriori informazioni sulla sincronizzazione di hello Azure AD Connect dell'utilità di pianificazione, vedere [pianificazione di connettersi AD Azure](active-directory-aadconnectsync-feature-scheduler.md).</span><span class="sxs-lookup"><span data-stu-id="caa20-132">For more information on hello Azure AD Connect sync Scheduler, see [Azure AD Connect Scheduler](active-directory-aadconnectsync-feature-scheduler.md).</span></span>
+
+## <a name="additional-tasks-available-in-azure-ad-connect"></a><span data-ttu-id="caa20-133">Attività aggiuntive disponibili in Azure AD Connect</span><span class="sxs-lookup"><span data-stu-id="caa20-133">Additional tasks available in Azure AD Connect</span></span>
+<span data-ttu-id="caa20-134">Dopo l'installazione iniziale di Azure AD Connect, è possibile sempre avviare la procedura guidata hello nuovamente da hello Azure AD Connect inizio pagina o desktop scelta rapida.</span><span class="sxs-lookup"><span data-stu-id="caa20-134">After your initial installation of Azure AD Connect, you can always start hello wizard again from hello Azure AD Connect start page or desktop shortcut.</span></span>  <span data-ttu-id="caa20-135">Si noterà che attraversa nuovamente la procedura guidata hello sono disponibili alcune nuove opzioni sotto forma di hello di attività aggiuntive.</span><span class="sxs-lookup"><span data-stu-id="caa20-135">You will notice that going through hello wizard again provides some new options in hello form of additional tasks.</span></span>  
+
+<span data-ttu-id="caa20-136">Hello nella tabella seguente fornisce un riepilogo di queste attività e una breve descrizione di ogni attività.</span><span class="sxs-lookup"><span data-stu-id="caa20-136">hello following table provides a summary of these tasks and a brief description of each task.</span></span>
+
+![Elenco delle attività aggiuntive](./media/active-directory-aadconnect-whats-next/addtasks.png)
+
+| <span data-ttu-id="caa20-138">Attività aggiuntive</span><span class="sxs-lookup"><span data-stu-id="caa20-138">Additional task</span></span> | <span data-ttu-id="caa20-139">Descrizione</span><span class="sxs-lookup"><span data-stu-id="caa20-139">Description</span></span> |
+| --- | --- |
+| <span data-ttu-id="caa20-140">**Scenario di visualizzazione hello selezionato**</span><span class="sxs-lookup"><span data-stu-id="caa20-140">**View hello selected scenario**</span></span> |<span data-ttu-id="caa20-141">Consente di visualizzare la soluzione Azure AD Connect corrente.</span><span class="sxs-lookup"><span data-stu-id="caa20-141">View your current Azure AD Connect solution.</span></span>  <span data-ttu-id="caa20-142">Include impostazioni generali, directory sincronizzate e impostazioni di sincronizzazione.</span><span class="sxs-lookup"><span data-stu-id="caa20-142">This includes general settings, synchronized directories, and sync settings.</span></span> |
+| <span data-ttu-id="caa20-143">**Personalizzazione delle opzioni di sincronizzazione**</span><span class="sxs-lookup"><span data-stu-id="caa20-143">**Customize synchronization options**</span></span> |<span data-ttu-id="caa20-144">Modifica della configurazione corrente di hello quali l'aggiunta di ulteriore configurazione toohello foreste di Active Directory, o l'attivazione di opzioni di sincronizzazione, ad esempio utente, gruppo, dispositivi o write-back password.</span><span class="sxs-lookup"><span data-stu-id="caa20-144">Change hello current configuration like adding additional Active Directory forests toohello configuration, or enabling sync options such as user, group, device, or password write-back.</span></span> |
+| <span data-ttu-id="caa20-145">**Abilitazione modalità di gestione temporanea**</span><span class="sxs-lookup"><span data-stu-id="caa20-145">**Enable Staging Mode**</span></span> |<span data-ttu-id="caa20-146">Informazioni relative alla fase non viene sincronizzate immediatamente e non esportati tooAzure Active Directory o Active Directory locale.</span><span class="sxs-lookup"><span data-stu-id="caa20-146">Stage information that is not immediately synchronized and is not exported tooAzure AD or on-premises Active Directory.</span></span>  <span data-ttu-id="caa20-147">Con questa funzionalità, è possibile visualizzare in anteprima le sincronizzazioni hello prima che si verifichino.</span><span class="sxs-lookup"><span data-stu-id="caa20-147">With this feature, you can preview hello synchronizations before they occur.</span></span> |
+
+## <a name="next-steps"></a><span data-ttu-id="caa20-148">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="caa20-148">Next steps</span></span>
+<span data-ttu-id="caa20-149">Altre informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).</span><span class="sxs-lookup"><span data-stu-id="caa20-149">Learn more about [integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>

@@ -1,0 +1,108 @@
+---
+title: aaaManaging gruppi in Azure Active Directory | Documenti Microsoft
+description: Come toocreate e gestire gruppi toomanage Azure mediante Azure Active Directory.
+services: active-directory
+documentationcenter: 
+author: curtand
+manager: femila
+editor: 
+ms.assetid: d1f5451c-3807-423c-8bac-2822d27b893f
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 07/24/2017
+ms.author: curtand
+ms.reviewer: kairaz.contractor
+ms.custom: oldportal;it-pro;
+robots: NOINDEX
+ms.openlocfilehash: 9bee224655639740b3dd99983892b30c3c537aa0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="managing-groups-in-azure-active-directory"></a><span data-ttu-id="5b539-103">Gestione dei gruppi in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5b539-103">Managing groups in Azure Active Directory</span></span>
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="5b539-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="5b539-104">Azure portal</span></span>](active-directory-groups-create-azure-portal.md)
+> * [<span data-ttu-id="5b539-105">Portale di Azure classico</span><span class="sxs-lookup"><span data-stu-id="5b539-105">Azure classic portal</span></span>](active-directory-accessmanagement-manage-groups.md)
+> * [<span data-ttu-id="5b539-106">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5b539-106">PowerShell</span></span>](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
+>
+>
+
+<span data-ttu-id="5b539-107">Una delle funzionalità di hello di gestione di utenti di Azure Active Directory (Azure AD) è di gruppi di toocreate hello possibilità degli utenti.</span><span class="sxs-lookup"><span data-stu-id="5b539-107">One of hello features of Azure Active Directory (Azure AD) user management is hello ability toocreate groups of users.</span></span> <span data-ttu-id="5b539-108">Usare le attività di gestione tooperform un gruppo, ad esempio l'assegnazione di licenze o autorizzazioni tooa numero di utenti in una sola volta.</span><span class="sxs-lookup"><span data-stu-id="5b539-108">You use a group tooperform management tasks such as assigning licenses or permissions tooa number of users at once.</span></span> <span data-ttu-id="5b539-109">È inoltre possibile utilizzare gruppi le autorizzazioni di accesso tooassign per</span><span class="sxs-lookup"><span data-stu-id="5b539-109">You can also use groups tooassign access permission to</span></span>
+
+* <span data-ttu-id="5b539-110">Risorse, ad esempio gli oggetti nella directory hello</span><span class="sxs-lookup"><span data-stu-id="5b539-110">Resources such as objects in hello directory</span></span>
+* <span data-ttu-id="5b539-111">Directory delle risorse toohello esterno, ad esempio applicazioni SaaS, servizi di Azure, siti di SharePoint o alle risorse locali</span><span class="sxs-lookup"><span data-stu-id="5b539-111">Resources external toohello directory such as SaaS applications, Azure services, SharePoint sites, or on-premises resources</span></span>
+
+<span data-ttu-id="5b539-112">Inoltre, un proprietario della risorsa può anche assegnare gruppo accesso tooa risorse tooan Azure AD di proprietà da un altro utente.</span><span class="sxs-lookup"><span data-stu-id="5b539-112">In addition, a resource owner can also assign access tooa resource tooan Azure AD group owned by someone else.</span></span> <span data-ttu-id="5b539-113">Questa assegnazione concede ai membri di hello di tale risorsa toohello accesso di gruppo.</span><span class="sxs-lookup"><span data-stu-id="5b539-113">This assignment grants hello members of that group access toohello resource.</span></span> <span data-ttu-id="5b539-114">Quindi, il proprietario di hello del gruppo di hello gestisce l'appartenenza al gruppo hello.</span><span class="sxs-lookup"><span data-stu-id="5b539-114">Then, hello owner of hello group manages membership in hello group.</span></span> <span data-ttu-id="5b539-115">In effetti, hello proprietario delegati toohello proprietario della risorsa di hello hello autorizzazione tooassign utenti tootheir risorsa del gruppo di.</span><span class="sxs-lookup"><span data-stu-id="5b539-115">Effectively, hello resource owner delegates toohello owner of hello group hello permission tooassign users tootheir resource.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="5b539-116">Si consiglia di gestire Azure AD usando la hello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) in hello portale di Azure anziché hello portale di Azure classico a cui fa riferimento in questo articolo.</span><span class="sxs-lookup"><span data-stu-id="5b539-116">Microsoft recommends that you manage Azure AD using hello [Azure AD admin center](https://aad.portal.azure.com) in hello Azure portal instead of using hello Azure classic portal referenced in this article.</span></span> <span data-ttu-id="5b539-117">Per toomanage come i gruppi nel centro di amministrazione di hello Azure AD, vedere [creare un gruppo e aggiungere membri in Azure Active Directory](active-directory-groups-create-azure-portal.md).</span><span class="sxs-lookup"><span data-stu-id="5b539-117">For how toomanage groups in hello Azure AD admin center, see [Create a group and add members in Azure Active Directory](active-directory-groups-create-azure-portal.md).</span></span>
+
+## <a name="how-do-i-create-a-group"></a><span data-ttu-id="5b539-118">Come si crea un gruppo?</span><span class="sxs-lookup"><span data-stu-id="5b539-118">How do I create a group?</span></span>
+<span data-ttu-id="5b539-119">A seconda di hello toowhich di servizi che sottoscritti dall'organizzazione, è possibile creare un gruppo utilizzando uno dei seguenti hello:</span><span class="sxs-lookup"><span data-stu-id="5b539-119">Depending on hello services toowhich your organization has subscribed, you can create a group using one of hello following:</span></span>
+
+* <span data-ttu-id="5b539-120">Hello portale di Azure classico</span><span class="sxs-lookup"><span data-stu-id="5b539-120">hello Azure classic portal</span></span>
+* <span data-ttu-id="5b539-121">portale per gli account Office 365 Hello</span><span class="sxs-lookup"><span data-stu-id="5b539-121">hello Office 365 account portal</span></span>
+* <span data-ttu-id="5b539-122">portale di account Windows Intune Hello</span><span class="sxs-lookup"><span data-stu-id="5b539-122">hello Windows Intune account portal</span></span>
+
+<span data-ttu-id="5b539-123">Verranno descritti attività come avviene nel portale di Azure classico hello.</span><span class="sxs-lookup"><span data-stu-id="5b539-123">We'll describe tasks as performed in hello Azure classic portal.</span></span> <span data-ttu-id="5b539-124">Per ulteriori informazioni sull'uso di directory di Azure AD toomanage portali non Azure, vedere [amministrazione della directory di Azure AD](active-directory-administer.md).</span><span class="sxs-lookup"><span data-stu-id="5b539-124">For more information about using non-Azure portals toomanage your Azure AD directory, see [Administering your Azure AD directory](active-directory-administer.md).</span></span>
+
+1. <span data-ttu-id="5b539-125">In hello [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**, quindi selezionare hello nome della directory hello per l'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b539-125">In hello [Azure classic portal](https://manage.windowsazure.com), select **Active Directory**, and then select hello name of hello directory for your organization.</span></span>
+2. <span data-ttu-id="5b539-126">Seleziona hello **gruppi** scheda.</span><span class="sxs-lookup"><span data-stu-id="5b539-126">Select hello **Groups** tab.</span></span>
+3. <span data-ttu-id="5b539-127">Selezionare **Aggiungi gruppo**.</span><span class="sxs-lookup"><span data-stu-id="5b539-127">Select **Add Group**.</span></span>
+4. <span data-ttu-id="5b539-128">In hello **Aggiungi gruppo** finestra, specificare il nome di hello e hello descrizione di un gruppo.</span><span class="sxs-lookup"><span data-stu-id="5b539-128">In hello **Add Group** window, specify hello name and hello description of a group.</span></span>
+
+## <a name="how-do-i-add-or-remove-individual-users-in-a-security-group"></a><span data-ttu-id="5b539-129">Come aggiungere o rimuovere singoli utenti in un gruppo di sicurezza?</span><span class="sxs-lookup"><span data-stu-id="5b539-129">How do I add or remove individual users in a security group?</span></span>
+<span data-ttu-id="5b539-130">**un gruppo di singolo utente tooa tooadd**</span><span class="sxs-lookup"><span data-stu-id="5b539-130">**tooadd an individual user tooa group**</span></span>
+
+1. <span data-ttu-id="5b539-131">In hello [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**, quindi selezionare hello nome della directory hello per l'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b539-131">In hello [Azure classic portal](https://manage.windowsazure.com), select **Active Directory**, and then select hello name of hello directory for your organization.</span></span>
+2. <span data-ttu-id="5b539-132">Seleziona hello **gruppi** scheda.</span><span class="sxs-lookup"><span data-stu-id="5b539-132">Select hello **Groups** tab.</span></span>
+3. <span data-ttu-id="5b539-133">Aprire hello toowhich di gruppo che si desidera tooadd membri.</span><span class="sxs-lookup"><span data-stu-id="5b539-133">Open hello group toowhich you want tooadd members.</span></span> <span data-ttu-id="5b539-134">Aprire hello **membri** scheda di hello selezionato gruppo se è non è già visualizzato.</span><span class="sxs-lookup"><span data-stu-id="5b539-134">Open hello **Members** tab of hello selected group if it not already displaying.</span></span>
+4. <span data-ttu-id="5b539-135">Selezionare **Aggiungi membri**.</span><span class="sxs-lookup"><span data-stu-id="5b539-135">Select **Add Members**.</span></span>
+5. <span data-ttu-id="5b539-136">In hello **Aggiungi membri** pagina, il nome di hello selezionare dell'utente di hello o un gruppo che si vuole tooadd come un membro di questo gruppo.</span><span class="sxs-lookup"><span data-stu-id="5b539-136">On hello **Add Members** page, select hello name of hello user or a group that you want tooadd as a member of this group.</span></span> <span data-ttu-id="5b539-137">Assicurarsi che questo nome viene aggiunto toohello **selezionati** riquadro.</span><span class="sxs-lookup"><span data-stu-id="5b539-137">Make sure that this name is added toohello **Selected** pane.</span></span>
+
+<span data-ttu-id="5b539-138">**tooremove un singolo utente da un gruppo**</span><span class="sxs-lookup"><span data-stu-id="5b539-138">**tooremove an individual user from a group**</span></span>
+
+1. <span data-ttu-id="5b539-139">In hello [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**, quindi selezionare hello nome della directory hello per l'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b539-139">In hello [Azure classic portal](https://manage.windowsazure.com), select **Active Directory**, and then select hello name of hello directory for your organization.</span></span>
+2. <span data-ttu-id="5b539-140">Seleziona hello **gruppi** scheda.</span><span class="sxs-lookup"><span data-stu-id="5b539-140">Select hello **Groups** tab.</span></span>
+3. <span data-ttu-id="5b539-141">Aprire gruppo hello da cui si desidera consentire ai membri tooremove.</span><span class="sxs-lookup"><span data-stu-id="5b539-141">Open hello group from which you want tooremove members.</span></span>
+4. <span data-ttu-id="5b539-142">Seleziona hello **membri** scheda, nome selezionare hello del membro di hello che desidera tooremove da questo gruppo e quindi fare clic su **rimuovere**.</span><span class="sxs-lookup"><span data-stu-id="5b539-142">Select hello **Members** tab, select hello name of hello member that you want tooremove from this group, and then click **Remove**.</span></span>
+5. <span data-ttu-id="5b539-143">Confermare al prompt dei comandi hello tooremove questo membro dal gruppo hello.</span><span class="sxs-lookup"><span data-stu-id="5b539-143">Confirm at hello prompt that you want tooremove this member from hello group.</span></span>
+
+## <a name="how-can-i-manage-hello-membership-of-a-group-dynamically"></a><span data-ttu-id="5b539-144">Come è possibile gestire l'appartenenza di hello di un gruppo in modo dinamico?</span><span class="sxs-lookup"><span data-stu-id="5b539-144">How can I manage hello membership of a group dynamically?</span></span>
+<span data-ttu-id="5b539-145">In Azure AD, è possibile impostare in modo molto semplice toodetermine una semplice regola gli utenti che sono membri di toobe del gruppo di hello.</span><span class="sxs-lookup"><span data-stu-id="5b539-145">In Azure AD, you can very easily set up a simple rule toodetermine which users are toobe members of hello group.</span></span> <span data-ttu-id="5b539-146">Una regola semplice è una regola che esegue un solo confronto.</span><span class="sxs-lookup"><span data-stu-id="5b539-146">A simple rule is one that makes only a single comparison.</span></span> <span data-ttu-id="5b539-147">Ad esempio, se tooa applicazione SaaS è assegnato a un gruppo, è possibile impostare una regola tooadd utenti che dispongono di una posizione di "Sales Rep".</span><span class="sxs-lookup"><span data-stu-id="5b539-147">For example, if a group is assigned tooa SaaS application, you can set up a rule tooadd users who have a job title of "Sales Rep."</span></span> <span data-ttu-id="5b539-148">Questa regola concede quindi l'accesso utenti tooall di applicazioni SaaS toothis con tale titolo nella directory.</span><span class="sxs-lookup"><span data-stu-id="5b539-148">This rule then grants access toothis SaaS application tooall users with that job title in your directory.</span></span>
+
+<span data-ttu-id="5b539-149">Quando gli attributi di una modifica dell'utente, sistema di hello valuta tutte le regole del gruppo dinamico in una directory di toosee se Modifica attributo hello dell'utente hello comportava l'attivazione di qualsiasi gruppo aggiunge o rimuove.</span><span class="sxs-lookup"><span data-stu-id="5b539-149">When any attributes of a user change, hello system evaluates all dynamic group rules in a directory toosee if hello attribute change of hello user would trigger any group adds or removes.</span></span> <span data-ttu-id="5b539-150">Se un utente soddisfa una regola in un gruppo, vengono aggiunti come gruppo toothat membro.</span><span class="sxs-lookup"><span data-stu-id="5b539-150">If a user satisfies a rule on a group, they are added as a member toothat group.</span></span> <span data-ttu-id="5b539-151">Se non è più soddisfano la regola hello di un gruppo che sono membri di, questi vengono rimossi come un tipo di membri dal gruppo.</span><span class="sxs-lookup"><span data-stu-id="5b539-151">If they no longer satisfy hello rule of a group they are a member of, they are removed as a members from that group.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="5b539-152">È possibile configurare una regola per l'appartenenza dinamica nei gruppi di sicurezza o nei gruppi di Office 365.</span><span class="sxs-lookup"><span data-stu-id="5b539-152">You can set up a rule for dynamic membership on security groups or Office 365 groups.</span></span> <span data-ttu-id="5b539-153">Appartenenze a gruppi nidificati non sono attualmente supportate per l'assegnazione basata su gruppo tooapplications.</span><span class="sxs-lookup"><span data-stu-id="5b539-153">Nested group memberships aren't currently supported for group-based assignment tooapplications.</span></span>
+>
+> <span data-ttu-id="5b539-154">Appartenenza dinamica ai gruppi richiedono un toobe di licenza di Azure AD Premium assegnato a</span><span class="sxs-lookup"><span data-stu-id="5b539-154">Dynamic memberships for groups require an Azure AD Premium license toobe assigned to</span></span>
+>
+> * <span data-ttu-id="5b539-155">messaggio per l'amministratore che gestisce la regola hello in un gruppo</span><span class="sxs-lookup"><span data-stu-id="5b539-155">hello administrator who manages hello rule on a group</span></span>
+> * <span data-ttu-id="5b539-156">Tutti i membri del gruppo di hello</span><span class="sxs-lookup"><span data-stu-id="5b539-156">All members of hello group</span></span>
+>
+>
+
+<span data-ttu-id="5b539-157">**tooenable dell'appartenenza dinamica per un gruppo**</span><span class="sxs-lookup"><span data-stu-id="5b539-157">**tooenable dynamic membership for a group**</span></span>
+
+1. <span data-ttu-id="5b539-158">In hello [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**, quindi selezionare hello nome della directory hello per l'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b539-158">In hello [Azure classic portal](https://manage.windowsazure.com), select **Active Directory**, and then select hello name of hello directory for your organization.</span></span>
+2. <span data-ttu-id="5b539-159">Seleziona hello **gruppi** scheda e aprire hello gruppo tooedit.</span><span class="sxs-lookup"><span data-stu-id="5b539-159">Select hello **Groups** tab, and open hello group you want tooedit.</span></span>
+3. <span data-ttu-id="5b539-160">Seleziona hello **configura** scheda e quindi impostare **Abilita appartenenze dinamiche** troppo**Sì**.</span><span class="sxs-lookup"><span data-stu-id="5b539-160">Select hello **Configure** tab, and then set **Enable Dynamic Memberships** too**Yes**.</span></span>
+4. <span data-ttu-id="5b539-161">Impostare una singola regola semplice per hello gruppo toocontrol funzionamento dell'appartenenza dinamica per questo gruppo.</span><span class="sxs-lookup"><span data-stu-id="5b539-161">Set up a simple single rule for hello group toocontrol how dynamic membership for this group functions.</span></span> <span data-ttu-id="5b539-162">Verificare che hello **aggiungere utenti in cui** opzione è selezionata e quindi selezionare una proprietà dell'utente dall'elenco di hello (ad esempio, department, jobTitle, ecc.)</span><span class="sxs-lookup"><span data-stu-id="5b539-162">Make sure hello **Add users where** option is selected, and then select a user property from hello list (for example, department, jobTitle, etc.),</span></span>
+5. <span data-ttu-id="5b539-163">Selezionare una condizione (Non uguale a, Uguale a, Non inizia con, Inizia con, Non contiene, Contiene, Non corrispondente, Corrispondente).</span><span class="sxs-lookup"><span data-stu-id="5b539-163">Next, select a condition (Not Equals, Equals, Not Starts With, Starts With, Not Contains, Contains, Not Match, Match).</span></span>
+6. <span data-ttu-id="5b539-164">Specificare un valore di confronto per la proprietà utente hello selezionato.</span><span class="sxs-lookup"><span data-stu-id="5b539-164">Specify a comparison value for hello selected user property.</span></span>
+
+<span data-ttu-id="5b539-165">toolearn sulla toocreate *avanzate* regole, che può contenere più confronti, per l'appartenenza dinamica ai gruppi, vedere [utilizzando attributi toocreate regole avanzate](active-directory-accessmanagement-groups-with-advanced-rules.md).</span><span class="sxs-lookup"><span data-stu-id="5b539-165">toolearn about how toocreate *advanced* rules (rules that can contain multiple comparisons) for dynamic group membership, see [Using attributes toocreate advanced rules](active-directory-accessmanagement-groups-with-advanced-rules.md).</span></span>
+
+## <a name="additional-information"></a><span data-ttu-id="5b539-166">Informazioni aggiuntive</span><span class="sxs-lookup"><span data-stu-id="5b539-166">Additional information</span></span>
+<span data-ttu-id="5b539-167">Questi articoli forniscono informazioni aggiuntive su Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="5b539-167">These articles provide additional information on Azure Active Directory.</span></span>
+
+* [<span data-ttu-id="5b539-168">Gestione di accesso tooresources con gruppi di Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5b539-168">Managing access tooresources with Azure Active Directory groups</span></span>](active-directory-manage-groups.md)
+* [<span data-ttu-id="5b539-169">Cmdlet di Azure Active Directory per la configurazione delle impostazioni di gruppo</span><span class="sxs-lookup"><span data-stu-id="5b539-169">Azure Active Directory cmdlets for configuring group settings</span></span>](active-directory-accessmanagement-groups-settings-cmdlets.md)
+* [<span data-ttu-id="5b539-170">Indice di articoli per la gestione di applicazioni in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5b539-170">Article Index for Application Management in Azure Active Directory</span></span>](active-directory-apps-index.md)
+* [<span data-ttu-id="5b539-171">Informazioni su Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5b539-171">What is Azure Active Directory?</span></span>](active-directory-whatis.md)
+* [<span data-ttu-id="5b539-172">Integrazione delle identità locali con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5b539-172">Integrating your on-premises identities with Azure Active Directory</span></span>](active-directory-aadconnect.md)

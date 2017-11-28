@@ -1,0 +1,63 @@
+---
+title: "Eseguire la migrazione di una rete virtuale di Azure (classica) da un gruppo di affinità in un'area | Microsoft Docs"
+description: "Informazioni su come eseguire la migrazione di una rete virtuale (classica) da un gruppo di affinità in un'area."
+services: virtual-network
+documentationcenter: na
+author: jimdial
+manager: timlt
+editor: 
+tags: azure-service-management
+ms.assetid: 84febcb9-bb8b-4e79-ab91-865ad9de41cb
+ms.service: virtual-network
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 03/15/2016
+ms.author: jdial
+ms.openlocfilehash: b9b3bd0f2184ac85261166d5fe2ab67e1bf319d4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/03/2017
+---
+# <a name="migrate-a-virtual-network-classic-from-an-affinity-group-to-a-region"></a><span data-ttu-id="ab843-103">Eseguire la migrazione di una rete virtuale (classica) da un gruppo di affinità in un'area</span><span class="sxs-lookup"><span data-stu-id="ab843-103">Migrate a virtual network (classic) from an affinity group to a region</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="ab843-104">Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="ab843-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and classic](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json).</span></span> <span data-ttu-id="ab843-105">Questo articolo illustra l'uso del modello di distribuzione classica.</span><span class="sxs-lookup"><span data-stu-id="ab843-105">This article covers using the classic deployment model.</span></span> <span data-ttu-id="ab843-106">È consigliabile usare il modello di distribuzione di Resource Manager per le distribuzioni più recenti.</span><span class="sxs-lookup"><span data-stu-id="ab843-106">Microsoft recommends that most new deployments use the Resource Manager deployment model.</span></span>
+
+<span data-ttu-id="ab843-107">I gruppi di affinità assicurano che le risorse create all'interno di uno stesso gruppo di affinità vengano ospitate fisicamente da server vicini l'uno all'altro, in modo che le risorse possano comunicare più rapidamente.</span><span class="sxs-lookup"><span data-stu-id="ab843-107">Affinity groups ensure that resources created within the same affinity group are physically hosted by servers that are close together, enabling these resources to communicate quicker.</span></span> <span data-ttu-id="ab843-108">In passato, i gruppi di affinità erano un requisito per la creazione di reti virtuali (classiche).</span><span class="sxs-lookup"><span data-stu-id="ab843-108">In the past, affinity groups were a requirement for creating virtual networks (classic).</span></span> <span data-ttu-id="ab843-109">In quel periodo, il servizio di gestione di rete che gestiva le reti virtuali poteva operare solo all'interno di un set di server fisici, denominato unità di scala.</span><span class="sxs-lookup"><span data-stu-id="ab843-109">At that time, the network manager service that managed virtual networks (classic) could only work within a set of physical servers or scale unit.</span></span> <span data-ttu-id="ab843-110">I miglioramenti apportati all'architettura hanno esteso l'ambito di gestione delle reti a un’area.</span><span class="sxs-lookup"><span data-stu-id="ab843-110">Architectural improvements have increased the scope of network management to a region.</span></span>
+
+<span data-ttu-id="ab843-111">A seguito di questi miglioramenti, i gruppi di affinità non sono più consigliati o necessari per le reti virtuali (classiche).</span><span class="sxs-lookup"><span data-stu-id="ab843-111">As a result of these architectural improvements, affinity groups are no longer recommended, or required for virtual networks (classic).</span></span> <span data-ttu-id="ab843-112">Nelle reti virtuali (classiche), i gruppi di affinità sono stati sostituiti nell'uso dalle aree.</span><span class="sxs-lookup"><span data-stu-id="ab843-112">The use of affinity groups for virtual networks (classic) is replaced by regions.</span></span> <span data-ttu-id="ab843-113">Le reti virtuali (classiche) associate alle aree prendono il nome di reti virtuali a livello di area.</span><span class="sxs-lookup"><span data-stu-id="ab843-113">Virtual networks (classic) that are associated with regions are called regional virtual networks.</span></span>
+
+<span data-ttu-id="ab843-114">L'uso dei gruppi di affinità non è consigliabile in generale.</span><span class="sxs-lookup"><span data-stu-id="ab843-114">We recommend that you don't use affinity groups in general.</span></span> <span data-ttu-id="ab843-115">Oltre che come requisito per le reti virtuali, i gruppi di affinità erano importanti anche per garantire che le risorse, ad esempio di calcolo (classica) o archiviazione (classica), fossero posizionate l'una vicino all'altra.</span><span class="sxs-lookup"><span data-stu-id="ab843-115">Aside from the virtual network requirement, affinity groups were also important to use to ensure resources, such as compute (classic) and storage (classic), were placed near each other.</span></span> <span data-ttu-id="ab843-116">Con l'architettura di rete corrente di Azure, tali requisiti di posizionamento non sono più necessari.</span><span class="sxs-lookup"><span data-stu-id="ab843-116">However, with the current Azure network architecture, these placement requirements are no longer necessary.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="ab843-117">Benché sia ancora tecnicamente possibile creare una rete virtuale associata a un gruppo di affinità, non esistono motivi vincolanti per procedere in questo modo.</span><span class="sxs-lookup"><span data-stu-id="ab843-117">Although it is still technically possible to create a virtual network that is associated with an affinity group, there is no compelling reason to do so.</span></span> <span data-ttu-id="ab843-118">Molte funzionalità delle reti virtuali, come i gruppi di sicurezza di rete, sono disponibili solo se si usa una rete virtuale a livello di area e non per le reti virtuali associate a gruppi di affinità.</span><span class="sxs-lookup"><span data-stu-id="ab843-118">Many virtual network features, such as network security groups, are only available when using a regional virtual network, and are not available for virtual networks that are associated with affinity groups.</span></span>
+> 
+> 
+
+## <a name="edit-the-network-configuration-file"></a><span data-ttu-id="ab843-119">Modificare il file di configurazione di rete</span><span class="sxs-lookup"><span data-stu-id="ab843-119">Edit the network configuration file</span></span>
+
+1. <span data-ttu-id="ab843-120">Esportare il file di configurazione della rete.</span><span class="sxs-lookup"><span data-stu-id="ab843-120">Export the network configuration file.</span></span> <span data-ttu-id="ab843-121">Per informazioni su come esportare un file di configurazione di rete tramite PowerShell o l'interfaccia della riga di comando 1.0 di Azure, vedere [Configurare una rete virtuale usando un file di configurazione di rete](virtual-networks-using-network-configuration-file.md#export).</span><span class="sxs-lookup"><span data-stu-id="ab843-121">To learn how to export a network configuration file using PowerShell or the Azure command-line interface (CLI) 1.0, see [Configure a virtual network using a network configuration file](virtual-networks-using-network-configuration-file.md#export).</span></span>
+2. <span data-ttu-id="ab843-122">Modificare il file di configurazione di rete, sostituendo **AffinityGroup** con **Location**.</span><span class="sxs-lookup"><span data-stu-id="ab843-122">Edit the network configuration file, replacing **AffinityGroup** with **Location**.</span></span> <span data-ttu-id="ab843-123">Specificare un'[area](https://azure.microsoft.com/regions) di Azure per **Location**.</span><span class="sxs-lookup"><span data-stu-id="ab843-123">You specify an Azure [region](https://azure.microsoft.com/regions) for **Location**.</span></span>
+   
+   > [!NOTE]
+   > <span data-ttu-id="ab843-124">**Location** corrisponde all'area specificata per il gruppo di affinità associato alla rete virtuale (classica).</span><span class="sxs-lookup"><span data-stu-id="ab843-124">The **Location** is the region that you specified for the affinity group that is associated with your virtual network (classic).</span></span> <span data-ttu-id="ab843-125">Ad esempio, se la rete virtuale (classica) è associata a un gruppo di affinità posizionato negli Stati Uniti occidentali, quando si esegue la migrazione, **Location** deve puntare a West US.</span><span class="sxs-lookup"><span data-stu-id="ab843-125">For example, if your virtual network (classic) is associated with an affinity group that is located in West US, when you migrate, your **Location** must point to West US.</span></span> 
+   > 
+   > 
+   
+    <span data-ttu-id="ab843-126">Modificare le righe seguenti nel file di configurazione della rete, sostituendo i valori esistenti con i propri:</span><span class="sxs-lookup"><span data-stu-id="ab843-126">Edit the following lines in your network configuration file, replacing the values with your own:</span></span> 
+   
+    <span data-ttu-id="ab843-127">**Valore precedente:** \<VirtualNetworkSitename="VNetUSWest" AffinityGroup="VNetDemoAG"\></span><span class="sxs-lookup"><span data-stu-id="ab843-127">**Old value:** \<VirtualNetworkSitename="VNetUSWest" AffinityGroup="VNetDemoAG"\></span></span> 
+   
+    <span data-ttu-id="ab843-128">**Nuovo valore:** \<VirtualNetworkSitename="VNetUSWest" Location="West US"\></span><span class="sxs-lookup"><span data-stu-id="ab843-128">**New value:** \<VirtualNetworkSitename="VNetUSWest" Location="West US"\></span></span>
+3. <span data-ttu-id="ab843-129">Salvare le modifiche e [importare](virtual-networks-using-network-configuration-file.md#import) la configurazione di rete in Azure.</span><span class="sxs-lookup"><span data-stu-id="ab843-129">Save your changes and [import](virtual-networks-using-network-configuration-file.md#import) the network configuration to Azure.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="ab843-130">Questa migrazione NON provoca alcun tempo di inattività per i servizi.</span><span class="sxs-lookup"><span data-stu-id="ab843-130">This migration does NOT cause any downtime to your services.</span></span>
+> 
+> 
+
+## <a name="what-to-do-if-you-have-a-vm-classic-in-an-affinity-group"></a><span data-ttu-id="ab843-131">Come procedere se si ha una macchina virtuale (classica) in un gruppo di affinità</span><span class="sxs-lookup"><span data-stu-id="ab843-131">What to do if you have a VM (classic) in an affinity group</span></span>
+<span data-ttu-id="ab843-132">Le macchine virtuali (classiche) attualmente incluse in un gruppo di affinità non devono essere rimosse dal gruppo.</span><span class="sxs-lookup"><span data-stu-id="ab843-132">VMs (classic) that are currently in an affinity group do not need to be removed from the affinity group.</span></span> <span data-ttu-id="ab843-133">Quando si esegue la distribuzione, una macchina virtuale viene distribuita in una singola unità di scala.</span><span class="sxs-lookup"><span data-stu-id="ab843-133">Once a VM is deployed, it is deployed to a single scale unit.</span></span> <span data-ttu-id="ab843-134">I gruppi di affinità possono limitare il set di dimensioni di macchine virtuali disponibili per una nuova distribuzione, ma qualsiasi macchina virtuale esistente che venga distribuita è già limitata al set di dimensioni disponibile nell'unità di scala in cui avviene la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="ab843-134">Affinity groups can restrict the set of available VM sizes for a new VM deployment, but any existing VM that is deployed is already restricted to the set of VM sizes available in the scale unit in which the VM is deployed.</span></span> <span data-ttu-id="ab843-135">Poiché la macchina virtuale è già distribuita in un'unità di scala, la rimozione di una macchina virtuale da un gruppo di affinità non incide in alcun modo sulla macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="ab843-135">Because the VM is already deployed to a scale unit, removing a VM from an affinity group has no effect on the VM.</span></span>

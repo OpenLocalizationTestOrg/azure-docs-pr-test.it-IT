@@ -1,0 +1,66 @@
+---
+title: database di SQL Azure in pool replica geografica attiva di esempio aaaPowerShell | Documenti Microsoft
+description: Azure tooset di script di esempio di PowerShell di replica geografica attiva per un database SQL di Azure in pool
+services: sql-database
+documentationcenter: sql-database
+author: CarlRabeler
+manager: jhubbard
+editor: carlrab
+tags: azure-service-management
+ms.assetid: 
+ms.service: sql-database
+ms.custom: business continuity
+ms.devlang: PowerShell
+ms.topic: sample
+ms.tgt_pltfrm: sql-database
+ms.workload: database
+ms.date: 07/25/2017
+ms.author: carlrab
+ms.openlocfilehash: 9d183f08dcc07ba864e42fe70a562fef8bd572f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="use-powershell-tooconfigure-active-geo-replication-for-a-pooled-azure-sql-database"></a><span data-ttu-id="22335-103">Utilizzare PowerShell tooconfigure replica geografica attiva per un database SQL di Azure in pool</span><span class="sxs-lookup"><span data-stu-id="22335-103">Use PowerShell tooconfigure active geo-replication for a pooled Azure SQL database</span></span>
+
+<span data-ttu-id="22335-104">In questo esempio di script di PowerShell consente di configurare la replica geografica attiva per un database SQL di Azure in un pool elastico e il failover toohello replica secondaria del database SQL di Azure hello.</span><span class="sxs-lookup"><span data-stu-id="22335-104">This PowerShell script example configures active geo-replication for an Azure SQL database in an elastic pool and fails it over toohello secondary replica of hello Azure SQL database.</span></span>
+
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
+
+## <a name="sample-scripts"></a><span data-ttu-id="22335-105">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="22335-105">Sample scripts</span></span>
+
+[!code-powershell[main](../../../powershell_scripts/sql-database/setup-geodr-and-failover-pool/setup-geodr-and-failover-pool.ps1?highlight=16-19 "Set up active geo-replication for elastic pool")]
+
+## <a name="clean-up-deployment"></a><span data-ttu-id="22335-106">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="22335-106">Clean up deployment</span></span>
+
+<span data-ttu-id="22335-107">Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello e tutte le risorse associate.</span><span class="sxs-lookup"><span data-stu-id="22335-107">After hello script sample has been run, hello following command can be used tooremove hello resource group and all resources associated with it.</span></span>
+
+```powershell
+Remove-AzureRmResourceGroup -ResourceGroupName "myPrimaryResourceGroup"
+Remove-AzureRmResourceGroup -ResourceGroupName "mySecondaryResourceGroup"
+```
+
+## <a name="script-explanation"></a><span data-ttu-id="22335-108">Spiegazione dello script</span><span class="sxs-lookup"><span data-stu-id="22335-108">Script explanation</span></span>
+
+<span data-ttu-id="22335-109">Questo script utilizza hello i comandi seguenti.</span><span class="sxs-lookup"><span data-stu-id="22335-109">This script uses hello following commands.</span></span> <span data-ttu-id="22335-110">Ogni comando in documentazione specifica toocommand hello tabella collegamenti.</span><span class="sxs-lookup"><span data-stu-id="22335-110">Each command in hello table links toocommand specific documentation.</span></span>
+
+| <span data-ttu-id="22335-111">Comando</span><span class="sxs-lookup"><span data-stu-id="22335-111">Command</span></span> | <span data-ttu-id="22335-112">Note</span><span class="sxs-lookup"><span data-stu-id="22335-112">Notes</span></span> |
+|---|---|
+| [<span data-ttu-id="22335-113">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="22335-113">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="22335-114">Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse.</span><span class="sxs-lookup"><span data-stu-id="22335-114">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="22335-115">New-AzureRmSqlServer</span><span class="sxs-lookup"><span data-stu-id="22335-115">New-AzureRmSqlServer</span></span>](/powershell/module/azurerm.sql/new-azurermsqlserver) | <span data-ttu-id="22335-116">Crea un server logico che ospita un database o un pool elastico.</span><span class="sxs-lookup"><span data-stu-id="22335-116">Creates a logical server that hosts a database or elastic pool.</span></span> |
+| [<span data-ttu-id="22335-117">New-AzureRmSqlElasticPool</span><span class="sxs-lookup"><span data-stu-id="22335-117">New-AzureRmSqlElasticPool</span></span>](/powershell/module/azurerm.sql/new-azurermsqlelasticpool) | <span data-ttu-id="22335-118">Crea un pool elastico all'interno di un server logico.</span><span class="sxs-lookup"><span data-stu-id="22335-118">Creates an elastic pool within a logical server.</span></span> |
+| [<span data-ttu-id="22335-119">New-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="22335-119">New-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabase) | <span data-ttu-id="22335-120">Crea un database in un server logico come database singolo o in pool.</span><span class="sxs-lookup"><span data-stu-id="22335-120">Creates a database in a logical server as a single or a pooled database.</span></span> |
+| [<span data-ttu-id="22335-121">Set-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="22335-121">Set-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabase) | <span data-ttu-id="22335-122">Aggiorna le proprietà del database o sposta un database all'interno, all'esterno o tra pool elastici.</span><span class="sxs-lookup"><span data-stu-id="22335-122">Updates database properties or moves a database into, out of, or between elastic pools.</span></span> |
+| [<span data-ttu-id="22335-123">New-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="22335-123">New-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary)| <span data-ttu-id="22335-124">Crea un database secondario per un database esistente e avvia la replica dei dati.</span><span class="sxs-lookup"><span data-stu-id="22335-124">Creates a secondary database for an existing database and starts data replication.</span></span> |
+| [<span data-ttu-id="22335-125">Get-AzureRmSqlDatabase</span><span class="sxs-lookup"><span data-stu-id="22335-125">Get-AzureRmSqlDatabase</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabase)| <span data-ttu-id="22335-126">Ottiene uno o più database.</span><span class="sxs-lookup"><span data-stu-id="22335-126">Gets one or more databases.</span></span> |
+| [<span data-ttu-id="22335-127">Set-AzureRmSqlDatabaseSecondary</span><span class="sxs-lookup"><span data-stu-id="22335-127">Set-AzureRmSqlDatabaseSecondary</span></span>](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary)| <span data-ttu-id="22335-128">Attiva un database primario toobe database secondario in ordine di failover tooinitiate.</span><span class="sxs-lookup"><span data-stu-id="22335-128">Switches a secondary database toobe primary in order tooinitiate failover.</span></span>|
+| [<span data-ttu-id="22335-129">Get-AzureRmSqlDatabaseReplicationLink</span><span class="sxs-lookup"><span data-stu-id="22335-129">Get-AzureRmSqlDatabaseReplicationLink</span></span>](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) | <span data-ttu-id="22335-130">Ottiene i collegamenti di replica geografica hello tra un Database SQL di Azure e un gruppo di risorse o SQL Server.</span><span class="sxs-lookup"><span data-stu-id="22335-130">Gets hello geo-replication links between an Azure SQL Database and a resource group or SQL Server.</span></span> |
+| [<span data-ttu-id="22335-131">Remove-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="22335-131">Remove-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | <span data-ttu-id="22335-132">Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate.</span><span class="sxs-lookup"><span data-stu-id="22335-132">Deletes a resource group including all nested resources.</span></span> |
+|||
+
+## <a name="next-steps"></a><span data-ttu-id="22335-133">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="22335-133">Next steps</span></span>
+
+<span data-ttu-id="22335-134">Per ulteriori informazioni su hello Azure PowerShell, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="22335-134">For more information on hello Azure PowerShell, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+
+<span data-ttu-id="22335-135">Ulteriori esempi di script di PowerShell per Database SQL sono reperibile in hello [gli script di PowerShell per Azure SQL Database](../sql-database-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="22335-135">Additional SQL Database PowerShell script samples can be found in hello [Azure SQL Database PowerShell scripts](../sql-database-powershell-samples.md).</span></span>

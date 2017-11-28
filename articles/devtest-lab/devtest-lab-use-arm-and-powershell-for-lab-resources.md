@@ -1,0 +1,51 @@
+---
+title: aaaCreate o modificare labs automaticamente l'utilizzo di modelli di gestione risorse di Azure con PowerShell | Documenti Microsoft
+description: Informazioni su come toouse modelli di gestione risorse di Azure con PowerShell toocreate o modificare labs automaticamente in un ambiente di DevTest lab
+services: devtest-lab,virtual-machines,visual-studio-online
+documentationcenter: na
+author: tomarcher
+manager: douge
+editor: 
+ms.assetid: dad9944c-0b20-48be-ba80-8f4aa0950903
+ms.service: devtest-lab
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 03/21/2017
+ms.author: tarcher
+ms.openlocfilehash: 29c8bc67caaec17b1f8926dde4e5d9d314b06600
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="create-or-modify-labs-automatically-using-azure-resource-manager-templates-and-powershell"></a><span data-ttu-id="3d5b1-103">Creare o modificare automaticamente i lab usando i modelli di Azure Resource Manager con PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-103">Create or modify labs automatically using Azure Resource Manager templates and PowerShell</span></span>
+
+<span data-ttu-id="3d5b1-104">DevTest Labs offre molti modelli di Azure Resource Manager e script di PowerShell utili per creare rapidamente e automaticamente nuovi lab o modificare quelli esistenti e quindi distribuire tali risorse.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-104">DevTest Labs provides many Azure Resource Manager templates and PowerShell scripts that can help you quickly and automatically create new labs or modify existing labs and then deploy these resources.</span></span>
+
+<span data-ttu-id="3d5b1-105">In questo articolo consente di completare il processo di hello dell'utilizzo di questi modelli e gli script di creazione di hello tooautomate, modifica e la distribuzione del lab.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-105">This article helps guide you through hello process of using these templates and scripts tooautomate hello creation, modification, and deployment of your labs.</span></span> <span data-ttu-id="3d5b1-106">In questo articolo viene anche di in cui è possibile trovare ulteriori informazioni sulla modalità toouse PowerShell tooperform alcuni comuni di attività in DevTest Labs.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-106">This article also shows you where you can find more information about how toouse PowerShell tooperform some common tasks in DevTest Labs.</span></span>
+
+## <a name="step-1-gather-your-templates-and-scripts"></a><span data-ttu-id="3d5b1-107">Passaggio 1: raccogliere modelli e script</span><span class="sxs-lookup"><span data-stu-id="3d5b1-107">Step 1: Gather your templates and scripts</span></span>
+<span data-ttu-id="3d5b1-108">È possibile trovare [modelli di Azure Resource Manager](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates) e [script di PowerShell](https://github.com/Azure/azure-devtestlab/tree/master/Scripts) preconfigurati nel nostro [repository Github](https://github.com/Azure/azure-devtestlab) pubblico.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-108">You can find pre-made [Azure Resource Manager templates](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates) and [PowerShell scripts](https://github.com/Azure/azure-devtestlab/tree/master/Scripts) at our public [Github repository](https://github.com/Azure/azure-devtestlab).</span></span> <span data-ttu-id="3d5b1-109">Usarli così come sono o personalizzarli in base alle proprie esigenze e archiviarli nel proprio [repository Git privato](devtest-lab-add-artifact-repo.md).</span><span class="sxs-lookup"><span data-stu-id="3d5b1-109">Use them as-is, or customize them for your needs and store them in your own [private Git repo](devtest-lab-add-artifact-repo.md).</span></span> 
+
+## <a name="step-2-modify-your-azure-resource-manager-template"></a><span data-ttu-id="3d5b1-110">Passaggio 2: modificare il modello di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="3d5b1-110">Step 2: Modify your Azure Resource Manager template</span></span>
+<span data-ttu-id="3d5b1-111">È possibile seguire i passaggi di hello in [creare il primo modello di gestione risorse di Azure](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-create-first-template) se è mai stato creato un modello prima.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-111">You can follow hello steps at [Create your first Azure Resource Manager template](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-create-first-template) if you have never created a template before.</span></span>
+
+<span data-ttu-id="3d5b1-112">Inoltre, [procedure consigliate per la creazione di modelli di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) offre molti toohelp linee guida e suggerimenti si creano modelli di gestione risorse di Azure che sono toouse semplice e affidabile.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-112">In addition, [Best practices for creating Azure Resource Manager templates](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) offers many guidelines and suggestions toohelp you create Azure Resource Manager templates that are reliable and easy toouse.</span></span> <span data-ttu-id="3d5b1-113">In genere, si utilizzerà una variante di uno degli approcci hello o gli esempi forniti e modificare il modello per le proprie esigenze.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-113">Typically, you will use a variation of one of hello approaches or examples provided and modify your template for your needs.</span></span>
+
+## <a name="step-3-deploy-resources-with-powershell"></a><span data-ttu-id="3d5b1-114">Passaggio 3: distribuire le risorse con PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-114">Step 3: Deploy resources with PowerShell</span></span>
+<span data-ttu-id="3d5b1-115">Dopo aver personalizzato di modelli e gli script, seguire i passaggi di hello necessari troppo[distribuire le risorse e modelli di gestione risorse di Azure PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span><span class="sxs-lookup"><span data-stu-id="3d5b1-115">After you have customized your templates and scripts, follow hello steps necessary too[deploy resources with Resource Manager templates and Azure PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span></span> <span data-ttu-id="3d5b1-116">articolo Hello vengono fornite informazioni generali sull'uso di Azure PowerShell con Gestione risorse di Azure modelli toodeploy tooAzure le risorse.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-116">hello article provides general information about using Azure PowerShell with Azure Resource Manager templates toodeploy your resources tooAzure.</span></span>
+
+
+## <a name="common-tasks-you-can-perform-in-devtest-labs-using-powershell"></a><span data-ttu-id="3d5b1-117">Attività comuni che è possibile eseguire nei lab di DevTest Labs tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-117">Common tasks you can perform in DevTest labs using PowerShell</span></span>
+<span data-ttu-id="3d5b1-118">Esistono molte altre attività comuni che è possibile automatizzare con PowerShell.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-118">There are many other common tasks that you can automate by using PowerShell.</span></span> <span data-ttu-id="3d5b1-119">Hello della documentazione di hello nelle sezioni seguenti hello passaggi necessari tooperform queste attività.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-119">hello following sections of hello documentation outline hello steps required tooperform these tasks.</span></span>
+
+* [<span data-ttu-id="3d5b1-120">Creare un'immagine personalizzata da un file VHD usando PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-120">Create a custom image from a VHD file using PowerShell</span></span>](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
+* [<span data-ttu-id="3d5b1-121">Caricare l'account di archiviazione del toolab file disco rigido virtuale con PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-121">Upload VHD file toolab's storage account using PowerShell</span></span>](devtest-lab-upload-vhd-using-powershell.md)
+* [<span data-ttu-id="3d5b1-122">Aggiungere un ambiente lab tooa utente esterno tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-122">Add an external user tooa lab using PowerShell</span></span>](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell)
+* [<span data-ttu-id="3d5b1-123">Creare un ruolo personalizzato lab tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="3d5b1-123">Create a lab custom role using PowerShell</span></span>](devtest-lab-grant-user-permissions-to-specific-lab-policies.md#creating-a-lab-custom-role-using-powershell)
+
+### <a name="next-steps"></a><span data-ttu-id="3d5b1-124">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3d5b1-124">Next steps</span></span>
+* <span data-ttu-id="3d5b1-125">Informazioni su come toocreate un [repository Git privato](devtest-lab-add-artifact-repo.md) in cui verranno archiviati i modelli personalizzati o gli script.</span><span class="sxs-lookup"><span data-stu-id="3d5b1-125">Learn how toocreate a [private Git repository](devtest-lab-add-artifact-repo.md) where you will store your customized templates or scripts.</span></span>
+* <span data-ttu-id="3d5b1-126">Esplorare hello [modelli di gestione risorse di Azure dalla raccolta di modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates).</span><span class="sxs-lookup"><span data-stu-id="3d5b1-126">Explore hello [Azure Resource Manager templates from Azure Quickstart template gallery](https://github.com/Azure/azure-quickstart-templates).</span></span>

@@ -1,0 +1,10 @@
+
+<!--author=SharS last changed: 11/06/15-->
+
+#### <a name="to-delete-a-storsimple-backup-policy"></a><span data-ttu-id="3b1fc-101">Per eliminare un criterio di backup per StorSimple</span><span class="sxs-lookup"><span data-stu-id="3b1fc-101">To delete a StorSimple backup policy</span></span>
+1. <span data-ttu-id="3b1fc-102">Nella pagina **Avvio rapido** del dispositivo fare clic sulla scheda **Criteri di backup**.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-102">On the device **Quick Start** page, click the **Backup Policies** tab.</span></span> <span data-ttu-id="3b1fc-103">Verrà visualizzata la pagina **Criteri di backup** .</span><span class="sxs-lookup"><span data-stu-id="3b1fc-103">This will take you to the **Backup Policies** page.</span></span>
+2. <span data-ttu-id="3b1fc-104">Selezionare il criterio facendo clic in un punto qualsiasi nella riga corrispondente, eccetto per la prima colonna, quindi fare clic su **Elimina** nella parte inferiore della pagina.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-104">Select the policy by clicking anywhere in the corresponding row except for the first column, and then click **Delete** at the bottom of the page.</span></span>
+3. <span data-ttu-id="3b1fc-105">Verrà richiesto di confermare.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-105">You will be prompted for confirmation.</span></span> <span data-ttu-id="3b1fc-106">Tenere presente che l'eliminazione di un criterio di backup comporta l'eliminazione di tutti i backup associati.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-106">Keep in mind that deleting a backup policy will delete all the associated backups.</span></span> <span data-ttu-id="3b1fc-107">Fare clic su **Sì** per eliminare.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-107">Click **Yes** to delete.</span></span>
+
+<span data-ttu-id="3b1fc-108">La pagina **Criteri di backup** verrà aggiornata in modo da includere il nuovo elenco di criteri.</span><span class="sxs-lookup"><span data-stu-id="3b1fc-108">The **Backup Policies** page will be updated to display the new list of policies.</span></span>
+

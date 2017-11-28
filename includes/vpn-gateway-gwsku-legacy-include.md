@@ -1,0 +1,14 @@
+<span data-ttu-id="c63ea-101">Di seguito sono elencati gli SKU del gateway VPN legacy (precedenti):</span><span class="sxs-lookup"><span data-stu-id="c63ea-101">The legacy (old) VPN gateway SKUs are:</span></span>
+
+* <span data-ttu-id="c63ea-102">Basic</span><span class="sxs-lookup"><span data-stu-id="c63ea-102">Basic</span></span>
+* <span data-ttu-id="c63ea-103">Standard</span><span class="sxs-lookup"><span data-stu-id="c63ea-103">Standard</span></span>
+* <span data-ttu-id="c63ea-104">HighPerformance</span><span class="sxs-lookup"><span data-stu-id="c63ea-104">HighPerformance</span></span>
+
+<span data-ttu-id="c63ea-105">Il gateway VPN non usa lo SKU UltraPerformance.</span><span class="sxs-lookup"><span data-stu-id="c63ea-105">VPN Gateway does not use the UltraPerformance gateway SKU.</span></span> <span data-ttu-id="c63ea-106">Per informazioni sullo SKU UltraPerformance, vedere la documentazione relativa a [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md).</span><span class="sxs-lookup"><span data-stu-id="c63ea-106">For information about the UltraPerformance SKU, see the [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) documentation.</span></span>
+
+<span data-ttu-id="c63ea-107">Quando si usano SKU legacy, tenere presente quanto segue:</span><span class="sxs-lookup"><span data-stu-id="c63ea-107">When working with the legacy SKUs, consider the following:</span></span>
+
+* <span data-ttu-id="c63ea-108">Per usare un tipo di VPN PolicyBased, è necessario usare lo SKU di livello Basic.</span><span class="sxs-lookup"><span data-stu-id="c63ea-108">If you want to use a PolicyBased VPN type, you must use the Basic SKU.</span></span> <span data-ttu-id="c63ea-109">Le VPN basate su criteri, precedentemente denominate routing statico, non sono supportate negli altri SKU.</span><span class="sxs-lookup"><span data-stu-id="c63ea-109">PolicyBased VPNs (previously called Static Routing) are not supported on any other SKU.</span></span>
+* <span data-ttu-id="c63ea-110">BGP non è supportato nello SKU di livello Basic.</span><span class="sxs-lookup"><span data-stu-id="c63ea-110">BGP is not supported on the Basic SKU.</span></span>
+* <span data-ttu-id="c63ea-111">Le configurazioni con coesistenza di gateway VPN ed ExpressRoute non sono supportate nello SKU di livello Basic.</span><span class="sxs-lookup"><span data-stu-id="c63ea-111">ExpressRoute-VPN Gateway coexist configurations are not supported on the Basic SKU.</span></span>
+* <span data-ttu-id="c63ea-112">Le connessioni del gateway VPN S2S attivo/attivo possono essere configurate solo nello SKU HighPerformance.</span><span class="sxs-lookup"><span data-stu-id="c63ea-112">Active-active S2S VPN Gateway connections can be configured on the HighPerformance SKU only.</span></span>

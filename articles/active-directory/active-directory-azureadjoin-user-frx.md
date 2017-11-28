@@ -1,0 +1,61 @@
+---
+title: aaaSet un nuovo dispositivo con Azure AD durante l'installazione | Documenti Microsoft
+description: Argomento che spiega come configurare l'aggiunta di Azure AD durante la procedura di configurazione guidata iniziale.
+services: active-directory
+documentationcenter: 
+author: MarkusVi
+manager: femila
+editor: 
+tags: azure-classic-portal
+ms.assetid: 06a149f7-4aa1-4fb9-a8ec-ac2633b031fb
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/16/2017
+ms.author: markvi
+ms.openlocfilehash: 6afce4be7f084f1956a6f9dbddaa8def0605956d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="set-up-a-new-device-with-azure-ad-during-setup"></a><span data-ttu-id="3a56c-103">Configurazione di un nuovo dispositivo con Azure AD durante l'installazione</span><span class="sxs-lookup"><span data-stu-id="3a56c-103">Set up a new device with Azure AD during Setup</span></span>
+<span data-ttu-id="3a56c-104">In Windows 10, gli utenti possono partecipare a loro tooAzure dispositivi Active Directory (Azure AD) in hello prima esecuzione (FRX).</span><span class="sxs-lookup"><span data-stu-id="3a56c-104">In Windows 10, users can join their devices tooAzure Active Directory (Azure AD) in hello first-run experience (FRX).</span></span> <span data-ttu-id="3a56c-105">Questo consente alle organizzazioni toodistribute dispositivi preallocano tootheir dipendenti o studenti o consentire di scegliere i propri dispositivi (CYOD).</span><span class="sxs-lookup"><span data-stu-id="3a56c-105">This allows organizations toodistribute shrink-wrapped devices tootheir employees or students, or let them choose their own devices (CYOD).</span></span>
+<span data-ttu-id="3a56c-106">Se Windows 10 Professional o Windows 10 Enterprise Edition è installato in un dispositivo, hello che il processo di installazione toohello di valori predefiniti per i dispositivi di proprietà dell'azienda.</span><span class="sxs-lookup"><span data-stu-id="3a56c-106">If either Windows 10 Professional or Windows 10 Enterprise editions is installed on a device, hello experience defaults toohello setup process for company-owned devices.</span></span>
+
+## <a name="toojoin-a-device-tooazure-ad"></a><span data-ttu-id="3a56c-107">toojoin tooAzure un dispositivo Active Directory</span><span class="sxs-lookup"><span data-stu-id="3a56c-107">toojoin a device tooAzure AD</span></span>
+1. <span data-ttu-id="3a56c-108">Quando si attiva il nuovo dispositivo e avviare il processo di installazione di hello, si dovrebbe vedere hello **preparazione** messaggio.</span><span class="sxs-lookup"><span data-stu-id="3a56c-108">When you turn on your new device and start hello setup process, you should see hello  **Getting Ready** message.</span></span> <span data-ttu-id="3a56c-109">Seguire tooset prompt hello del dispositivo.</span><span class="sxs-lookup"><span data-stu-id="3a56c-109">Follow hello prompts tooset up your device.</span></span>
+2. <span data-ttu-id="3a56c-110">Iniziare personalizzando il paese e la lingua.</span><span class="sxs-lookup"><span data-stu-id="3a56c-110">Start by customizing your region and language.</span></span> <span data-ttu-id="3a56c-111">Quindi accettare condizioni di licenza Software Microsoft hello.</span><span class="sxs-lookup"><span data-stu-id="3a56c-111">Then accept hello Microsoft Software License Terms.</span></span>
+   <span data-ttu-id="3a56c-112">![Personalizzare il paese](./media/active-directory-azureadjoin/active-directory-azureadjoin-customize-region.png)</span><span class="sxs-lookup"><span data-stu-id="3a56c-112">![Customize for your region](./media/active-directory-azureadjoin/active-directory-azureadjoin-customize-region.png)</span></span>
+3. <span data-ttu-id="3a56c-113">Selezionare hello rete toouse per la connessione Internet toohello.</span><span class="sxs-lookup"><span data-stu-id="3a56c-113">Select hello network you want toouse for connecting toohello Internet.</span></span>
+4. <span data-ttu-id="3a56c-114">Selezionare se si usa un dispositivo personale o di proprietà dell'azienda.</span><span class="sxs-lookup"><span data-stu-id="3a56c-114">Select whether you're using a personal device or a company-owned device.</span></span> <span data-ttu-id="3a56c-115">Se si tratta di proprietà dell'azienda, fare clic su **questo dispositivo appartiene organizzazione toomy**.</span><span class="sxs-lookup"><span data-stu-id="3a56c-115">If it's company-owned, click **This device belongs toomy organization**.</span></span> <span data-ttu-id="3a56c-116">Verrà avviata l'esperienza di aggiunta ad Azure AD hello.</span><span class="sxs-lookup"><span data-stu-id="3a56c-116">This starts hello Azure AD Join experience.</span></span> <span data-ttu-id="3a56c-117">Di seguito è riportata la schermata che viene visualizzata se si usa Windows 10 Professional.</span><span class="sxs-lookup"><span data-stu-id="3a56c-117">Following is a screen that you'll see if you're using Windows 10 Professional.</span></span>
+   <span data-ttu-id="3a56c-118"><center>
+   ![Schermata A chi appartiene questo PC?](./media/active-directory-azureadjoin/active-directory-azureadjoin-who-owns-pc.png)</span><span class="sxs-lookup"><span data-stu-id="3a56c-118"><center>
+![Who owns this PC screen](./media/active-directory-azureadjoin/active-directory-azureadjoin-who-owns-pc.png)</span></span>
+5. <span data-ttu-id="3a56c-119">Immettere le credenziali di hello che sono state fornite tooyou dall'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="3a56c-119">Enter hello credentials that were provided tooyou by your organization.</span></span>
+   <span data-ttu-id="3a56c-120"><center>
+   ![Schermata di accesso](./media/active-directory-azureadjoin/active-directory-azureadjoin-sign-in.png)</span><span class="sxs-lookup"><span data-stu-id="3a56c-120"><center>
+![Sign-in screen](./media/active-directory-azureadjoin/active-directory-azureadjoin-sign-in.png)</span></span>
+6. <span data-ttu-id="3a56c-121">Dopo aver immesso il nome utente, viene trovato il tenant corrispondente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3a56c-121">After you have entered your user name, a matching tenant is located in Azure AD.</span></span> <span data-ttu-id="3a56c-122">Se trovano in un dominio federato, sarà server reindirizzato tooyour locale Secure Token Service (STS), ad esempio, Active Directory Federation Services (ADFS).</span><span class="sxs-lookup"><span data-stu-id="3a56c-122">If you are in a federated domain, you will be redirected tooyour on-premises Secure Token Service (STS) server--for example, Active Directory Federation Services (AD FS).</span></span>
+7. <span data-ttu-id="3a56c-123">Nel caso di un utente in un dominio con federazione, immettere le credenziali direttamente su hello pagina ospitato AD Azure.</span><span class="sxs-lookup"><span data-stu-id="3a56c-123">If you are a user in a non-federated domain, enter your credentials directly on hello Azure AD-hosted page.</span></span> <span data-ttu-id="3a56c-124">Se sono state configurate le informazioni personalizzate distintive dell'azienda, vengono visualizzati anche il logo dell'organizzazione e la documentazione di supporto.</span><span class="sxs-lookup"><span data-stu-id="3a56c-124">If company branding was configured, you will also see your organization’s logo and support text.</span></span>
+8. <span data-ttu-id="3a56c-125">Viene richiesto di effettuare un'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="3a56c-125">You're prompted for a multi-factor authentication challenge.</span></span> <span data-ttu-id="3a56c-126">La verifica può essere configurata da un amministratore IT.</span><span class="sxs-lookup"><span data-stu-id="3a56c-126">This challenge is configurable by an IT administrator.</span></span>
+9. <span data-ttu-id="3a56c-127">Azure AD verifica se l'utente o il dispositivo richiede la registrazione nella gestione dei dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="3a56c-127">Azure AD checks whether this user/device requires enrollment in mobile device management.</span></span>
+10. <span data-ttu-id="3a56c-128">Windows registra il dispositivo hello nella directory dell'organizzazione hello in Azure AD e registra nella gestione dei dispositivi mobili, se appropriato.</span><span class="sxs-lookup"><span data-stu-id="3a56c-128">Windows registers hello device in hello organization’s directory in Azure AD and enrolls it in mobile device management, if appropriate.</span></span>
+11. <span data-ttu-id="3a56c-129">Nel caso di un utente gestito, Windows esegue toohello desktop tramite hello automatico processo di accesso.</span><span class="sxs-lookup"><span data-stu-id="3a56c-129">If you are a managed user, Windows takes you toohello desktop through hello automatic sign-in process.</span></span>
+12. <span data-ttu-id="3a56c-130">Se si è un utente federato, si verrà reindirizzati toohello Accedi Windows schermata tooenter le credenziali.</span><span class="sxs-lookup"><span data-stu-id="3a56c-130">If you are a federated user, you are directed toohello Windows sign-in screen tooenter your credentials.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="3a56c-131">Aggiunta a un dominio di Windows Server Active Directory locale in Windows hello esperienza out-of-box non è supportata.</span><span class="sxs-lookup"><span data-stu-id="3a56c-131">Joining an on-premises Windows Server Active Directory domain in hello Windows out-of-box experience is not supported.</span></span> <span data-ttu-id="3a56c-132">Pertanto, se si prevede un dominio di computer tooa toojoin, selezionare il collegamento hello **configurare Windows con un account locale** invece.</span><span class="sxs-lookup"><span data-stu-id="3a56c-132">Therefore, if you plan toojoin a computer tooa domain, you should select hello link **Set up Windows with a local account** instead.</span></span> <span data-ttu-id="3a56c-133">Per partecipare dominio hello dalle impostazioni hello nel computer in uso come effettuata precedentemente.</span><span class="sxs-lookup"><span data-stu-id="3a56c-133">You can then join hello domain from hello settings on your computer as you’ve done before.</span></span>
+> 
+> 
+
+## <a name="additional-information"></a><span data-ttu-id="3a56c-134">Informazioni aggiuntive</span><span class="sxs-lookup"><span data-stu-id="3a56c-134">Additional information</span></span>
+* [<span data-ttu-id="3a56c-135">Windows 10 per enterprise hello: i dispositivi toouse modi per lavoro</span><span class="sxs-lookup"><span data-stu-id="3a56c-135">Windows 10 for hello enterprise: Ways toouse devices for work</span></span>](active-directory-azureadjoin-windows10-devices-overview.md)
+* [<span data-ttu-id="3a56c-136">Estensione cloud dispositivi tooWindows 10 funzionalità tramite Azure Active Directory Join</span><span class="sxs-lookup"><span data-stu-id="3a56c-136">Extending cloud capabilities tooWindows 10 devices through Azure Active Directory Join</span></span>](active-directory-azureadjoin-user-upgrade.md)
+* [<span data-ttu-id="3a56c-137">Autenticazione delle identità senza password con Microsoft Passport</span><span class="sxs-lookup"><span data-stu-id="3a56c-137">Authenticating identities without passwords through Microsoft Passport</span></span>](active-directory-azureadjoin-passport.md)
+* [<span data-ttu-id="3a56c-138">Scenari di utilizzo per Aggiunta ad Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a56c-138">Learn about usage scenarios for Azure AD Join</span></span>](active-directory-azureadjoin-deployment-aadjoindirect.md)
+* [<span data-ttu-id="3a56c-139">Connettersi tooAzure dispositivi appartenenti a un dominio Active Directory per Windows 10</span><span class="sxs-lookup"><span data-stu-id="3a56c-139">Connect domain-joined devices tooAzure AD for Windows 10 experiences</span></span>](active-directory-azureadjoin-devices-group-policy.md)
+* [<span data-ttu-id="3a56c-140">Configurare Aggiunta di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a56c-140">Set up Azure AD Join</span></span>](active-directory-azureadjoin-setup.md)
+

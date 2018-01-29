@@ -1,10 +1,10 @@
-# <a name="platform-supported-migration-of-iaas-resources-from-classic-tooazure-resource-manager"></a>Piattaforma supportata la migrazione di risorse IaaS tooAzure classico Gestione risorse
-In questo articolo viene descritto come si abilita la migrazione dell'infrastruttura come un servizio (IaaS) alle risorse da modelli di distribuzione di gestione di hello Classic tooResource. Altre informazioni su [funzionalità e vantaggi di Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md). È in dettaglio come risorse tooconnect hello due modelli di distribuzione che coesistono nella sottoscrizione tramite virtuale site-to-site gateway di rete.
+# <a name="platform-supported-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>Migrazione di risorse IaaS supportata dalla piattaforma dal modello di distribuzione classica ad Azure Resource Manager
+Questo articolo illustra il modo in cui viene abilitata la migrazione di risorse dell'infrastruttura distribuita come servizio (IaaS) dal modello di distribuzione classica al modello di Azure Resource Manager. Altre informazioni su [funzionalità e vantaggi di Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md). Sono disponibili indicazioni su come connettere le risorse dai due modelli di distribuzione che coesistono nella sottoscrizione mediante i gateway da sito a sito per le reti virtuali.
 
 ## <a name="goal-for-migration"></a>Obiettivo della migrazione
-Resource Manager consente di distribuire applicazioni complesse mediante modelli, configura le macchine virtuali tramite le estensioni di macchina virtuale e incorpora la gestione degli accessi e l'uso dei tag. Azure Resource Manager include anche una distribuzione parallela e scalabile per le macchine virtuali nei set di disponibilità. il nuovo modello di distribuzione Hello fornisce inoltre la gestione del ciclo di vita di calcolo, rete e archiviazione in modo indipendente. Infine, è disponibile un stato attivo sull'abilitazione della protezione per impostazione predefinita con l'applicazione hello di macchine virtuali in una rete virtuale.
+Resource Manager consente di distribuire applicazioni complesse mediante modelli, configura le macchine virtuali tramite le estensioni di macchina virtuale e incorpora la gestione degli accessi e l'uso dei tag. Azure Resource Manager include anche una distribuzione parallela e scalabile per le macchine virtuali nei set di disponibilità. Il nuovo modello di distribuzione offre inoltre la gestione del ciclo di vita delle risorse di calcolo, rete e archiviazione, in modo indipendente. Infine, ci si concentra anche sull'abilitazione della sicurezza predefinita tramite l'imposizione di macchine virtuali in una rete virtuale.
 
-Quasi tutte le funzionalità di hello del modello di distribuzione classica hello sono supportate per calcolo, rete e archiviazione in Azure Resource Manager. toobenefit da nuove funzionalità di hello in Gestione risorse di Azure, è possibile migrare le distribuzioni dal modello di distribuzione classica hello esistente.
+In Azure Resource Manager sono supportate quasi tutte le funzionalità del modello di distribuzione classica per calcolo, rete e archiviazione. Per trarre vantaggio dalle nuove funzionalità di Azure Resource Manager, è possibile migrare le distribuzioni esistenti dal modello di distribuzione classica.
 
 ## <a name="supported-resources-for-migration"></a>Risorse supportate per la migrazione
 Durante la migrazione sono supportate queste risorse IaaS classiche
@@ -15,13 +15,13 @@ Durante la migrazione sono supportate queste risorse IaaS classiche
 * Account di archiviazione
 * Reti virtuali
 * Gateway VPN
-* Express Route gateway _(in hello stessa sottoscrizione di rete virtuale solo)_
+* Gateway ExpressRoute _(solo nella stessa sottoscrizione della rete virtuale)_
 * Gruppi di sicurezza di rete 
 * Tabelle di route 
 * IP riservati 
 
 ## <a name="supported-scopes-of-migration"></a>Ambiti di migrazione supportati
-Esistono diversi 4 modi toocomplete migrazione delle risorse di calcolo, rete e archiviazione. Si tratta di 
+Sono disponibili 4 modi diversi per completare la migrazione delle risorse di calcolo, rete e archiviazione. Si tratta di 
 
 * Migrazione di macchine virtuali (NON in una rete virtuale)
 * Migrazione di macchine virtuali (in una rete virtuale)
@@ -29,76 +29,76 @@ Esistono diversi 4 modi toocomplete migrazione delle risorse di calcolo, rete e 
 * Risorse scollegate (gruppi di sicurezza di rete, tabelle di route e indirizzi IP riservati)
 
 ### <a name="migration-of-virtual-machines-not-in-a-virtual-network"></a>Migrazione di macchine virtuali (NON in una rete virtuale)
-Nel modello di distribuzione di gestione risorse hello, protezione viene applicata per le applicazioni per impostazione predefinita. Tutte le macchine virtuali è necessario toobe in una rete virtuale nel modello di gestione risorse di hello. piattaforma Azure riavvii Hello (`Stop`, `Deallocate`, e `Start`) hello macchine virtuali come parte della migrazione hello. Per le reti virtuali hello che hello macchine virtuali vengono migrate, sono disponibili due opzioni:
+Nel modello di distribuzione Resource Manager la sicurezza delle applicazioni è applicata per impostazione predefinita. Nel modello di Resource Manager tutte le macchine virtuali devono trovarsi in una rete virtuale. La piattaforma Azure riavvia (`Stop`, `Deallocate`, e `Start`) le VM nell'ambito della migrazione. Sono disponibili due opzioni per le reti virtuali verso le quali verrà eseguita la migrazione delle macchine virtuali:
 
-* È possibile richiedere hello piattaforma toocreate una nuova rete virtuale e la migrazione di macchina virtuale hello nella nuova rete virtuale hello.
-* È possibile eseguire la migrazione di macchina virtuale hello in una rete virtuale esistente in Gestione risorse.
+* È possibile richiedere alla piattaforma di creare una nuova rete virtuale ed eseguire la migrazione della macchina virtuale nella nuova rete virtuale.
+* È possibile eseguire la migrazione della macchina virtuale in una rete virtuale esistente in Resource Manager.
 
 > [!NOTE]
-> In questo ambito, la migrazione entrambi hello operazioni del piano di gestione e operazioni del piano dati hello possono non essere consentite per un periodo di tempo durante la migrazione di hello.
+> In questo ambito di migrazione, le operazioni del piano di gestione e del piano dati potrebbero non essere consentite per un determinato periodo di tempo durante la migrazione.
 >
 >
 
 ### <a name="migration-of-virtual-machines-in-a-virtual-network"></a>Migrazione di macchine virtuali (in una rete virtuale)
-Per la maggior parte delle configurazioni di macchina virtuale, solo i metadati di hello sta migrando tra modelli di distribuzione classica e Gestione risorse di hello. Hello sottostante macchine virtuali in esecuzione su hello dello stesso hardware, in hello stessa rete e con hello stessa archiviazione. le operazioni di gestione piano Hello possono non essere consentite per un determinato periodo di tempo durante la migrazione di hello. Tuttavia, il piano di dati hello continua toowork. Ovvero, le applicazioni in esecuzione su macchine virtuali (classiche) non comportano un tempo di inattività durante la migrazione di hello.
+Per la maggior parte delle configurazioni di VM, viene eseguita solo la migrazione dei metadati tra il modello di distribuzione classica e il modello Resource Manager. Le VM sottostanti sono in esecuzione nello stesso hardware, nella stessa rete e con la stessa risorsa di archiviazione. È possibile che le operazioni del piano di gestione non siano consentite per un determinato periodo di tempo durante la migrazione. Tuttavia il piano dati continua a funzionare. Ovvero le applicazioni in esecuzione sulle VM (modello classico) non subiscono alcun tempo di inattività durante la migrazione.
 
-Hello seguenti configurazioni non è attualmente supportato. Se viene aggiunto il supporto in futuro hello alcune macchine virtuali in questa configurazione potrebbe essere addebitato un tempo di inattività (passare tramite stop, rilasciare e riavviare le operazioni di VM).
+Le seguenti configurazioni non sono attualmente supportate. Se in futuro verrà aggiunto il supporto, è possibile che alcune VM in questa configurazione subiscano tempi di inattività (arresto, deallocazione e riavvio).
 
 * Un singolo servizio cloud include più di un set di disponibilità.
 * In un singolo servizio cloud sono presenti uno o più set di disponibilità e VM non incluse in un set di disponibilità.
 
 > [!NOTE]
-> In questo ambito di migrazione, il piano di gestione di hello può non essere consentito per un periodo di tempo durante la migrazione di hello. Per alcune configurazioni, come illustrato in precedenza, il piano dati subisce tempi di inattività.
+> In questo ambito di migrazione è possibile che le operazioni del piano di gestione non siano consentite per un determinato periodo di tempo durante la migrazione. Per alcune configurazioni, come illustrato in precedenza, il piano dati subisce tempi di inattività.
 >
 >
 
 ### <a name="storage-accounts-migration"></a>Migrazione degli account di archiviazione
-migrazione continua tooallow, è possibile distribuire macchine virtuali di gestione risorse in un account di archiviazione classico. Questa funzionalità consente di eseguire la migrazione di risorse di calcolo e di rete indipendentemente dagli account di archiviazione. Quando si esegue la migrazione tramite le macchine virtuali e rete virtuale, sarà necessario toomigrate tramite il processo di migrazione hello toocomplete gli account di archiviazione.
+Per consentire una migrazione senza problemi, è possibile distribuire VM di Resource Manager in un account di archiviazione classico. Questa funzionalità consente di eseguire la migrazione di risorse di calcolo e di rete indipendentemente dagli account di archiviazione. Una volta eseguita la migrazione su macchine virtuali e rete virtuale, sarà necessario fare lo stesso sugli account di archiviazione per completare la procedura di migrazione.
 
 > [!NOTE]
-> modello di distribuzione di gestione risorse di Hello non hanno il concetto di hello di classica immagini e dischi. Quando l'account di archiviazione hello viene migrate, classiche immagini e dischi non sono visibili in stack di Resource Manager hello ma hello backup dischi rigidi virtuali rimangono nell'account di archiviazione hello.
+> Il modello di distribuzione Resource Manager non prevede il concetto di immagini e dischi classici. Quando viene migrato l'account di archiviazione, le immagini e i dischi classici non sono visualizzati nello stack di Resource Manager ma i VHD di supporto rimangono nell'account di archiviazione.
 >
 >
 
 ### <a name="unattached-resources-network-security-groups-route-tables--reserved-ips"></a>Risorse scollegate (gruppi di sicurezza di rete, tabelle di route e indirizzi IP riservati)
-Gruppi di sicurezza di rete, le tabelle di Route e gli indirizzi IP riservati non sono collegati tooany macchine virtuali e reti virtuali possono essere migrate in modo indipendente.
+Per i gruppi di sicurezza di rete, le tabelle di route e gli indirizzi IP riservati non associati a macchine e reti virtuali è possibile eseguire la migrazione in modo indipendente.
 
 <br>
 
 ## <a name="unsupported-features-and-configurations"></a>Funzionalità e configurazioni non supportate
-Alcune funzionalità e configurazioni non sono attualmente supportate. Hello le sezioni seguenti vengono descritti questi consigli attorno a esse.
+Alcune funzionalità e configurazioni non sono attualmente supportate. Nelle sezioni seguenti sono descritti i consigli in merito.
 
 ### <a name="unsupported-features"></a>Funzionalità non supportate
-Hello seguenti caratteristiche non è attualmente supportato. È facoltativamente rimuovere queste impostazioni, eseguire la migrazione di macchine virtuali hello e quindi abilitare nuovamente le impostazioni di hello nel modello di distribuzione di gestione risorse di hello.
+Le seguenti funzionalità non sono attualmente supportate. È possibile rimuovere facoltativamente queste impostazioni, eseguire la migrazione delle macchine virtuali e quindi riabilitare le impostazioni nel modello di distribuzione di Resource Manager.
 
 | Provider di risorse | Funzionalità | Raccomandazione |
 | --- | --- | --- |
-| Calcolo |Dischi di macchine virtuali non associati. | BLOB VHD Hello protetti da tali dischi verranno ottenere migrati quando viene eseguita la migrazione di Account di archiviazione hello |
-| Calcolo |Immagini di macchine virtuali. | BLOB VHD Hello protetti da tali dischi verranno ottenere migrati quando viene eseguita la migrazione di Account di archiviazione hello |
-| Rete |ACL endpoint. | Rimuovere gli ACL endpoint e ripetere la migrazione. |
-| Rete |Rete virtuale con gateway ExpressRoute e gateway VPN.  | Rimuovere hello Gateway VPN prima di iniziare la migrazione e quindi ricreare hello Gateway VPN una volta completata la migrazione. Per altre informazioni, vedere l'articolo relativo alla [migrazione di ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md).|
-| Rete |ExpressRoute con collegamenti di autorizzazione.  | Rimuovere hello ExpressRoute circuito toovirtaul connessione di rete prima di iniziare la migrazione e quindi ricreare la connessione hello una volta completata la migrazione. Per altre informazioni, vedere l'articolo relativo alla [migrazione di ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md). |
-| Rete |gateway applicazione | Rimuovere hello Gateway applicazione prima di iniziare la migrazione e quindi ricreare il Gateway applicazione hello una volta completata la migrazione. |
-| Rete |Reti virtuali usando il peering delle reti virtuali. | Eseguire la migrazione di rete virtuale tooResource Manager, quindi peer. Altre informazioni sul [peering reti virtuali](../articles/virtual-network/virtual-network-peering-overview.md). | 
+| Calcolo | Dischi di macchine virtuali non associati. | La migrazione dei BLOB VHD dietro questi dischi verrà eseguita al momento della migrazione dell'account di archiviazione |
+| Calcolo | Immagini di macchine virtuali. | La migrazione dei BLOB VHD dietro questi dischi verrà eseguita al momento della migrazione dell'account di archiviazione |
+| Rete | ACL endpoint. | Rimuovere gli ACL endpoint e ripetere la migrazione. |
+| Rete | gateway applicazione | Rimuovere il gateway applicazione prima di iniziare la migrazione e quindi ricrearlo al termine. |
+| Rete | Reti virtuali usando il peering delle reti virtuali. | Eseguire la migrazione della rete virtuale in Resource Manager, quindi eseguire il peering. Altre informazioni sul [peering reti virtuali](../articles/virtual-network/virtual-network-peering-overview.md). | 
 
 ### <a name="unsupported-configurations"></a>Configurazioni non supportate
-Hello seguenti configurazioni non è attualmente supportato.
+Le seguenti configurazioni non sono attualmente supportate.
 
 | Service | Configurazione | Raccomandazione |
 | --- | --- | --- |
-| Gestione risorse |Controllo degli accessi in base al ruolo (RBAC) per le risorse classiche |Poiché hello URI delle risorse hello viene modificato dopo la migrazione, è consigliabile pianificare gli aggiornamenti di criteri RBAC hello necessarie toohappen dopo la migrazione. |
-| Calcolo |Più subnet associate a una macchina virtuale |Subnet tooreference di configurazione subnet hello solo l'aggiornamento. |
-| Calcolo |Macchine virtuali che fanno parte di rete virtuale tooa ma non dispone di una subnet esplicita assegnata |Facoltativamente, è possibile eliminare hello macchina virtuale. |
-| Calcolo |Macchine virtuali con avvisi e criteri di ridimensionamento automatico |migrazione di Hello attraversa e queste impostazioni vengono eliminate. È consigliabile valutare l'ambiente prima hello migrazione. In alternativa, è possibile riconfigurare le impostazioni degli avvisi di hello al termine della migrazione. |
-| Calcolo |Estensioni XML della VM (BGInfo 1.*, Visual Studio Debugger, Web Deploy e Remote Debugging) |Questa operazione non è supportata. È consigliabile che per rimuovere queste estensioni toocontinue migrazione della macchina virtuale hello o verranno eliminati automaticamente durante il processo di migrazione hello. |
-| Calcolo |Diagnostica di avvio con archiviazione Premium |Disabilitare la funzionalità di diagnostica di avvio per le macchine virtuali hello prima di continuare con la migrazione. È possibile riabilitare la diagnostica di avvio nello stack di Resource Manager hello al termine della migrazione hello. Inoltre, i BLOB in uso per le schermate e i registri seriali devono essere eliminati in modo da non ricevere addebiti in relazione a essi. |
-| Calcolo |Servizi cloud che includono ruoli Web/di lavoro |Non supportato attualmente. |
-| Rete |Reti virtuali contenenti macchine virtuali e ruoli Web/di lavoro |Non supportato attualmente. |
+| Gestione risorse |Controllo degli accessi in base al ruolo (RBAC) per le risorse classiche |Poiché l'URI delle risorse viene modificato dopo la migrazione, è consigliabile pianificare gli aggiornamenti dei criteri RBAC che devono essere eseguiti dopo la migrazione. |
+| Calcolo |Più subnet associate a una macchina virtuale |Aggiornare la configurazione delle subnet in modo che faccia riferimento solo alle subnet. |
+| Calcolo |Macchine virtuali appartenenti a una rete virtuale, ma senza assegnazione esplicita di una subnet |È facoltativamente possibile eliminare la VM. |
+| Calcolo |Macchine virtuali con avvisi e criteri di ridimensionamento automatico |La migrazione viene eseguita e queste impostazioni vengono eliminate. È quindi consigliabile valutare l'ambiente prima di eseguire la migrazione. In alternativa, è possibile riconfigurare le impostazioni relative agli avvisi al termine della migrazione. |
+| Calcolo |Estensioni XML della VM (BGInfo 1.*, Visual Studio Debugger, Web Deploy e Remote Debugging) |Questa operazione non è supportata. È consigliabile rimuovere queste estensioni dalla macchina virtuale per continuare la migrazione oppure verranno rimosse automaticamente durante il processo di migrazione. |
+| Calcolo |Diagnostica di avvio con archiviazione Premium |Disabilitare la funzionalità di diagnostica di avvio per le VM prima di proseguire con la migrazione. Sarà possibile riabilitare la diagnostica di avvio nello stack di Resource Manager al termine della migrazione. Inoltre, i BLOB in uso per le schermate e i registri seriali devono essere eliminati in modo da non ricevere addebiti in relazione a essi. |
+| Calcolo | Servizi cloud che includono ruoli Web/di lavoro | Non supportato attualmente. |
+| Calcolo | Servizi cloud contenenti più di un set di disponibilità o set di disponibilità multipli. |Non supportato attualmente. Spostare le macchine virtuali nello stesso set di disponibilità prima della migrazione. |
+| Calcolo | VM con estensione Centro sicurezza di Azure | Il Centro sicurezza di Azure installa automaticamente le estensioni nelle macchine virtuali per monitorarne la protezione e generare avvisi. Queste estensioni vengono in genere installate automaticamente se i criteri di sicurezza del Centro sicurezza di Azure sono abilitati nella sottoscrizione. Per eseguire la migrazione delle macchine virtuali, disabilitare i criteri del Centro sicurezza nella sottoscrizione per rimuovere l'estensione di monitoraggio del Centro sicurezza dalle macchine virtuali. |
+| Calcolo | VM con estensione di backup o snapshot | Queste estensioni vengono installate in una macchina virtuale configurata con il servizio Backup di Azure. Per eseguire la migrazione di queste macchine virtuali, seguire le indicazioni disponibili [qui](https://docs.microsoft.com/azure/virtual-machines/windows/migration-classic-resource-manager-faq#vault).  |
+| Rete |Reti virtuali contenenti macchine virtuali e ruoli Web/di lavoro |Non supportato attualmente. Spostare i ruoli Web/di lavoro nella rispettiva rete virtuale prima della migrazione. Dopo la migrazione della rete virtuale classica, è possibile eseguire il peering della rete virtuale di Azure Resource Manager di cui è stata eseguita la migrazione con la rete virtuale classica per ottenere una configurazione simile a prima.|
+| Rete | Circuiti ExpressRoute classici |Non supportato attualmente. È necessario eseguire la migrazione di questi circuiti in Azure Resource Manager prima di iniziare la migrazione IaaS. Per altre informazioni, vedere [Spostamento dei circuiti ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager](../articles/expressroute/expressroute-move.md).|
 | Servizio app di Azure |Rete virtuale contenente ambienti del servizio app |Non supportato attualmente. |
 | HDInsight di Azure |Rete virtuale contenente servizi HDInsight |Non supportato attualmente. |
 | Servizi del ciclo di vita Microsoft Dynamics |Rete virtuale contenente macchine virtuali gestite da Dynamics Lifecycle Services |Non supportato attualmente. |
 | Servizi di dominio Azure Active Directory |Reti virtuali che contengono i servizi di dominio Azure AD |Non supportato attualmente. |
 | Azure RemoteApp |Reti virtuali che contengono distribuzioni di Azure RemoteApp |Non supportato attualmente. |
-| Gestione API di Azure |Reti virtuali che contengono distribuzioni di Gestione API |Non supportato attualmente. hello toomigrate VNET IaaS, modificare hello rete virtuale di hello la distribuzione di gestione API che non è un'operazione alcun tempo di inattività. |
-| Calcolo |Estensioni del Centro sicurezza di Azure con una rete virtuale che dispone di un gateway VPN in connettività di transito o ExpressRoute con server DNS locale |Centro sicurezza di Azure automaticamente installati estensioni toomonitor le macchine virtuali la sicurezza e generare avvisi. Queste estensioni in genere viene installate automaticamente se è abilitato hello criteri Centro sicurezza di Azure nella sottoscrizione hello. La migrazione del gateway ExpressRoute non è attualmente supportata e i gateway VPN con connettività di transito perdono l'accesso locale. L'eliminazione di ExpressRoute gateway o la migrazione dei gateway VPN con connettività di transito determina internet access tooVM storage account toobe perdita quando procedere all'esecuzione del commit della migrazione hello. la migrazione di Hello non viene eseguita in questo caso come blob di stato dell'agente guest hello non possono essere popolati. È consigliabile toodisable criteri Centro sicurezza di Azure nella sottoscrizione hello 3 ore prima di procedere con la migrazione. |
-
+| Gestione API di Azure |Reti virtuali che contengono distribuzioni di Gestione API |Non supportato attualmente. Per eseguire la migrazione di VNET IaaS, modificare la rete virtuale della distribuzione di Gestione API che è un'operazione senza tempi di inattività. |

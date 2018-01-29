@@ -1,14 +1,14 @@
-Creare un piano di servizio App con hello [crea piano di servizio App az](/cli/azure/appservice/plan#create) comando.
+In Cloud Shell creare un piano di servizio app con il comando [az appservice plan create](/cli/azure/appservice/plan?view=azure-cli-latest#az_appservice_plan_create).
 
 [!INCLUDE [app-service-plan](app-service-plan.md)]
 
-esempio Hello crea un piano di servizio App denominato `myAppServicePlan` in hello **libero** tariffario:
+L'esempio seguente crea un piano di servizio app denominato `myAppServicePlan` nel piano tariffario **Gratuito**:
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE
 ```
 
-Dopo aver creato il piano di servizio App hello, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente:
+Al termine della creazione del piano di servizio app, l'interfaccia della riga di comando di Azure visualizza informazioni simili all'esempio seguente:
 
 ```json
 { 

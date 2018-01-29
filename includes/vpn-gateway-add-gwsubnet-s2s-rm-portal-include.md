@@ -1,9 +1,9 @@
-1. Nel portale di hello passare toohello rete virtuale per cui si desidera toocreate un gateway di rete virtuale.
-2. In hello **impostazioni** sezione della pagina di rete virtuale, fare clic su **subnet** pagina di tooexpand hello subnet.
-3. In hello **subnet** pagina, fare clic su **+ subnet del Gateway** in hello tooopen superiore hello **aggiungere subnet** pagina.
+1. Nel portale passare alla rete virtuale per cui si vuole creare un gateway di rete virtuale.
+2. Nella sezione **Impostazioni** della pagina della rete virtuale fare clic su **Subnet** per espandere la pagina Subnet.
+3. Nella pagina **Subnet** fare clic su **+Subnet del gateway** in alto per aprire la pagina **Aggiungi subnet**.
 
-  ![Aggiungi subnet gateway hello](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "Aggiungi subnet gateway hello")
-4. Hello **nome** per la subnet viene automaticamente inserita hello valore 'GatewaySubnet'. Hello valore GatewaySubnet è necessaria per la subnet hello Azure toorecognize come subnet del gateway hello. Regolare hello riempimento automatico **intervallo di indirizzi** valori toomatch requisiti di configurazione.
+  ![Aggiungere la subnet del gateway](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/addgwsub.png "Aggiungere la subnet del gateway")
+4. Il **nome** della subnet verrà compilato automaticamente con il valore 'GatewaySubnet'. Il valore GatewaySubnet è obbligatorio per consentire ad Azure di riconoscere la subnet come subnet del gateway. Modificare i valori di **Intervallo di indirizzi** compilati automaticamente in modo che corrispondano ai requisiti di configurazione.
 
-  ![Aggiunta di subnet del gateway hello](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "aggiunta subnet del gateway hello")
-5. toocreate hello subnet, fare clic su **OK** nella parte inferiore di hello della pagina hello.
+  ![Aggiunta della subnet del gateway](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/addsub2.png "Aggiunta della subnet del gateway")
+5. Fare clic su **OK** nella parte inferiore della pagina per creare la subnet.

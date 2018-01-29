@@ -1,31 +1,26 @@
-1. In una nuova finestra, accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Nel menu a sinistra di hello, fare clic su **New**, fare clic su **database**, quindi in **Azure Cosmos DB**, fare clic su **crea**.
+1. In una nuova finestra del browser accedere al [portale di Azure](https://portal.azure.com/).
+2. Nel menu a sinistra fare clic su **Nuovo**, quindi su **Database** e in **Azure Cosmos DB** fare clic su **Crea**. 
    
-   ![Cattura di schermata del portale di Azure, evidenziando più servizi e database di Azure Cosmos hello](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-1.png)
+   ![Screenshot del portale di Azure in cui sono evidenziati Altri servizi e Azure Cosmos DB](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-1.png)
 
-3. In hello **nuovo account** pannello specificare hello configurazione desiderata per l'account di Azure Cosmos DB hello. 
-
-    Con Azure Cosmos DB è possibile scegliere uno dei quattro modelli di programmazione: Gremlin (graph), MongoDB, SQL (DocumentDB) e Table (key-value). 
-    
-    In questa Guida introduttiva è sarà possibile programmazione hello tabella API in modo sarà possibile scegliere **tabella (chiave-valore)** in fase di compilazione modulo hello. Tuttavia, se si dispone di dati grafo per un'app social media, dati documento di un'app di catalogo o dati migrati da un'app MongoDB, tenere presente che Azure Cosmos DB può fornire una piattaforma di servizi di database distribuiti a livello globale e a disponibilità elevata per tutte le applicazioni cruciali.
-
-    Compilare hello nuovo account pannello utilizzando informazioni hello nella schermata di hello come guida. È possibile scegliere valori univoci come è possibile impostare l'account in modo i valori non corrispondono esattamente hello schermata. 
+3. Nella pagina **Nuovo account** immettere le impostazioni per il nuovo account Azure Cosmos DB. 
  
-    ![Cattura di schermata del pannello nuova Azure Cosmos DB hello](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-2.png)
-
     Impostazione|Valore consigliato|Descrizione
     ---|---|---
-    ID|*Valore univoco*|Un nome univoco è scegliere l'account di Azure Cosmos DB tooidentify hello. *Documents.Azure.com* toohello accodati ID fornire toocreate l'URI, pertanto utilizzare un ID univoco ma personali. Hello ID può contenere solo lettere minuscole, numeri e hello '-' caratteri e deve essere compresa tra 3 e 50 caratteri.
-    API|Table (key-value)|Si sarà programmazione hello [tabella API](../articles/cosmos-db/table-introduction.md) più avanti in questo articolo.|
-    Sottoscrizione|*Sottoscrizione in uso*|Hello sottoscrizione di Azure che si desidera toouse per account Azure Cosmos DB hello. 
-    Gruppo di risorse|*lo stesso valore ID Hello*|Hello nuovo nome gruppo di risorse per l'account. Per semplicità, è possibile utilizzare hello stesso nome come l'ID. 
-    Percorso|*utenti tooyour di Hello area più vicini*|Hello località geografica in cui toohost l'account di Azure Cosmos DB. Scegliere il percorso di hello più vicino agli utenti di tooyour toogive li hello più veloce toohello di accedere ai dati.   
+    ID|*Immettere un nome univoco*|Immettere un nome univoco per identificare l'account Azure Cosmos DB. Poiché alI'ID fornito viene aggiunto *documents.azure.com* per creare l'URI, usare un ID univoco ma facilmente identificabile.<br><br>L'ID può contenere solo lettere minuscole, numeri e il segno meno (-) e deve avere una lunghezza compresa tra 3 e 50 caratteri.
+    API|tabella di Azure|L'API determina il tipo di account da creare. Azure Cosmos DB offre cinque API per soddisfare le esigenze dell'applicazione, ovvero SQL (database di documenti) Gremlin (grafo), MongoDB, SQL (database di documenti), Tabella di Azure e Cassandra, per ognuna delle quali è attualmente necessario un account separato.<br><br>Selezionare **Tabella di Azure** perché in questa guida rapida si crea una tabella che funziona con l'API di tabella.<br><br>[Altre informazioni sull'API di tabella](../articles/cosmos-db/table-introduction.md) |
+    Sottoscrizione|*Immettere lo stesso nome univoco specificato sopra in ID*|Selezionare la sottoscrizione di Azure da usare per l'account Azure Cosmos DB. 
+    Gruppo di risorse|*Stesso valore di ID*|Immettere il nome di un nuovo gruppo di risorse per l'account. Per semplicità si può usare lo stesso nome usato come ID. 
+    Percorso|*Selezionare l'area più vicina agli utenti*|Selezionare la posizione geografica in cui ospitare l'account Azure Cosmos DB. Usare la località più vicina agli utenti per offrire loro la massima velocità di accesso ai dati.
+    Abilita ridondanza geografica| Lasciare vuoto | Consente di creare una versione replicata del database in una seconda area abbinata. Lasciare vuoto.  
+    Aggiungi al dashboard | Selezionare | Selezionare questa casella per aggiungere il nuovo account di database al dashboard del portale e accedervi più facilmente.
 
-4. Fare clic su **crea** account hello toocreate.
-5. Sulla barra degli strumenti hello, fare clic su **notifiche** toomonitor processo di distribuzione hello.
+    Fare quindi clic su **Crea**.  
 
-    ![Notifica di distribuzione avviata](./media/cosmos-db-create-dbaccount-table/notification.png)
+    ![Screenshot del pannello Nuovo Azure Cosmos DB](./media/cosmos-db-create-dbaccount-table/create-nosql-db-databases-json-tutorial-2.png)
 
-6.  Una volta completata la distribuzione di hello, nuovo account di hello aperto da hello riquadro tutte le risorse. 
+4. La creazione dell'account richiede alcuni minuti, durante i quali nel portale viene visualizzato il riquadro **Distribuzione di Azure Cosmos DB**.
 
-    ![Account DocumentDB hello che riquadro tutte le risorse](./media/cosmos-db-create-dbaccount-table/all-resources.png)
+    ![Riquadro Notifiche del portale di Azure](./media/cosmos-db-create-dbaccount-table/deploying-cosmos-db.png)
+
+    Al termine della creazione dell'account verrà visualizzata la pagina **L'account Azure Cosmos DB è stato creato**.

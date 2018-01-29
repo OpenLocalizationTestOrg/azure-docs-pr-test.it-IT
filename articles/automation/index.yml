@@ -1,0 +1,67 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Documentazione dell'utente di Automazione di Azure
+metadata:
+  document_id: 
+  title: Documentazione di Automazione di Azure - Esercitazioni e informazioni di riferimento sulle API
+  description: Informazioni su come usare Automazione di Azure
+  services: automation
+  author: georgewallace
+  manager: carmonm
+  ms.service: automation
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 12/13/2017
+  ms.author: gwallace
+  ms.openlocfilehash: b2b155480cd43ce8daa0b4916b244910f094a032
+  ms.sourcegitcommit: c4cc4d76932b059f8c2657081577412e8f405478
+  ms.translationtype: HT
+  ms.contentlocale: it-IT
+  ms.lasthandoff: 01/11/2018
+abstract:
+  description: "Informazioni su come usare Automazione per configurare e automatizzare le attività operative in un ambiente ibrido. Esercitazioni, informazioni di riferimento sulle API e altri documenti illustrano come automatizzare i processi, gestire gli aggiornamenti, fornire la configurazione dello stato desiderato, rilevare le modifiche e raccogliere l'inventario."
+sections:
+- title: Guide introduttive di 5 minuti
+  items:
+  - type: paragraph
+    text: 'Informazioni su come automatizzare e configurare l''ambiente ibrido e di Azure con Automazione:'
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/automation/media/index/automation.svg
+      text: Creare un account di Automazione
+      href: /azure/automation/automation-quickstart-create-account
+    - image:
+        src: /azure/automation/media/index/runbook.svg
+      text: Creare un runbook
+      href: /azure/automation/automation-quickstart-create-runbook
+    - image:
+        src: /azure/automation/media/index/dscconfig.svg
+      text: Creare una configurazione DSC
+      href: /azure/automation/automation-quickstart-dsc-configuration
+- title: Esercitazioni dettagliate
+  items:
+  - type: paragraph
+    text: Informazioni su come integrare, distribuire e gestire l'ambiente ibrido e di Azure.
+  - type: list
+    style: ordered
+    items:
+    - html: "<a href=\"/azure/automation/automation-watchers-tutorial\">Configurare le attività watcher</a>"
+    - html: <a href="/azure/automation/automation-tutorial-update-management">Gestire gli aggiornamenti nella VM</a>
+    - html: <a href="/azure/automation/automation-onboard-solutions">Eseguire l'onboarding su vasta scala</a>
+    - html: <a href="/azure/automation/automation-tutorial-installed-software">Identificare il software installato in una macchina virtuale</a>
+    - html: <a href="/azure/automation/automation-tutorial-troubleshoot-changes">Risolvere i problemi delle modifiche di una VM</a>
+- title: Riferimento
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: Riga di comando
+      html: <p><a href="/powershell/module/azurerm.automation">PowerShell</a></p>
+    - title: Lingue
+      html: <p><a href="/dotnet/api/microsoft.azure.management.automation">.NET</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/automation">Automation REST API</a> (API REST di Automazione)</p>

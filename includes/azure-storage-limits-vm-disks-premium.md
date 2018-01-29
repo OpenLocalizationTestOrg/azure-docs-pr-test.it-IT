@@ -6,7 +6,7 @@
 | Capacità totale snapshot per account |10 TB |
 | Larghezza di banda massima per account (ingresso + uscita<sup>1</sup>) |<=50 Gbps |
 
-<sup>1</sup>*in ingresso* fa riferimento a dati tooall (richieste) inviati tooa account di archiviazione. *In uscita* fa riferimento tooall dati (risposte) ricevuti da un account di archiviazione.
+<sup>1</sup>Si intendono in *ingresso* tutti i dati (richieste) inviati a un account di archiviazione. *uscita* tutti i dati (risposte) ricevuti da un account di archiviazione.
 
 **Dischi di macchina virtuale non gestiti Premium: limiti per disco**
 
@@ -21,8 +21,6 @@
 
 | Risorsa | Limite predefinito |
 | --- | --- |
-| Max operazioni IOPS per VM |80.000 IOPS con VM GS5<sup>1</sup> |
-| Max velocità effettiva per VM |2000 MB/s con VM GS5<sup>1</sup> |
-
-<sup>1</sup>vedere troppo[dimensioni delle macchine Virtuali](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) per i limiti di dimensioni delle altre macchine Virtuali. 
+| Max operazioni IOPS per VM |80.000 IOPS con VM GS5 |
+| Max velocità effettiva per VM |2.000 MB/s con VM GS5 |
 

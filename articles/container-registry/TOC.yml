@@ -1,0 +1,91 @@
+- name: Registro di sistema del contenitore di Azure
+  href: ./index.yml
+- name: Panoramica
+  items:
+    - name: Informazioni sul registro contenitori
+      href: container-registry-intro.md
+- name: Guide introduttive
+  expanded: true
+  items:
+    - name: 'Registro contenitori: interfaccia della riga di comando'
+      href: container-registry-get-started-azure-cli.md
+    - name: 'Registro contenitori: portale'
+      href: container-registry-get-started-portal.md
+    - name: 'Registro contenitori: PowerShell'
+      href: container-registry-get-started-powershell.md
+- name: Esercitazioni
+  items:
+    - name: Istanze di contenitore di Azure
+      href: ../container-instances/container-instances-tutorial-prepare-app.md
+    - name: Servizio contenitore di Azure
+      href: ../aks/tutorial-kubernetes-prepare-app.md
+    - name: Service Fabric
+      href: ../service-fabric/service-fabric-tutorial-create-container-images.md
+    - name: Replica geografica (anteprima)
+      items:
+        - name: '1: Preparare un registro contenitori'
+          href: container-registry-tutorial-prepare-registry.md
+        - name: '2: Distribuire l''applicazione Web'
+          href: container-registry-tutorial-deploy-app.md
+        - name: '3: Aggiornare l''applicazione Web'
+          href: container-registry-tutorial-deploy-update.md
+- name: Concetti
+  items:
+    - name: SKU Registro contenitori
+      href: container-registry-skus.md
+    - name: Replica geografica (anteprima)
+      href: container-registry-geo-replication.md
+    - name: Procedure consigliate per il registro contenitori
+      href: container-registry-best-practices.md
+- name: Guide alle procedure
+  items:
+    - name: Effettuare il push e il pull di un'immagine
+      href: container-registry-get-started-docker-cli.md
+    - name: Visualizzare i repository
+      href: container-registry-repositories.md
+    - name: Aggiornare un registro classico
+      href: container-registry-upgrade.md
+    - name: Usare i webhook ACR
+      href: container-registry-webhook.md
+    - name: Authentication
+      items:
+        - name: Panoramica dell'autenticazione
+          href: container-registry-authentication.md
+        - name: Autenticazione di un'entità servizio
+          href: container-registry-auth-service-principal.md
+        - name: Istanze di contenitore di Azure
+          href: container-registry-auth-aci.md
+        - name: Servizio contenitore di Azure
+          href: container-registry-auth-aks.md
+- name: Riferimenti
+  items:
+    - name: Interfaccia della riga di comando di Azure
+      href: /cli/azure/acr
+    - name: REST
+      href: /rest/api/containerregistry
+    - name: PowerShell
+      href: /powershell/module/azurerm.containerregistry
+    - name: .NET
+      href: /dotnet/api/overview/azure/containerregistry
+    - name: Python
+      href: /python/api/overview/azure/container-registry
+    - name: Node.js
+      href: /javascript/api/overview/azure/container-registry
+    - name: Modello di Resource Manager
+      href: /azure/templates/microsoft.containerregistry/registries
+    - name: Schema dei webhook
+      href: container-registry-webhook-reference.md
+- name: Risorse
+  items:
+    - name: Aree di disponibilità
+      href: 'https://azure.microsoft.com/regions/services/'
+    - name: Prezzi
+      href: 'https://azure.microsoft.com/pricing/details/container-registry/'
+    - name: Guida di orientamento
+      href: 'https://aka.ms/acr/roadmap'
+    - name: Inviare commenti e suggerimenti per il prodotto
+      href: 'https://feedback.azure.com/forums/903958-azure-container-registry'
+    - name: Stack Overflow
+      href: 'http://stackoverflow.com/questions/tagged/azure-container-registry'
+    - name: Video
+      href: 'https://azure.microsoft.com/resources/videos/index/?services=container-registry&sort=newest'

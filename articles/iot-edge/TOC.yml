@@ -1,0 +1,101 @@
+- name: Documentazione di Azure IoT Edge
+  href: index.yml
+- name: Panoramica
+  items:
+    - name: Informazioni su Azure IoT Edge
+      href: how-iot-edge-works.md
+- name: Guide introduttive
+  items:
+    - name: Distribuire in un dispositivo perimetrale - Linux/Mac
+      href: quickstart-linux.md
+    - name: Distribuire in un dispositivo perimetrale - Windows
+      href: quickstart.md
+- name: Esercitazioni
+  items:
+    - name: Simulare un dispositivo perimetrale - Linux/Mac
+      href: tutorial-simulate-device-linux.md
+    - name: Simulare un dispositivo perimetrale - Windows
+      href: tutorial-simulate-device-windows.md
+    - name: 'Sviluppare un modulo C#'
+      href: tutorial-csharp-module.md
+    - name: Distribuire Analisi di flusso di Azure
+      href: tutorial-deploy-stream-analytics.md
+    - name: Distribuire Azure Machine Learning
+      href: tutorial-deploy-machine-learning.md
+    - name: Distribuire Funzioni di Azure
+      href: tutorial-deploy-function.md
+    - name: Creare una distribuzione di IoT Edge con l'estensione IoT per l'interfaccia della riga di comando di Azure 2.0
+      href: tutorial-create-deployment-with-cli-iot-extension.md
+- name: Guide alle procedure
+  items:
+    - name: Creare gateway
+      items:
+        - name: Creare un gateway trasparente
+          href: how-to-create-transparent-gateway.md
+        - name: Gateway Modbus
+          href: deploy-modbus-gateway.md
+    - name: Distribuire e monitorare su larga scala
+      href: how-to-deploy-monitor.md
+    - name: Effettuare il provisioning di un dispositivo IoT Core
+      href: how-to-install-iot-core.md
+    - name: Usare Visual Studio Code per sviluppare soluzioni IoT Edge
+      items:
+        - name: 'Sviluppare e distribuire un modulo C#'
+          href: how-to-vscode-develop-csharp-module.md
+        - name: 'Eseguire il debug di un modulo C#'
+          href: how-to-vscode-debug-csharp-module.md
+        - name: Sviluppare e distribuire Funzioni di Azure
+          href: how-to-vscode-develop-azure-function.md
+        - name: Eseguire il debug di Funzioni di Azure
+          href: how-to-vscode-debug-azure-function.md
+    - name: Risolvere problemi
+      href: troubleshoot.md
+- name: Concetti
+  items:
+    - name: Moduli di IoT Edge
+      href: iot-edge-modules.md
+      items:
+        - name: Sviluppo.
+          href: module-development.md
+        - name: Composizione
+          href: module-composition.md
+    - name: Runtime di IoT Edge
+      href: iot-edge-runtime.md
+    - name: Deployments
+      href: module-deployment-monitoring.md
+    - name: Dispositivo IoT Edge come gateway
+      href: iot-edge-as-gateway.md
+    - name: Sicurezza
+      href: security.md
+    - name: Glossario di IoT Edge
+      href: iot-edge-glossary.md
+- name: Risorse
+  items:
+    - name: Catalogo dei dispositivi Azure Certified per IoT
+      href: 'https://catalog.azureiotsuite.com/'
+    - name: Centro per sviluppatori Azure IoT
+      href: 'https://azure.microsoft.com/develop/iot/'
+    - name: Roadmap per Azure
+      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
+    - name: Strumento DeviceExplorer
+      href: 'https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer'
+    - name: Strumento iothub-diagnostics
+      href: 'https://github.com/Azure/iothub-diagnostics'
+    - name: strumento iothub-explorer
+      href: 'https://github.com/Azure/iothub-explorer'
+    - name: Percorso di apprendimento
+      href: 'https://azure.microsoft.com/documentation/learning-paths/iot-hub/'
+    - name: Forum MSDN
+      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub'
+    - name: Prezzi
+      href: 'https://azure.microsoft.com/pricing/details/iot-hub/'
+    - name: Calcolatore prezzi
+      href: 'https://azure.microsoft.com/pricing/calculator/'
+    - name: Aggiornamenti del servizio
+      href: 'https://azure.microsoft.com/updates/?product=iot-hub'
+    - name: Stack Overflow
+      href: 'http://stackoverflow.com/questions/tagged/azure-iot-hub'
+    - name: Case study tecnici
+      href: 'https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured'
+    - name: Video
+      href: 'https://azure.microsoft.com/documentation/videos/index/?services=iot-hub'

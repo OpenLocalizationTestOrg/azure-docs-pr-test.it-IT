@@ -1,7 +1,11 @@
-Ora che l'app sia in esecuzione, è opportuno tooensure business continuity ed espressioni di controllo utente accesso tooensure la disponibilità elevata. È possibile utilizzare hello disponibilità hello tooreview portale Azure, latenza, velocità effettiva e la coerenza della raccolta. 
+La velocità effettiva, lo spazio di archiviazione, la disponibilità, la latenza e la coerenza delle risorse nell'account vengono monitorati nel portale di Azure. Di seguito vengono illustrate brevemente queste metriche. 
 
-Ogni grafico associato hello [Azure Cosmos DB contratti di servizio (SLA)](https://azure.microsoft.com/support/legal/sla/documentdb/) fornisce una linea che mostra hello quota obbligatorio toomeet hello contratto di servizio e l'utilizzo effettivo, offrendo una visione chiara in prestazioni del database. Altre metriche, ad esempio l'utilizzo di archiviazione e numero di richieste al minuto, sono incluse anche nel portale di hello.
+1. Fare clic su **Metriche** nel menu di spostamento.
 
-* Nel portale di Azure hello, in hello riquadro sinistro, in **monitoraggio**, fare clic su **metriche**.
+   ![Metriche nel portale di Azure](./media/cosmos-db-tutorial-review-slas/metrics.png)
 
-   ![App elenco attività con dati di esempio](./media/cosmos-db-tutorial-review-slas/azure-cosmosdb-portal-metrics-slas.png)
+2. Fare clic su ogni scheda per conoscere le metriche offerte da Azure Cosmos DB. 
+
+    Ogni grafico associato ai [contratti di servizio per Azure Cosmos DB](https://azure.microsoft.com/support/legal/sla/cosmos-db/) contiene una linea che indica le eventuali violazioni dei contratti di servizio. Con questo gruppo di metriche, Azure Cosmos DB garantisce trasparenza nel monitoraggio dei contratti di servizio. 
+
+   ![Gruppo di metriche di Azure Cosmos DB](./media/cosmos-db-tutorial-review-slas/metrics-suite.png)

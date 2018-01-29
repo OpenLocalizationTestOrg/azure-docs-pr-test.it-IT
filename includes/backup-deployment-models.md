@@ -1,12 +1,7 @@
-Hello servizio Backup di Azure è disponibili due tipi di insiemi di credenziali - hello credenziali Backup e l'insieme di credenziali di servizi di ripristino hello. insieme di credenziali Backup Hello ordine di priorità. Quindi hello insieme di credenziali di servizi di ripristino avvento di distribuzioni di gestione risorse di toosupport hello espanso. Se non è specificamente necessaria una distribuzione classica, è consigliabile usare distribuzioni Resource Manager.
-
-| **Distribuzione** | **Portale** | **Insieme di credenziali** |
-| --- | --- | --- |
-| Classico |[Classico](https://manage.windowsazure.com) |Backup |
-| Gestione risorse |[Azzurro](https://portal.azure.com) |Servizi di ripristino |
+Il servizio di Backup di Azure contiene due tipi di insiemi di credenziali - l'insieme di credenziali di Backup e l'insieme di credenziali di servizi di ripristino. L'insieme di credenziali per il backup è stato creato per primo. L'insieme di credenziali dei servizi di ripristino è stato creato in seguito per supportare le distribuzioni Resource Manager espanse. Se non è specificamente necessaria una distribuzione classica, è consigliabile usare distribuzioni Resource Manager. Al termine di 2017, tutti gli archivi di Backup sono stati convertiti in insiemi di credenziali di servizi di ripristino.
 
 > [!NOTE]
-> Le credenziali per il backup non consentono di proteggere le soluzioni distribuite con Resource Manager. Tuttavia, è possibile utilizzare servizi di ripristino di un insieme di credenziali tooprotect tradizionalmente distribuito i server e le macchine virtuali.  
+> Gli insiemi di credenziali backup Impossibile proteggere le soluzioni distribuite di gestione risorse. Tuttavia, gli insiemi di credenziali di servizi di ripristino può proteggere server tradizionalmente distribuito e le macchine virtuali.  
 > 
 > 
 

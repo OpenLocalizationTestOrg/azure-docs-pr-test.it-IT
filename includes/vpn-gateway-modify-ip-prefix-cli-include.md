@@ -1,19 +1,19 @@
-### <a name="noconnection"></a>toomodify rete locale gateway prefissi degli indirizzi IP - Nessuna connessione gateway
+### <a name="noconnection"></a>Per modificare i prefissi degli indirizzi IP del gateway di rete locale senza connessione gateway
 
-Se si dispone di una connessione gateway e desiderate tooadd o rimuovere i prefissi di indirizzi IP, utilizzare hello stesso comando usare gateway di rete locale hello toocreate [locale-gateway di rete az creare](https://docs.microsoft.com/cli/azure/network/local-gateway#create). È anche possibile utilizzare questo indirizzo IP del gateway comando tooupdate hello per dispositivo VPN hello. impostazioni correnti di hello toooverwrite, utilizzare nome esistente di hello del gateway di rete locale. Se si utilizza un nome diverso, si crea un nuovo gateway di rete locale, anziché sovrascrivere hello uno esistente.
+Se non si ha una connessione gateway e si vogliono aggiungere o rimuovere prefissi degli indirizzi IP, usare lo stesso comando usato per creare il gateway di rete locale, [az network local-gateway create](https://docs.microsoft.com/cli/azure/network/local-gateway#az_network_local_gateway_create). È anche possibile usare questo comando per aggiornare l'indirizzo IP del gateway per il dispositivo VPN. Per sovrascrivere le impostazioni correnti, usare il nome esistente del gateway di rete locale. Se si usa un nome diverso, creare un nuovo gateway di rete locale, invece di sovrascrivere il valore esistente.
 
-È necessario specificare ogni volta che si apporta una modifica, l'elenco completo di hello di prefissi, hello non solo i prefissi che si desidera toochange. Specificare solo i prefissi di hello che si desidera tookeep. In questo caso, 10.0.0.0/24 e 20.0.0.0/24.
+Ogni volta che si apporta una modifica, deve essere specificato l'intero elenco di prefissi, non solo quelli che si vuole modificare. Specificare solo i prefissi da mantenere. In questo caso, 10.0.0.0/24 e 20.0.0.0/24.
 
 ```azurecli
-az network local-gateway create --gateway-ip-address 23.99.221.164 --name Site2 --connection-name TestRG1 --local-address-prefixes 10.0.0.0/24 20.0.0.0/24
+az network local-gateway create --gateway-ip-address 23.99.221.164 --name Site2 -g TestRG1 --local-address-prefixes 10.0.0.0/24 20.0.0.0/24
 ```
 
-### <a name="withconnection"></a>toomodify rete locale gateway prefissi di indirizzi IP - connessione gateway esistente
+### <a name="withconnection"></a>Per modificare i prefissi degli indirizzi IP del gateway di rete locale con connessione gateway esistente
 
-Se si dispone di una connessione gateway e tooadd o rimuovere i prefissi di indirizzi IP, è possibile aggiornare i prefissi di hello utilizzando [aggiornamento locale a gateway di rete az](https://docs.microsoft.com/cli/azure/network/local-gateway#update). Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP hello prefissi, non è necessario gateway VPN di hello toodelete.
+Se si ha una connessione gateway e si vogliono aggiungere o rimuovere prefissi degli indirizzi IP, è possibile aggiornare i prefissi usando il comando [az network local-gateway update](https://docs.microsoft.com/cli/azure/network/local-gateway#az_network_local_gateway_update). Questo comporterà periodi di inattività per la connessione VPN. Quando si modificano i prefissi degli indirizzi IP, non è necessario eliminare il gateway VPN.
 
-È necessario specificare ogni volta che si apporta una modifica, l'elenco completo di hello di prefissi, hello non solo i prefissi che si desidera toochange. In questo esempio 10.0.0.0/24 e 20.0.0.0/24 sono già presenti. Aggiungiamo hello prefissi 30.0.0.0/24 e 40.0.0.0/24 e specificare tutti i 4 di prefissi hello durante l'aggiornamento.
+Ogni volta che si apporta una modifica, deve essere specificato l'intero elenco di prefissi, non solo quelli che si vuole modificare. In questo esempio 10.0.0.0/24 e 20.0.0.0/24 sono già presenti. Vengono aggiunti i prefissi 30.0.0.0/24 e 40.0.0.0/24 e vengono specificati tutti e 4 i prefissi durante l'aggiornamento.
 
 ```azurecli
-az network local-gateway update --local-address-prefixes 10.0.0.0/24 20.0.0.0/24 30.0.0.0/24 40.0.0.0/24 --name VNet1toSite2 --connection-name TestRG1
+az network local-gateway update --local-address-prefixes 10.0.0.0/24 20.0.0.0/24 30.0.0.0/24 40.0.0.0/24 --name VNet1toSite2 -g TestRG1
 ```

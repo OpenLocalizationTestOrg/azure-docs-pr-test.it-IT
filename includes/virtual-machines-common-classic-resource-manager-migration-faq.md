@@ -1,66 +1,66 @@
-# <a name="frequently-asked-questions-about-classic-tooazure-resource-manager-migration"></a>Domande frequenti sulla migrazione di gestione risorse di tooAzure classico
+# <a name="frequently-asked-questions-about-classic-to-azure-resource-manager-migration"></a>Domande frequenti sulla migrazione dalla distribuzione classica alla distribuzione Azure Resource Manager
 
 ## <a name="does-this-migration-plan-affect-any-of-my-existing-services-or-applications-that-run-on-azure-virtual-machines"></a>Il piano di migrazione influisce sui servizi o sulle applicazioni esistenti in esecuzione nelle macchine virtuali di Azure? 
 
-No. Hello macchine virtuali (classiche) sono completamente supportati i servizi in disponibilità generale. È possibile continuare a toouse tooexpand queste risorse footprint in Microsoft Azure.
+di serie Le VM (classiche) sono servizi completamente supportati con disponibilità generale. È possibile continuare a usare queste risorse per sfruttare meglio la presenza su Microsoft Azure.
 
-## <a name="what-happens-toomy-vms-if-i-dont-plan-on-migrating-in-hello-near-future"></a>Macchine virtuali toomy cosa accade se non prevede la migrazione di hello prossimo futuro? 
+## <a name="what-happens-to-my-vms-if-i-dont-plan-on-migrating-in-the-near-future"></a>Che cosa accade alle macchine virtuali se non è prevista la migrazione a breve? 
 
-Non ci stiamo deprecazione hello classic API e risorse modello esistente. Vogliamo toomake migrazione semplice, prendendo in considerazione le funzionalità disponibili nel modello di distribuzione di gestione risorse di hello avanzate hello. Si consiglia di rivedere [alcuni dei miglioramenti hello](../articles/azure-resource-manager/resource-manager-deployment-model.md) che fanno parte di IaaS in Gestione risorse.
+Le API classiche e il modello di risorse classico non saranno deprecati. L'obiettivo è quello di semplificare la migrazione, tenendo conto delle funzionalità avanzate disponibili nel modello di distribuzione di Resource Manager. È quindi consigliabile esaminare [alcuni dei miglioramenti](../articles/azure-resource-manager/resource-manager-deployment-model.md) apportati come parte di IaaS in Resource Manager.
 
 ## <a name="what-does-this-migration-plan-mean-for-my-existing-tooling"></a>Qual è l'impatto di questo piano di migrazione per gli strumenti esistenti? 
 
-L'aggiornamento del modello di distribuzione gli strumenti di gestione delle risorse toohello è una delle modifiche più importanti hello che è necessario tooaccount nei piani di migrazione.
+L'aggiornamento degli strumenti al modello di distribuzione di Resource Manager è una delle modifiche più importanti da tenere in considerazione per i piani di migrazione.
 
-## <a name="how-long-will-hello-management-plane-downtime-be"></a>Quanto tempo i tempi di inattività di hello gestione piano sarà? 
+## <a name="how-long-will-the-management-plane-downtime-be"></a>Quale durata avrà il tempo di inattività del piano di gestione? 
 
-Dipende dal numero di hello delle risorse migrate. Per le distribuzioni di dimensioni minori (poche decine di macchine virtuali), hello intera migrazione deve richiedere da meno di un'ora. Per le distribuzioni su larga scala (centinaia di macchine virtuali), migrazione di hello può richiedere alcune ore.
+Dipende dal numero di risorse sottoposte a migrazione. Per le distribuzioni di dimensioni minori, ovvero con poche decine di VM, l'intera migrazione dovrebbe richiedere meno di un'ora. Per le distribuzioni su larga scala (centinaia di VM), la migrazione può richiedere alcune ore.
 
 ## <a name="can-i-roll-back-after-my-migrating-resources-are-committed-in-resource-manager"></a>È possibile eseguire il rollback dopo il commit delle risorse sottoposte a migrazione in Resource Manager? 
 
-È possibile interrompere la migrazione, purché le risorse di hello sono in stato preparato hello. Eseguire il rollback non è supportato dopo risorse hello sono state migrate correttamente tramite l'operazione di commit hello.
+È possibile interrompere la migrazione finché lo stato delle risorse è Prepared. Il rollback non è supportato dopo il completamento della migrazione delle risorse mediante l'operazione di commit.
 
-## <a name="can-i-roll-back-my-migration-if-hello-commit-operation-fails"></a>È possibile ripristinare la migrazione se si verifica un errore di operazione di commit hello? 
+## <a name="can-i-roll-back-my-migration-if-the-commit-operation-fails"></a>È possibile eseguire il rollback della migrazione in caso di esito negativo dell'operazione di commit? 
 
-Se l'operazione di commit hello ha esito negativo, non è possibile terminare la migrazione. Tutte le operazioni di migrazione, inclusi l'operazione di commit hello sono idempotenti. Pertanto, è consigliabile che ripetere l'operazione di hello dopo un breve periodo di tempo. Se si resta un errore, creare un ticket di supporto o creare un post del forum con tag ClassicIaaSMigration hello nostri [forum VM](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows).
+Non è possibile interrompere la migrazione in caso di esito negativo dell'operazione di commit. Tutte le operazioni di migrazione, inclusa l'operazione Commit, sono idempotenti. È quindi consigliabile provare a ripetere l'operazione dopo breve tempo. Se l'errore persiste, creare un ticket di supporto o un post con il tag ClassicIaaSMigration nel [forum sulle VM](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows).
 
-## <a name="do-i-have-toobuy-another-express-route-circuit-if-i-have-toouse-iaas-under-resource-manager"></a>È necessario toobuy un altro circuito express route se si hanno toouse IaaS in Gestione risorse? 
+## <a name="do-i-have-to-buy-another-express-route-circuit-if-i-have-to-use-iaas-under-resource-manager"></a>In caso si debba usare le risorse IaaS in Resource Manager, è necessario acquistare un altro circuito ExpressRoute? 
 
-No. È abilitato il recente [lo spostamento di circuiti ExpressRoute dal modello di distribuzione di gestione risorse toohello classico hello](../articles/expressroute/expressroute-move.md). Non è necessario toobuy un nuovo circuito ExpressRoute se hai già uno.
+di serie È stato recentemente abilitato lo [spostamento dei circuiti ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager](../articles/expressroute/expressroute-move.md). Se si dispone già di un circuito ExpressRoute, non è necessario acquistare un nuovo.
 
 ## <a name="what-if-i-had-configured-role-based-access-control-policies-for-my-classic-iaas-resources"></a>Che cosa succede se sono stati configurati criteri di controllo degli accessi in base al ruolo per le risorse IaaS classiche? 
 
-Durante la migrazione, le risorse di hello trasformare dalla classica tooResource Manager. Pertanto, è consigliabile pianificare gli aggiornamenti di criteri RBAC hello necessarie toohappen dopo la migrazione.
+Durante la migrazione le risorse si trasformano dal modello di distribuzione classica ad Azure Resource Manager. È quindi consigliabile pianificare gli aggiornamenti dei criteri RBAC che devono essere apportati dopo la migrazione.
 
-## <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-tooresource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>È stato eseguito il backup di VM della versione classica in un insieme di credenziali di backup. È possibile eseguire la migrazione di macchine virtuali dalla modalità di gestione in modalità classica tooResource e la protezione in un insieme di credenziali di servizi di ripristino? 
+## <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-to-resource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>È stato eseguito il backup di VM della versione classica in un insieme di credenziali di backup. È possibile eseguire la migrazione delle macchine virtuali dalla modalità classica alla modalità di Resource Manager e proteggerli in un insieme di credenziali dei Servizi di ripristino?
 
-Classico i punti di ripristino di macchine Virtuali in un insieme di credenziali di backup non vengono migrati insieme di credenziali di servizi di ripristino tooa automaticamente quando si sposta hello VM da tooResource classico in modalità di gestione. Seguire questi passaggi tootransfer i backup VM:
+I punti di recupero delle macchine virtuali <a name="vault">classiche</a> in un insieme di credenziali di backup non eseguono automaticamente la migrazione a un insieme di credenziali di Servizi di ripristino quando si sposta la macchina virtuale dalla modalità classica alla modalità Resource Manager. Seguire questa procedura per trasferire i backup di macchine virtuali:
 
-1. Nell'insieme di credenziali Backup hello passare toohello **elementi protetti** e selezionare hello macchina virtuale. Fare clic su [Arresta protezione](../articles/backup/backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines). Lasciare *deselezionata* l'opzione **Elimina i dati di backup associati**.
-2. Eliminare l'estensione di snapshot di backup/hello dalla hello macchina virtuale.
-3. Eseguire la migrazione di macchine virtuali hello dalla modalità di gestione tooResource modalità classica. Verificare che le informazioni di archiviazione e rete hello macchina virtuale toohello corrispondente viene anche eseguita la migrazione tooResource modalità di gestione.
-4. Creare un insieme di credenziali di servizi di ripristino e configurare i backup su hello migrazione macchina virtuale utilizzando **Backup** azione nella parte superiore del dashboard dell'insieme di credenziali. Per informazioni dettagliate sul backup dei servizi di ripristino tooa macchina virtuale insieme di credenziali, vedere l'articolo di hello, [proteggere macchine virtuali di Azure con un insieme di credenziali di servizi di ripristino](../articles/backup/backup-azure-vms-first-look-arm.md).
+1. Nell'insieme di credenziali di backup passare alla scheda **Elementi protetti** e selezionare la VM. Fare clic su [Arresta protezione](../articles/backup/backup-azure-manage-vms.md#stop-protecting-virtual-machines). Lasciare *deselezionata* l'opzione **Elimina i dati di backup associati**.
+2. Eliminare l'estensione di backup/snapshot dalla VM.
+3. Eseguire la migrazione della macchina virtuale dalla modalità classica alla modalità Resource Manager. Assicurarsi di eseguire la migrazione alla modalità Resource Manager anche delle informazioni di rete e archiviazione corrispondenti alla macchina virtuale.
+4. Creare un insieme di credenziali dei Servizi di ripristino e configurare il backup della macchina virtuale migrata usando l'azione **Backup** nella parte superiore del dashboard dell'insieme di credenziali. Per informazioni dettagliate sul backup di una macchina virtuale in un insieme di credenziali dei Servizi di ripristino, vedere l'articolo [Proteggere le VM di Azure con un insieme di credenziali dei servizi di ripristino](../articles/backup/backup-azure-vms-first-look-arm.md).
 
-## <a name="can-i-validate-my-subscription-or-resources-toosee-if-theyre-capable-of-migration"></a>È possibile convalidare la sottoscrizione o risorse toosee se sono in grado di migrazione? 
+## <a name="can-i-validate-my-subscription-or-resources-to-see-if-theyre-capable-of-migration"></a>È possibile convalidare la sottoscrizione o le risorse per verificare se sono idonee per la migrazione? 
 
-Sì. Nell'opzione di migrazione supportata dalla piattaforma hello, innanzitutto hello in preparazione per la migrazione è toovalidate che le risorse di hello siano in grado di migrazione. Nel caso in cui hello convalidare l'operazione ha esito negativo, si ricevono messaggi per i motivi hello non è possibile completare la migrazione di hello.
+Sì. Nell'opzione di migrazione supportata dalla piattaforma il primo passaggio per la preparazione della migrazione consiste nel verificare se le risorse sono idonee alla migrazione. In caso di esito negativo dell'operazione di convalida, si ricevono messaggi per tutti i motivi che impediscono il completamento della migrazione.
 
-## <a name="what-happens-if-i-run-into-a-quota-error-while-preparing-hello-iaas-resources-for-migration"></a>Cosa succede se si esegue un errore di quota durante la preparazione per la migrazione di risorse IaaS hello? 
+## <a name="what-happens-if-i-run-into-a-quota-error-while-preparing-the-iaas-resources-for-migration"></a>Che cosa succede se si verifica un errore di quota durante la preparazione delle risorse IaaS per la migrazione? 
 
-Si consiglia di interrompere la migrazione e quindi accedere le quote di hello un supporto richiesta tooincrease hello area geografica in cui eseguire la migrazione hello macchine virtuali. Dopo l'approvazione richiesta di quota hello, è possibile iniziare a eseguire di nuovo i passaggi della migrazione hello.
+Si consiglia di interrompere la migrazione e quindi inviare una richiesta di supporto per aumentare le quote nell'area in cui si sta eseguendo la migrazione delle macchine virtuali. Dopo l'approvazione della richiesta relativa alla quota, è possibile avviare di nuovo l'esecuzione della procedura di migrazione.
 
 ## <a name="how-do-i-report-an-issue"></a>Come si segnala un problema? 
 
-Registrare i problemi e domande sulla migrazione tooour [forum VM](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows), con la parola chiave hello ClassicIaaSMigration. Si consiglia di pubblicare tutte le eventuali domande in questo forum. Se si dispone di un contratto di assistenza, si è benvenuto toolog anche un ticket di supporto.
+Ogni utente è invitato a pubblicare problemi e domande sulla migrazione nel [forum sulle VM](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows)con la parola chiave ClassicIaaSMigration. Si consiglia di pubblicare tutte le eventuali domande in questo forum. Se si dispone di un contratto di supporto, è possibile anche registrare un ticket di supporto.
 
-## <a name="what-if-i-dont-like-hello-names-of-hello-resources-that-hello-platform-chose-during-migration"></a>Cosa accade se non è soddisfacente nomi hello risorse hello hello piattaforma scelto durante la migrazione? 
+## <a name="what-if-i-dont-like-the-names-of-the-resources-that-the-platform-chose-during-migration"></a>Che cosa succede se non si vogliono usare i nomi scelti dalla piattaforma per le risorse durante la migrazione? 
 
-Tutte le risorse hello è fornire in modo esplicito i nomi di modello di distribuzione classica hello vengono mantenute durante la migrazione. In alcuni casi vengono create nuove risorse. Ad esempio, viene creata un'interfaccia di rete per ogni VM. Hello possibilità toocontrol hello nomi di queste nuove risorse creati durante la migrazione non è attualmente supportato. Registrare i voti per questa funzionalità in hello [forum sul feedback Azure su](http://feedback.azure.com).
+Tutti i nomi di risorse specificati in modo esplicito nel modello di distribuzione classica vengono mantenuti durante la migrazione. In alcuni casi vengono create nuove risorse. Ad esempio, viene creata un'interfaccia di rete per ogni VM. Non è attualmente supportata la possibilità di controllare i nomi delle nuove risorse create durante la migrazione. Nel [forum di commenti e suggerimenti su Azure](http://feedback.azure.com)è possibile registrare i voti per questa funzionalità.
 
 ## <a name="can-i-migrate-expressroute-circuits-used-across-subscriptions-with-authorization-links"></a>È possibile eseguire la migrazione dei circuiti ExpressRoute usati in diverse sottoscrizioni con i collegamenti di autorizzazione? 
 
-Non è possibile eseguire automaticamente la migrazione dei circuiti ExpressRoute che usano collegamenti di autorizzazione tra sottoscrizioni senza tempi di inattività. Sono disponibili indicazioni su come eseguire la questa migrazione seguendo una procedura manuale. Vedere [ExpressRoute di eseguire la migrazione di circuiti e associate reti virtuali dal modello di distribuzione di gestione risorse toohello classico hello](../articles/expressroute/expressroute-migration-classic-resource-manager.md) per passaggi e altre informazioni.
+Non è possibile eseguire automaticamente la migrazione dei circuiti ExpressRoute che usano collegamenti di autorizzazione tra sottoscrizioni senza tempi di inattività. Sono disponibili indicazioni su come eseguire la questa migrazione seguendo una procedura manuale. Per la procedura e altre informazioni, vedere [Eseguire la migrazione di circuiti ExpressRoute e delle reti virtuali associate dalla distribuzione classica al modello di distribuzione Resource Manager](../articles/expressroute/expressroute-migration-classic-resource-manager.md).
 
-## <a name="i-got-a-message-vm-is-reporting-hello-overall-agent-status-as-not-ready-hence-hello-vm-cannot-be-migrated-ensure-that-hello-vm-agent-is-reporting-overall-agent-status-as-ready-or-vm-contains-extension-whose-status-is-not-being-reported-from-hello-vm-hence-this-vm-cannot-be-migrated-"></a>Viene visualizzato un messaggio *"macchina virtuale è reporting hello complessiva dello stato agente come non pronto. Di conseguenza, non può essere migrato hello macchina virtuale. Verificare che l'agente VM hello è reporting stato agente generale come pronto per la"* o *"macchina virtuale contiene il cui stato non viene segnalato da hello macchina virtuale di estensione. Per questo motivo, non è possibile eseguire la migrazione della macchina virtuale". *
+## <a name="i-got-the-message-vm-is-reporting-the-overall-agent-status-as-not-ready-hence-the-vm-cannot-be-migrated-ensure-that-the-vm-agent-is-reporting-overall-agent-status-as-ready-or-vm-contains-extension-whose-status-is-not-being-reported-from-the-vm-hence-this-vm-cannot-be-migrated"></a>Il messaggio indica che la *"VM segnala uno stato complessivo dell'agente come Non pronto. Di conseguenza, non è possibile eseguire la migrazione della VM. Il messaggio invita a controllare che l'agente VM segnali lo stato Pronto*. In un altro messaggio si legge che *la VM contiene un'estensione di cui non segnala lo stato. Per questo motivo, non è possibile eseguire la migrazione della macchina virtuale".*
 
-Questo messaggio viene ricevuto quando hello macchina virtuale non dispone di connettività in uscita toohello internet. agente VM Hello Usa account di archiviazione di Azure hello tooreach connettività in uscita per l'aggiornamento di stato dell'agente hello ogni cinque minuti.
+Questo messaggio viene ricevuto quando la VM non dispone di connettività in uscita a Internet. L'agente VM usa la connettività in uscita per raggiungere l'account di archiviazione di Azure in modo da aggiornare lo stato dell'agente ogni 5 minuti.

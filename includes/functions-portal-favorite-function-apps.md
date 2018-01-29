@@ -1,17 +1,17 @@
-## <a name="add-function-apps-tooyour-portal-favorites"></a>Aggiungi a Preferiti di portale tooyour App (funzione) 
+## <a name="favorite-functions-in-the-portal"></a>Funzioni preferite nel portale 
 
-Se non già stato fatto, aggiungere Preferiti tooyour funzione app nel portale di Azure hello. Questo rende più semplice toofind le app di funzione. Se è stato già fatto, ignorare toohello nella sezione successiva. 
+Se non è già stato fatto, aggiungere App per le funzioni ai Preferiti del portale di Azure, in modo da trovare più facilmente le app per le funzioni. Se è stato già fatto, passare alla sezione successiva. 
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+1. Accedere al [Portale di Azure](https://portal.azure.com/).
 
-2. Fare clic sulla freccia di hello in hello nella parte inferiore sinistra tooexpand tutti i servizi, tipo `Functions` in hello **filtro** campo e quindi fare clic su stella hello accanto troppo**funzione app**.  
+2. Fare clic sulla freccia in basso a sinistra per espandere tutti i servizi, digitare `Functions` nel campo **Filtro** e quindi fare clic sulla stella accanto a **App per le funzioni**.  
  
-    ![Creare app di funzione in hello portale di Azure](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
+    ![Creare un'app per le funzioni nel portale di Azure](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
 
-    Questa aggiunge hello funzioni icona toohello menu a sinistra di hello del portale hello.
+    L'icona Funzioni viene aggiunta al menu disponibile nella parte sinistra del portale.
 
-3. Chiudere il menu di hello, quindi scorrere verso il basso l'icona di toohello inferiore toosee hello funzioni. Fare clic su questo toosee icona un elenco di tutte le app di funzione. Fare clic sui toowork app di funzione con le funzioni nell'app. 
+3. Chiudere il menu e scorrere verso il basso fino a trovare l'icona Funzioni. Fare clic sull'icona per visualizzare l'elenco di tutte le app per le funzioni. Fare clic sull'app per le funzioni per eseguire operazioni sulle funzioni all'interno dell'app. 
  
-    ![](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
+    ![App per le funzioni nei Preferiti](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
  
      

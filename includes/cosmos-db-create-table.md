@@ -1,14 +1,21 @@
-È ora possibile usare Esplora dati toocreate una tabella e aggiungere dati tooyour database. 
+È ora possibile usare lo strumento Esplora dati nel portale di Azure per creare un database e una tabella. 
 
-1. Nel portale di Azure, nel menu di navigazione hello, hello fare clic su **Esplora dati (anteprima)**. 
-2. Nel pannello Esplora dati hello, fare clic su **nuova tabella**, quindi immettere nella pagina di hello mediante hello le seguenti informazioni.
+1. Fare clic su **Esplora dati** > **New Table** (Nuova tabella). 
+    
+    Viene visualizzata l'area **Add Table** (Aggiungi tabella) all'estrema destra. Per vederla potrebbe essere necessario scorrere la schermata.
 
-    ![Esplora dati in hello portale di Azure](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+    ![Esplora dati nel portale di Azure](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+
+2. Nella pagina **Add Table** (Aggiungi tabella) immettere le impostazioni per la nuova tabella.
 
     Impostazione|Valore consigliato|Descrizione
     ---|---|---
-    ID tabella|sample-table|ID di Hello della nuova tabella. I nomi delle tabelle disporre hello stesso carattere requisiti come ID di database. I nomi dei database devono avere una lunghezza compresa tra 1 e 255 caratteri e non possono contenere `/ \ # ?` o spazi finali.
-    Capacità di archiviazione| 10 GB|Lasciare il valore di predefinito hello. Questa è la capacità di archiviazione hello del database hello.
-    Velocità effettiva|400 UR/s|Lasciare il valore di predefinito hello. È possibile applicare la scalabilità verticale hello [velocità effettiva](../articles/cosmos-db/request-units.md) successiva se si desidera tooreduce latenza.
+    ID tabella|sample-table|ID della nuova tabella. I nomi delle tabelle presentano gli stessi requisiti relativi ai caratteri degli ID di database. I nomi dei database devono avere una lunghezza compresa tra 1 e 255 caratteri e non possono contenere `/ \ # ?` o spazi finali.
+    Capacità di archiviazione| Fissa (10 GB)|Modificare il valore in **Fissa (10 GB)**. Questo valore indica la capacità di archiviazione del database.
+    Velocità effettiva|400 UR/s|Modificare la velocità effettiva in 400 unità richiesta al secondo (UR/sec). Se si vuole ridurre la latenza, è possibile aumentare la velocità effettiva in un secondo momento.
 
-3. Una volta compilato il modulo di hello, fare clic su **OK**.
+    Fare clic su **OK**.
+
+    In Esplora dati verranno visualizzati il nuovo database e la nuova tabella.
+
+    ![Esplora dati nel portale di Azure, con il nuovo database e la nuova raccolta](./media/cosmos-db-create-table/azure-cosmos-db-new-table.png)

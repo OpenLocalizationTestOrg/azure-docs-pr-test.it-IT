@@ -1,18 +1,16 @@
-Creare le credenziali di distribuzione con hello [az webapp distribuzione utente set](/cli/azure/webapp/deployment/user#set) comando.
+In Cloud Shell creare credenziali di distribuzione con il comando [az webapp deployment user set](/cli/azure/webapp/deployment/user?view=azure-cli-latest#az_webapp_deployment_user_set). Un utente della distribuzione è necessario per la distribuzione con FTP e l'istanza Git locale in un'app Web. Nome utente e password sono a livello di account. _Sono quindi diversi dalle credenziali della sottoscrizione di Azure._
 
-Un utente di distribuzione è necessario per FTP e app web tooa locale distribuzione Git. nome utente hello e password sono a livello di account. _Sono quindi diversi dalle credenziali della sottoscrizione di Azure._
-
-In hello seguente comando, sostituire  *\<nome utente >* e  *\<password >* con un nuovo nome utente e una password. nome utente Hello deve essere univoco. Hello password deve essere composta da almeno otto caratteri, con due simboli di hello seguenti tre elementi: lettere, numeri e simboli. 
+Nell'esempio seguente sostituire *\<username>* e *\<password>* (incluse le parentesi) con un nuovo nome utente e una nuova password. Il nome utente deve essere univoco. La password deve essere composta da almeno otto caratteri, con due dei tre elementi seguenti: lettere, numeri e simboli. 
 
 ```azurecli-interactive
 az webapp deployment user set --user-name <username> --password <password>
 ```
 
-Se viene visualizzato un ` 'Conflict'. Details: 409` errore, nome utente hello di modifica. Se viene visualizzato un errore ` 'Bad Request'. Details: 400`, usare una password più complessa.
+Se viene visualizzato un errore ` 'Conflict'. Details: 409`, modificare il nome utente. Se viene visualizzato un errore ` 'Bad Request'. Details: 400`, usare una password più complessa.
 
 L'utente di distribuzione viene creato una sola volta e può essere usato per tutte le distribuzioni di Azure.
 
 > [!NOTE]
-> Nome del record hello utente e password. È necessario toodeploy hello web app in un secondo momento.
+> Registrare il nome utente e la password. Saranno necessari per distribuire l'app Web in un secondo momento.
 >
 >

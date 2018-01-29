@@ -1,17 +1,17 @@
 Verificare che sia già stato creato uno spazio dei nomi del bus di servizio, come illustrato [qui][namespace-how-to].
 
-1. Accesso toohello [portale di Azure][azure-portal].
-2. Nel riquadro di spostamento a sinistra di hello del portale di hello, fare clic su **Bus di servizio** (se non viene visualizzato **Bus di servizio**, fare clic su **più servizi**).
-3. Fare clic su spazio dei nomi hello in cui si desidera coda hello toocreate. In questo caso è **nstest1**.
+1. Accedere al [portale di Azure][azure-portal].
+2. Nel riquadro di spostamento a sinistra del portale, fare clic su **Bus di servizio** (se non viene visualizzato **Bus di servizio**, fare clic su **Altri servizi**).
+3. Fare clic sullo spazio dei nomi in cui si vuole creare la coda. In questo caso è **sbnstest1**.
    
     ![Creare una coda][createqueue1]
-4. In hello **dello spazio dei nomi Service Bus** pannello seleziona **code**, quindi fare clic su **Aggiungi coda**.
+4. Nella finestra dello spazio dei nomi fare clic su **Code** e quindi nella finestra **Code** fare clic su **+ Coda**.
    
     ![Selezionare Code][createqueue2]
-5. Immettere hello **nome coda** e lasciarne hello altri valori predefiniti.
+5. Immettere il nome della coda in **Nome** e lasciare le impostazioni predefinite per gli altri valori.
    
     ![Selezionare Nuovo][createqueue3]
-6. Nella parte inferiore di hello del pannello hello, fare clic su **crea**.
+6. Nella parte inferiore della finestra fare clic su **Crea**.
 
 [createqueue1]: ./media/service-bus-create-queue-portal/create-queue1.png
 [createqueue2]: ./media/service-bus-create-queue-portal/create-queue2.png

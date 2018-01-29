@@ -4,7 +4,7 @@ description: Come compilare un'API Web Node.js che accetta token da un tenant B2
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
-manager: mbaldwin
+manager: mtillman
 editor: 
 ms.assetid: fc2b9af8-fbda-44e0-962a-8b963449106a
 ms.service: active-directory-b2c
@@ -14,11 +14,11 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: xerners
-ms.openlocfilehash: 6480be75c314ede1b786e959a79c0385dd2edea8
-ms.sourcegitcommit: 73f159cdbc122ffe42f3e1f7a3de05f77b6a4725
-ms.translationtype: MT
+ms.openlocfilehash: 3a0249f2f7dfd76d89cbf497376f53fe06c250c3
+ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 12/18/2017
 ---
 # <a name="azure-ad-b2c-secure-a-web-api-by-using-nodejs"></a>Azure AD B2C: proteggere un'API Web usando Node.js
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
@@ -35,7 +35,7 @@ Azure Active Directory (Azure AD) B2C permette di proteggere un'API Web usando i
 Per questo esempio è necessario:
 
 1. Registrare un'applicazione con Azure AD.
-2. Configurare l'applicazione per l'uso del plug-in `azure-ad-passport` di Passport.
+2. Configurare l'applicazione per l'uso del plug-in `passport-azure-ad` di Passport.
 3. Configurare un'applicazione client per chiamare l'API Web To Do List.
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>Ottenere una directory di Azure AD B2C
@@ -48,8 +48,6 @@ A questo punto è necessario creare un'app nella directory B2C, che fornisce ad 
 * Immettere `http://localhost/TodoListService` come **URL di risposta**. Si tratta dell'URL predefinito per questo esempio di codice.
 * Creare un **segreto applicazione** per l'applicazione e prenderne nota. Questi dati saranno necessari in un secondo momento. Si noti che prima di usare questo valore è necessario [inserire un carattere di escape XML](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) .
 * Copiare l' **ID applicazione** assegnato all'app. Questi dati saranno necessari in un secondo momento.
-
-[!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>Creare i criteri
 In Azure AD B2C ogni esperienza utente è definita da [criteri](active-directory-b2c-reference-policies.md)specifici. Questa app contiene due esperienze di identità: iscrizione e accesso. È necessario creare i criteri per ogni tipo, come descritto nell' [articolo di riferimento per i criteri](active-directory-b2c-reference-policies.md#create-a-sign-up-policy).  Durante la creazione dei tre criteri assicurarsi di:
@@ -102,7 +100,7 @@ Immettere il comando seguente:
 
 Questo comando installa Restify.
 
-#### <a name="did-you-get-an-error"></a>È STATO VISUALIZZATO UN ERRORE?
+#### <a name="did-you-get-an-error"></a>È stato visualizzato un errore?
 In alcuni sistemi operativi, quando si usa `npm` potrebbero essere visualizzati l'errore `Error: EPERM, chmod '/usr/local/bin/..'` e una richiesta di eseguire l'account come amministratore. In tal caso, usare il comando `sudo` per eseguire `npm` a un livello di privilegi più elevato.
 
 #### <a name="did-you-get-a-dtrace-error"></a>È stato visualizzato un errore di DTrace?

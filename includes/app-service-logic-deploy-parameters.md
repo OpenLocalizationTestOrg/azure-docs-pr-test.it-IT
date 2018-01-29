@@ -1,13 +1,10 @@
-Con Gestione risorse di Azure, si definiscono i parametri per i valori si desidera toospecify quando viene distribuito il modello di hello. modello Hello include una sezione denominata parametri che contiene tutti i valori di parametro hello.
-È necessario definire un parametro per i valori che variano in base progetto hello che si distribuisce o Hello che si distribuisce ambiente di hello. Non definire parametri per i valori che saranno sempre hello stesso. Ogni valore del parametro viene utilizzato in hello toodefine di modello hello distribuire le risorse. 
+Con Azure Resource Manager è possibile definire parametri per i valori da usare durante la distribuzione del modello. Il modello include una sezione `parameters` che contiene tutti i valori dei parametri. Ogni valore di parametro viene usato dal modello per definire le risorse da distribuire.
 
-Quando si definiscono i parametri, utilizzare hello **allowedValues** toospecify campo che i valori di un utente può fornire durante la distribuzione. Hello utilizzare **defaultValue** campo tooassign un parametro di valore toohello, se viene fornito alcun valore durante la distribuzione.
+> [!NOTE]
+> Non definire i parametri per i valori che rimangono invariati. Definire parametri solo per i valori che variano in base al progetto distribuito o all'ambiente in cui viene eseguita la distribuzione.
 
-Si descrive ogni parametro di modello hello.
+Durante la definizione dei parametri:
 
-### <a name="logicappname"></a>logicAppName
-nome Hello di hello logica app toocreate.
+* Per specificare i valori consentiti che possono essere immessi dall'utente durante la distribuzione, usare il campo **allowedValues**.
 
-    "logicAppName": {
-        "type": "string"
-    }
+* Per assegnare valori predefiniti al parametro se durante la distribuzione non vengono specificati valori, usare il campo **defaultValue**. 

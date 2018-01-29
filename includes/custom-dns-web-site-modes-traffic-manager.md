@@ -1,4 +1,4 @@
-L'impostazione di un nome di dominio personalizzato in un'app Web del Servizio app di Azure con bilanciamento del carico tramite Gestione traffico è disponibile solo per i siti Web in modalità **Standard** . Prima di passare un'app web dal piano di servizio App gratuito hello, toohello modalità condiviso, modalità Basic o Standard, è necessario rimuovere caps spesa sul posto per la sottoscrizione al servizio App. 
+Impostazione di un nome di dominio personalizzato in un'app web che è integrata con Traffic Manager è disponibile solo per il **Standard** piano tariffario.  
 
-Per ulteriori informazioni sulle modalità di piano di servizio App hello, incluso come toochange hello modalità del sito, vedere [come siti web tooscale](../articles/app-service-web/web-sites-scale.md).
+Per ulteriori informazioni sul servizio App i livelli di prezzo, incluso come modificare l'applicazione del livello di prezzo, vedere [scalare in verticale un'app in Azure](../articles/app-service/web-sites-scale.md).
 

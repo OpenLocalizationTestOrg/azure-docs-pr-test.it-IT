@@ -1,6 +1,4 @@
-|  | **Distribuzione classica** | **Distribuzione di Gestione risorse** |
+| **Modello/metodo di distribuzione** | **Portale di Azure** | **PowerShell** | 
 | --- | --- | --- |
-| **Portale classico** |Non supportato |Non supportato |
-| **Portale di Azure** |Non supportato |Non supportato |
-| **PowerShell** |[Articolo](../articles/expressroute/expressroute-howto-coexist-classic.md) |[Articolo](../articles/expressroute/expressroute-howto-coexist-resource-manager.md) |
-
+| Gestione risorse | **Non supportato** | [Articolo](../articles/expressroute/expressroute-howto-coexist-resource-manager.md)|
+| Classico | **Non supportato** | [Articolo](../articles/expressroute/expressroute-howto-coexist-classic.md) |

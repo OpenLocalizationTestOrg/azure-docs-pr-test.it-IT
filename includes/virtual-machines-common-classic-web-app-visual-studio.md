@@ -1,41 +1,41 @@
 
 
-Quando si crea un progetto di applicazione web per Azure, è possibile eseguire il provisioning di una macchina virtuale in Azure. È quindi possibile configurare la macchina virtuale hello con altri prodotti software o utilizzare macchina virtuale hello per scopi di debug e diagnostica.
+Quando si crea un progetto di applicazione web per Azure, è possibile eseguire il provisioning di una macchina virtuale in Azure. È quindi possibile configurare la macchina virtuale con software aggiuntivo oppure usarla a scopo di diagnostica o debug.
 
-toocreate una macchina virtuale quando si crea un'applicazione web, seguire questi passaggi:
+Per creare una macchina virtuale quando si crea un’applicazione web, eseguire la procedura seguente:
 
-1. In Visual Studio, fare clic su **File** > **New** > **progetto** > **Web**, quindi scegliere **Applicazione Web ASP.NET** (in hello **Visual c#** o **Visual Basic** nodi).
-2. In hello **nuovo progetto ASP.NET** della finestra di dialogo Tipo selezionare hello dell'applicazione web che si desidera e in hello Azure sezione della finestra di dialogo hello (nell'angolo inferiore destro hello), assicurarsi che tale hello **Host nel cloud hello**casella di controllo è selezionata (questa casella di controllo **crea risorse remote** in alcune installazioni).
+1. In Visual Studio fare clic su **File** > **Nuovo** > **Progetto** > **Web** e quindi scegliere **Applicazione Web ASP.NET** (nei nodi **Visual C#** o **Visual Basic**).
+2. Nella finestra di dialogo **Nuovo progetto ASP.NET** selezionare il tipo di applicazione Web e nella sezione Azure nell'angolo inferiore destro della finestra di dialogo verificare quindi che sia selezionata la casella di controllo **Host nel cloud**. In alcune installazioni questa casella di controllo è denominata **Crea risorse remote**.
    
     ![][0]
-3. In questo esempio, nell'elenco a discesa hello in Microsoft Azure, scegliere **macchina virtuale (v1)**, quindi fare clic su hello **OK** pulsante.
-4. Accedi tooAzure se viene richiesto. Hello **crea macchina virtuale** viene visualizzata la finestra di dialogo.
+3. Per questo esempio, nell'elenco a discesa sotto Microsoft Azure scegliere **Macchina virtuale (v1)** e fare clic sul pulsante **OK**.
+4. Accedere a Azure se richiesto. Verrà visualizzata la finestra di dialogo **Crea macchina virtuale** .
    
     ![][2]
-5. In hello **nome DNS** , immettere un nome per la macchina virtuale hello. nome DNS Hello deve essere univoco in Azure. Se il nome di hello immesso non è disponibile, viene visualizzato un punto esclamativo rosso.
-6. In hello **immagine** scegliere hello l'immagine macchina virtuale di toobase hello in. È possibile scegliere una delle immagini di macchina virtuale di Azure standard hello o l'immagine che hai caricato tooAzure.
-7. Lasciare hello **abilitare IIS e distribuzione Web** selezionata a meno che non si prevede un server web diverso tooinstall casella di controllo. Se si disabilita distribuzione Web, sarà in grado di toopublish da Visual Studio. È possibile aggiungere IIS e distribuzione Web tooany di immagini di Windows Server hello incluso nel pacchetto, incluse le immagini personalizzate.
-8. In hello **dimensioni** scegliere dimensioni hello della macchina virtuale hello.
-9. Specificare hello credenziali di accesso per questa macchina virtuale. Prendere nota di essi, poiché sarà necessario tooaccess hello computer tramite Desktop remoto.
-10. In hello **percorso** scegliere la macchina virtuale hello area toohost hello.
-11. Fare clic su hello **OK** toostart pulsante Creazione macchina virtuale hello. È possibile seguire lo stato di avanzamento hello dell'operazione di hello in hello **Output** finestra.
+5. Nella casella **Nome DNS** immettere un nome per la macchina virtuale. Il nome DNS deve essere univoco in Azure. Se il nome immesso non è disponibile, compare un punto esclamativo rosso.
+6. Nell'elenco **Immagine** scegliere l'immagine su cui basare la macchina virtuale. È possibile scegliere una qualsiasi delle immagini delle macchine virtuali standard oppure un'immagine personalizzata caricata in Azure.
+7. Lasciare selezionata la casella di controllo **Abilita IIS e Distribuzione Web** a meno che non si preveda di installare un server Web diverso. Se non si abilita Distribuzione Web, non sarà possibile eseguire la pubblicazione da Visual Studio. È possibile aggiungere IIS e Distribuzione Web a qualsiasi immagine di Windows Server inclusa nel pacchetto, comprese le immagini personalizzate.
+8. Nell'elenco **Dimensioni** selezionare le dimensioni della macchina virtuale.
+9. Specificare le credenziali di accesso per la macchina virtuale. Prendere nota di tali credenziali perché saranno necessarie per accedere al computer tramite Desktop remoto.
+10. Nell'elenco **Località** scegliere l'area che ospiterà la macchina virtuale.
+11. Fare clic sul pulsante **OK** per avviare la creazione della macchina virtuale. È possibile seguire l'avanzamento dell'operazione nella finestra **Output** .
     
     ![][3]
-12. Provisioning della macchina virtuale hello, vengono creati gli script pubblicati in un **PublishScripts** nodo della soluzione. Hello pubblicati viene eseguito lo script ed esegue il provisioning una macchina virtuale in Azure. Hello **Output** finestra viene visualizzato lo stato di hello. lo script di Hello esegue hello seguente tooset azioni hello della macchina virtuale:
+12. Dopo il provisioning della macchina virtuale, gli script di pubblicazione vengono creati in un nodo **PublishScripts** nella soluzione. Lo script pubblicato viene eseguito ed esegue il provisioning di una macchina virtuale in Azure. Nella finestra **Output** viene visualizzato lo stato. Lo script esegue le azioni seguenti per configurare la macchina virtuale:
     
-    * Crea macchina virtuale hello se non esiste già.
-    * Crea un account di archiviazione con un nome che inizia con `devtest`, ma solo se esiste già un account di archiviazione nell'area specificata hello.
-    * Crea un servizio cloud come contenitore per la macchina virtuale hello e crea un ruolo web per un'applicazione web hello.
-    * Configura distribuzione Web nella macchina virtuale hello.
-    * Configura IIS e ASP.NET nella macchina virtuale hello.
+    * Crea la macchina virtuale se non esiste già.
+    * Crea un account di archiviazione con un nome che inizia con `devtest`, ma solo se nell'area specificata non esiste già un account di archiviazione di questo tipo.
+    * Crea un servizio cloud come contenitore per la macchina virtuale e crea un ruolo Web per l’applicazione web.
+    * Configura Distribuzione Web nella macchina virtuale.
+    * Configura IIS e ASP.NET nella macchina virtuale.
     
     ![][4]
-13. (Facoltativo) È possibile connettersi toohello nuova macchina virtuale. In **Esplora Server**, espandere hello **macchine virtuali** nodo, scegliere il nodo di hello per la macchina virtuale hello è stato creato e il relativo menu di scelta rapida, scegliere **connessione tramite Desktop remoto**. In alternativa, in **Cloud Explorer** è possibile scegliere **Apri nel portale** hello menu di scelta rapida e connettere toohello della macchina virtuale non esiste.
+13. (Facoltativo) È possibile connettersi alla nuova macchina virtuale. In **Esplora server** espandere il nodo **Macchine virtuali**, scegliere il nodo per la macchina virtuale creata e, nel relativo menu di scelta rapida, scegliere **Connessione tramite desktop remoto**. In alternativa, in **Cloud Explorer** è possibile scegliere **Apri nel portale** nel menu di scelta rapida e connettersi da lì alla macchina virtuale.
     
     ![][5]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si desidera toocustomize hello script pubblicato è stato creato, leggere informazioni più dettagliate in [tooDev tooPublish tramite script di Windows PowerShell e gli ambienti di Test](http://msdn.microsoft.com/library/dn642480.aspx).
+Se si vogliono personalizzare gli script pubblicati creati, leggere informazioni più dettagliate in [Uso degli script di Windows PowerShell per la pubblicazione in ambienti di sviluppo e test](http://msdn.microsoft.com/library/dn642480.aspx).
 
 [0]: ./media/virtual-machines-common-classic-web-app-visual-studio/CreateVM_NewProject.PNG
 [1]: ./media/dotnet-visual-studio-create-virtual-machine/CreateVM_SignIn.PNG

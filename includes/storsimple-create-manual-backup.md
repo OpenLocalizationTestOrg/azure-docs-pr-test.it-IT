@@ -2,19 +2,19 @@
 <!--author=SharS last changed: 9/15/15-->
 
 
-#### <a name="toocreate-a-manual-backup"></a>toocreate un backup manuale
-1. In hello **dispositivi** pagina, visitare toohello **criteri di Backup** scheda. Questa scheda vengono elencati tutti i criteri di backup hello in un formato tabulare, inclusi i criteri di hello per volume hello che si desidera ripristinare tooback.
-2. Selezionare i criteri di hello facendo clic su un punto qualsiasi nella riga corrispondente di hello tranne prima colonna hello. Nella parte inferiore di hello della pagina hello, fare clic su **eseguire backup**. pulsante Hello espanderà tooshow le opzioni di backup hello: snapshot locale e cloud. 
+#### <a name="to-create-a-manual-backup"></a>Per creare un backup manuale
+1. Nella pagina **Dispositivi** andare alla scheda **Criteri di backup**. In questa scheda vengono elencati tutti i criteri di backup in formato tabulare, tra cui il criterio per il volume di cui si desidera eseguire il backup.
+2. Selezionare il criterio facendo clic in un punto qualsiasi nella riga corrispondente, eccetto per la prima colonna. Nella parte inferiore della pagina, fare clic su **Eseguire il backup**. Il pulsante verrà esteso per mostrare le opzioni di backup: snapshot locale e snapshot del cloud. 
 3. Quando si sceglie una di queste opzioni, verrà richiesto di confermare. Fare clic su **Sì**. 
    
     ![Creare il backup manuale](./media/storsimple-create-manual-backup/HCS_CreateManualBackup1-include.png)
    
-    Verrà avviata una toocreate processo uno snapshot. Si noterà una notifica nella parte inferiore di hello della pagina hello dopo il processo di hello è stato creato.
-4. processo di hello toomonitor, fare clic su **Visualizza processo** nell'area di notifica hello (nella parte inferiore di hello della pagina hello). 
+    Verrà avviato un processo di creazione di snapshot. Una volta completata la creazione del processo, verrà visualizzata una notifica nella parte inferiore della pagina.
+4. Per monitorare il processo, fare clic su **Visualizza processo** nell'area di notifica (nella parte inferiore della pagina). 
    
-    ![Backup manuale di monitoraggio hello](./media/storsimple-create-manual-backup/HCS_CreateManualBackup2-include.png)
-5. Al termine processo di backup hello, passare toohello **catalogo di Backup** scheda.
-6. Set di dispositivi appropriati toohello selezioni filtro hello, criteri di backup e intervallo di tempo. Fare clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-create-manual-backup/HCS_CheckIcon-include.png) Dopo aver impostato i filtri di hello.
+    ![Monitorare il backup manuale](./media/storsimple-create-manual-backup/HCS_CreateManualBackup2-include.png)
+5. Una volta completato il processo di backup, andare alla scheda **Catalogo di backup** .
+6. Impostare le selezioni filtro per il dispositivo appropriato, il criterio di backup e l’intervallo di tempo. Dopo aver impostato i filtri, fare clic sull’icona del segno di spunta  ![icona del segno di spunta](./media/storsimple-create-manual-backup/HCS_CheckIcon-include.png) .
    
-   backup Hello dovrebbe essere visualizzato nell'elenco di hello dei set di backup che viene visualizzato nel catalogo di hello.
+   Il backup dovrebbe comparire nell'elenco dei set di backup che viene visualizzato nel catalogo.
 

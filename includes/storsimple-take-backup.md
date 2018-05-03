@@ -1,30 +1,30 @@
 <!--author=alkohli last changed: 9/17/15-->
 
-### <a name="tootake-a-backup"></a>tootake una copia di backup
-1. Nel dispositivo hello **avvio rapido** pagina, fare clic su **aggiungere un criterio di backup**. Verrà avviata una procedura guidata Aggiungi criteri di Backup hello. 
-2. In hello **definire i criteri di backup** pagina:
+### <a name="to-take-a-backup"></a>Per eseguire un backup
+1. Nella pagina **Avvio rapido** del dispositivo, fare clic su **Aggiungi un criterio di backup**. L’operazione consentirà di avviare la procedura guidata per aggiungere un criterio di backup. 
+2. Nella pagina **Definisci criterio di backup** :
    
    1. Fornire un nome per il criterio di backup, che contenga tra i 3 e i 150 caratteri.
-   2. Selezionare toobe volumi hello sottoposti a backup. Se si seleziona più di un volume, questi volumi saranno raggruppati toocreate insieme un arresto anomalo del sistema coerente backup.
-   3. Fare clic sull'icona di freccia hello ![icona a forma di freccia](./media/storsimple-take-backup/HCS_ArrowIcon-include.png). 
+   2. Selezionare i volumi su cui eseguire il backup. Se si seleziona più di un volume, questi volumi verranno raggruppati per creare un backup crash-consistent.
+   3. Fare clic sull’icona a forma di freccia  ![icona a forma di freccia](./media/storsimple-take-backup/HCS_ArrowIcon-include.png). 
       
       ![Aggiungi criterio di backup](./media/storsimple-take-backup/HCS_AddBackupPolicyWizard1M-include.png)
-3. In hello **definire una pianificazione** pagina:
+3. Nella pagina **Definisci pianificazione** :
    
-   1. Selezionare il tipo di hello di backup dall'elenco a discesa hello. Per ripristini più rapidi, selezionare **Snapshot locale**. Per la resilienza dei dati, selezionare **Snapshot cloud**.
-   2. Specificare la frequenza di backup hello in minuti, ore, giorni o settimane.
-   3. Selezionare un periodo di conservazione. le scelte di conservazione Hello dipendono dalla frequenza di backup hello. Ad esempio, per criteri giornalieri, conservazione hello è possibile specificare in settimane, mentre per i criteri mensili in mesi.
-   4. Selezionare l'ora e la data per i criteri di backup hello hello.
-   5. Seleziona hello **abilitare** criteri di backup hello tooenable casella di controllo. 
-   6. Fare clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-take-backup/HCS_CheckIcon-include.png) criteri di hello toosave.
+   1. Selezionare il tipo di backup dall’elenco a discesa. Per ripristini più rapidi, selezionare **Snapshot locale**. Per la resilienza dei dati, selezionare **Snapshot cloud**.
+   2. Specificare la frequenza di backup in minuti, ore, giorni o settimane.
+   3. Selezionare un periodo di conservazione. Le scelte di conservazione dipendono dalla frequenza di backup. Ad esempio, per un criterio giornaliero, la conservazione può essere specificata in settimane, mentre la conservazione per un criterio mensile è specificata in mesi.
+   4. Selezionare la data e l’ora di inizio per il criterio di backup.
+   5. Selezionare la casella di controllo **Abilita** per abilitare il criterio di backup. 
+   6. Fare clic sull’icona del segno del spunta  ![icona del segno di spunta](./media/storsimple-take-backup/HCS_CheckIcon-include.png) per salvare il criterio.
       
       ![Aggiungi criterio di backup](./media/storsimple-take-backup/HCS_AddBackupPolicyWizard2M-include.png)
       
       A questo punto è disponibile un criterio di backup che creerà backup pianificati dei dati del volume.
 
-È stata completata la configurazione dei dispositivi hello. 
+La configurazione del dispositivo è stata completata. 
 
 ![Video disponibile](./media/storsimple-take-backup/Video_icon.png)**Video disponibile**
 
-toowatch un video che illustra come tootake un backup di StorSimple, fare clic su [qui](https://azure.microsoft.com/documentation/videos/take-a-storsimple-backup/).
+Per guardare un video che illustra come eseguire un backup StorSimple, fare clic [qui](https://azure.microsoft.com/documentation/videos/take-a-storsimple-backup/).
 

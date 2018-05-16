@@ -1,3 +1,0 @@
-### <a name="storage-service-versions"></a>Versioni del servizio di archiviazione
-servizi di archiviazione Azure Hello vengono aggiornati regolarmente con il supporto per le nuove funzionalità. riferimento all'API REST di servizi di archiviazione di Azure Hello descrive ogni versione supportata e delle relative funzionalità. È consigliabile utilizzare la versione più recente di hello quando possibile. Per informazioni sulla versione più recente di hello dei servizi di archiviazione di Azure hello, nonché informazioni sulle versioni precedenti, vedere [controllo delle versioni per i servizi di archiviazione Azure hello](https://msdn.microsoft.com/library/azure/dd894041.aspx).  
-
